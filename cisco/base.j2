@@ -27,15 +27,15 @@ qos advanced
 qos map dscp-queue 8 to 6
 qos map dscp-queue 46 to 7
 !
-!{% for interface in device.interfaces.all() %}
-{% if interface.lag.label is defined %}interface {{interface.label}}
+!{% for interface in device.interfaces.all() %}{% if interface.lag.label is defined %}
+interface {{interface.label}}
  channel-group {{interface.lag.label|replace('po','')}} mode active
-!{% else %}
-{% if interface.enabled == True %}interface {{interface.label}}
- {% if interface.mode == 'tagged-all' %}switchport trunk allowed vlan add 1-4094{% endif %}{% if interface.mode == 'tagged' %}
- switchport trunk allowed vlan add {% for vlan in interface.tagged_vlans %}{{vlan.vid}},{% endfor %}
- {% if interface.untagged_vlan.vid is defined %}switchport trunk native vlan {{interface.untagged_vlan.vid}}
- switchport default-vlan tagged{% endif %}{% endif %}
- {% if interface.mode == 'access' %}switchport mode access
+!{% else %}{% if interface.enabled == True %}
+interface {{interface.label}}{% if interface.mode == 'tagged-all' %}
+ switchport trunk allowed vlan add 1-4094{% endif %}{% if interface.mode == 'tagged' %}
+ switchport trunk allowed vlan add {% for vlan in interface.tagged_vlans %}{{vlan.vid}},{% endfor %}{% if interface.untagged_vlan.vid is defined %}
+ switchport trunk native vlan {{interface.untagged_vlan.vid}}
+ switchport default-vlan tagged{% endif %}{% endif %}{% if interface.mode == 'access' %}
+ switchport mode access
  switchport access vlan {{interface.untagged_vlan.vid}}{% endif %}
 !{% endif %}{% endif %}{% endfor %}
