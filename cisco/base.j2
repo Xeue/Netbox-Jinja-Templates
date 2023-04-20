@@ -33,7 +33,7 @@ interface {{interface.label}}
 !{% else %}{% if interface.enabled == True %}
 interface {{interface.label}}{% if interface.mode == 'tagged-all' %}
  switchport trunk allowed vlan add 1-4094{% endif %}{% if interface.mode == 'tagged' %}
- switchport trunk allowed vlan add {% for vlan in interface.tagged_vlans %}{{vlan.vid}},{% endfor %}{% if interface.untagged_vlan.vid is defined %}
+ switchport trunk allowed vlan add {% for vlan in interface.tagged_vlans.all() %}{{vlan.vid}},{% endfor %}{% if interface.untagged_vlan.vid is defined %}
  switchport trunk native vlan {{interface.untagged_vlan.vid}}
  switchport default-vlan tagged{% endif %}{% endif %}{% if interface.mode == 'access' %}
  switchport mode access
