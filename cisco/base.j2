@@ -1,7 +1,7 @@
 hostname "NEP-WBS-{{device.name}}"
 management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
 no management vlan ip dhcp client
-ip default-gateway 10.40.47.254
+ip default-gateway {{device.primary_ip4|gateway()}}
 clock source sntp
 sntp server {{sntp_server}} port {{sntp_port}}
 snmp-server location "CAR"
