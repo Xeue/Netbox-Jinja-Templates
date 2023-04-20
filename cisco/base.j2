@@ -46,13 +46,17 @@ qos map dscp-queue 46 to 7
 !
 {% for interface in device.interfaces.all() %}
 interface {{interface.label}}
- {{interface.mode}}
- switchport trunk allowed vlan add 1-4094
+{{interface.parent}}
+ {% if interface.mode = 'tagged-all' %}
+  switchport trunk allowed vlan add 1-4094
+ {% endif %}
+ {% if interface.mode = 'access' %}
   switchport mode access
- switchport access vlan 41
- interface gi23
- channel-group 2 mode active
-!
+  switchport access vlan 41
+ {% endif %}
+ {% if interface.mode = 'access' %}
+  channel-group 2 mode active
+ {% endif %}
 !
 {% endfor %}
 !
