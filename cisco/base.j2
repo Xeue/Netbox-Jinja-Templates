@@ -1,0 +1,59 @@
+hostname "NEP-WBS-{{device.name}}"
+management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
+no management vlan ip dhcp client
+ip default-gateway 10.40.47.254
+clock source sntp
+sntp server {{sntp_server}} port {{sntp_port}}
+snmp-server location "CAR"
+clock timezone GMT 0 minutes 0
+username "{{user}}" secret encrypted {{secret}}
+no passwords complexity enable
+passwords aging 0
+!
+!
+!
+vlan 41
+ name "Vision_Control"
+vlan 999
+ name "WAN"
+vlan 1011-1012,1021-1022,2001
+management-vlan vlan 41
+!
+!
+!
+!
+!
+{% include 'cisco/spanning_tree.j2' %}
+!
+!
+!
+!
+no cdp log mismatch native
+!
+!
+!
+ip ssh server
+!
+qos advanced
+qos map dscp-queue 8 to 6
+qos map dscp-queue 46 to 7
+!
+!
+!
+!
+!
+!
+!
+{% for interface in device.interfaces.all() %}
+interface {{interface.label}}
+ {{interface.mode}}
+ switchport trunk allowed vlan add 1-4094
+  switchport mode access
+ switchport access vlan 41
+ interface gi23
+ channel-group 2 mode active
+!
+!
+{% endfor %}
+!
+!
