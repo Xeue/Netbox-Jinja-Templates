@@ -46,7 +46,7 @@ qos map dscp-queue 46 to 7
 !
 {% for interface in device.interfaces.all() %}
  interface {{interface.label}}
- {% if interface.lag != 'None' %}
+ {% if interface.lag.label is defined %}
     channel-group {{interface.lag.label|replace('po','')}} mode active
  {% else %}
     {% if interface.mode == 'tagged-all' %}
