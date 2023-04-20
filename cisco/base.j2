@@ -56,7 +56,6 @@ qos map dscp-queue 46 to 7
  {% if interface.mode = 'access' %}
   channel-group 2 mode active
  {% endif %}
-  {{interface.parent}}
 !
 {% endfor %}
 !
