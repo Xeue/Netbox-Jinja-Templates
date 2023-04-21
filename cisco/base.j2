@@ -13,15 +13,15 @@ passwords aging 0
 
 {% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique %}
 
+{% for interface in device.interfaces.all() %}
+    {% for vlan in interface.tagged_vlans.all() %}
+        {{ vlans.append(vlan) }}
+    {% endfor %}
+{% endfor %}
+
 {% for vlan in vlans %}
 vlan {{vlan.vid}}
  name "{{vlan.name}}"
-{% endfor %}
-
-{% for interface in device.interfaces.all() %}
-    {% for vlan in interface.tagged_vlans.all() %}
-        {% do vlans.append(vlan) %}
-    {% endfor %}
 {% endfor %}
 
 management-vlan vlan {{management_vlan}}
