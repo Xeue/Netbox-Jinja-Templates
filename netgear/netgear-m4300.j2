@@ -1,0 +1,92 @@
+{%- set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
+{%- for interface in device.interfaces.all() %}
+    {%- for vlan in interface.tagged_vlans.all() %}
+        {%- set x = vlans.append(vlan) %}
+    {%- endfor %}
+{%- endfor %}
+{%- set x = vlans|unique %}
+vlan database
+vlan {{vlans|map(attribute='vid')|join(',')}}
+{%- for vlan in vlans %}
+    {%- if vlan.vid is defined %}
+vlan name {{vlan.vid}} "{{vlan.name}}"
+    {%- endif %}
+{%- endfor %}
+no vlan routing 1
+vlan routing {{management_vlan}} 1
+exit
+ip ssh server enable
+configure
+no sntp server time-a.netgear.com
+no sntp server time-c.netgear.com
+sntp server {{sntp_server}}
+snmp-server sysname "{{snmp_sysname}}"
+snmp-server location "{{snmp_location}}"
+snmp-server contact "{{snmp_contact}}"
+username "{{user}}" password 731ce3b40591a3d1f2102fe0a5da51e938e81b1248e803260805e0fd23aecee12d938566619ece2869c9cf65c7fb13532937d9115b258fbfeef95d6f17e8f67d level 15 encrypted
+line console
+serial timeout 160
+password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
+exit
+line telnet
+password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
+exit
+line ssh
+password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
+exit
+{# port-channel name {{interface.lag.label}} {{interface.lag.description|replace(' ', '_') or interface.lag.name|replace(' ', '_')}} #}
+{% include 'netgear/spanning_tree.j2' %}
+{%- for interface in device.interfaces.all() %}
+    {%- if interface.enabled == True and interface.mgmt_only != True %}
+interface 1/{{interface.label}}
+        {%- if interface.mode == 'tagged-all' %}
+            switchport mode trunk
+            vlan participation auto 1
+        {%- elif interface.mode == 'tagged' %}
+            switchport mode trunk
+            switchport trunk allowed vlan {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
+            {%- if interface.untagged_vlan.vid is defined %}
+                switchport trunk native vlan {{interface.untagged_vlan.vid}}
+            	vlan pvid {{interface.untagged_vlan.vid}}
+                vlan participation auto 1
+            {%- endif %}
+        {%- elif interface.mode == 'access' %}
+            switchport mode access
+            switchport access vlan {{interface.untagged_vlan.vid}}
+            vlan pvid {{interface.untagged_vlan.vid}}
+            vlan participation include {{interface.untagged_vlan.vid}}
+            vlan participation auto 1
+        {%- endif %}
+        {%- if interface.lag.label is defined %}
+            addport {{interface.lag.label}}
+        {%- else %}
+exit
+    {%- endif %}
+{%- endfor %}
+{#- interface vlan 41
+    routing
+    ip address 10.40.40.1 255.255.248.0
+exit #}
+ip management vlan {{management_vlan}} {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+ip management source-interface vlan 41
+router rip
+exit
+router ospf
+exit
+ipv6 router ospf
+exit
+{#- service dhcp
+    ip dhcp excluded-address 10.40.40.1 10.40.40.127
+    ip dhcp excluded-address 10.40.40.170 10.40.47.254
+    ip dhcp excluded-address 10.40.40.167 10.40.40.169
+    ip dhcp pool "flypack-control"
+    lease 0 3 0
+    dns-server 62.244.176.176 62.244.177.177
+    default-router 10.40.47.254
+    network 10.40.40.0 255.255.248.0
+    netbios-node-type b-node
+    ntp 10.40.40.11 10.40.40.12
+exit
+ip route 0.0.0.0 0.0.0.0 10.40.47.254
+exit #}
+{# hostname "NEP-WBS-{{device.name}}" #}
