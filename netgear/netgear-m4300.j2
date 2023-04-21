@@ -69,12 +69,12 @@ addport {{interface.lag.label}}
         {%- if interface.description %}
 {#- description '{{interface.description}}' #}
         {%- endif %}
-
         {%- if interface.link_peers %}
-            {% set description = interface.link_peers|first %}
+            {%- set peer = interface.link_peers|first %}
+            {%- set description = peer.device %}
         {%- else %}
-            {% set description = 'Nope' %}
-        {% endif %}
+            {%- set description = 'Nope' %}
+        {%- endif %}
         description '{{description}}'
 exit
     {%- endif %}
