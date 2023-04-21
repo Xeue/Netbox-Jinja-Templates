@@ -18,21 +18,16 @@ vlan {{vlan.vid}}
  name "{{vlan.name}}"
 {% endfor %}
 
-{% set vlans2 = device.interfaces.all()|list|sum(attribute='tagged_vlans', start=[]) %}
+{% set vlans2 = device.interfaces.all()|map(attribute='tagged_vlan') %}
 
-{% for vlanG in vlans2 %}
+{% for vlanG in vlans2.all() %}
     {% for vlan in vlanG %}
     vlan {{vlan.vid}}
     name "{{vlan.name}}"
     {% endfor %}
 {% endfor %}
 
-vlan 41
- name "Vision_Control"
-vlan 999
- name "WAN"
-vlan 1011-1012,1021-1022,2001
-management-vlan vlan 41
+management-vlan vlan {{management_vlan}}
 !
 {% include 'cisco/spanning_tree.j2' %}
 !
