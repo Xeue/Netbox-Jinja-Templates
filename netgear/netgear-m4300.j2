@@ -62,12 +62,15 @@ no switchport
         {%- if interface.lag.label is defined %}
 addport {{interface.lag.label}}
         {%- endif %}
+        {%- if interface.description is defined %}
+description '{{interface.description}}'
+        {%- endif %}
 exit
     {%- endif %}
 {%- endfor %}
 interface vlan {{management_vlan}}
-    routing
-    ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+routing
+ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 exit
 ip management vlan {{management_vlan}} {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 ip management source-interface vlan {{management_vlan}}
