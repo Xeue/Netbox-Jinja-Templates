@@ -66,16 +66,14 @@ no switchport
         {%- if interface.lag.label is defined %}
 addport {{interface.lag.label}}
         {%- endif %}
-        {%- if interface.description %}
-{#- description '{{interface.description}}' #}
+        {%- set description = interface.description %}
+        {%- if description == '' %}
+            {%- if interface.link_peers %}
+                {%- set peer = interface.link_peers|first %}
+                {%- set description = peer.device %}
+            {%- endif %}
         {%- endif %}
-        {%- if interface.link_peers %}
-            {%- set peer = interface.link_peers|first %}
-            {%- set description = peer.device %}
-        {%- else %}
-            {%- set description = 'Nope' %}
-        {%- endif %}
-        description '{{description}}'
+description '{{description}}'
 exit
     {%- endif %}
 {%- endfor %}
