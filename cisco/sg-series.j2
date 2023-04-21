@@ -41,6 +41,14 @@ qos map dscp-queue 46 to 7
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
  channel-group {{interface.lag.label|replace('po','')}} mode active
+        {%- set description = interface.description %}
+        {%- if description == '' %}
+            {%- if interface.link_peers %}
+                {%- set peer = interface.link_peers|first %}
+                {%- set description = peer.device %}
+            {%- endif %}
+        {%- endif %}
+ description '{{description}}'
 !
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}

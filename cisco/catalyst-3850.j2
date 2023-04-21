@@ -33,6 +33,14 @@ ip ssh server
     {%- if interface.lag.name is defined %}
 interface {{interface.name}}
  channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
+        {%- set description = interface.description %}
+        {%- if description == '' %}
+            {%- if interface.link_peers %}
+                {%- set peer = interface.link_peers|first %}
+                {%- set description = peer.device %}
+            {%- endif %}
+        {%- endif %}
+ description '{{description}}'
 !
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}
