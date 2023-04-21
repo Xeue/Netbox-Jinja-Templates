@@ -6,7 +6,7 @@ ip default-gateway {{device.primary_ip4|gateway()}}
 no ip http server
 ip http authentication local
 ip http secure-server
-snmp-server location "{{snmp_location}}"
+snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
 !
