@@ -65,7 +65,7 @@ addport {{interface.lag.label}}
         {%- if interface.description %}
 {#- description '{{interface.description}}' #}
         {%- endif %}
-description '{{interface.link_peers.device.name}}'
+description '{{interface.link_peers.parent.name}}'
 exit
     {%- endif %}
 {%- endfor %}
