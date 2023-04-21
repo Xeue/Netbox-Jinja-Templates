@@ -11,8 +11,11 @@ no passwords complexity enable
 passwords aging 0
 !
 {% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
+1
 {% for interface in device.interfaces.all() %}{% for vlan in interface.tagged_vlans.all() %}{%if vlan.vid is defined %}{{vlans.append(vlan)}}{% endif %}{% endfor %}{% endfor %}
+2
 {{ vlans|unique }}{% for vlan in vlans %}
+3
 vlan {{vlan.vid}}
  name "{{vlan.name}}"{% endfor %}
 !
