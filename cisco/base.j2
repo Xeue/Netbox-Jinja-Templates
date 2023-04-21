@@ -18,8 +18,14 @@ vlan {{vlan.vid}}
  name "{{vlan.name}}"
 {% endfor %}
 
-{% set vlans2 = device.interfaces.all()|map(attribute='tagged_vlans')|pprint() %}
-{{vlans2|join(',')}}
+{% set vlans2 = device.interfaces.all()|map(attribute='tagged_vlans') %}
+
+{% for vlanG in vlans2 %}
+    {% for vlan in vlanG %}
+    vlan {{vlan.vid}}
+    name "{{vlan.name}}"
+    {% endfor %}
+{% endfor %}
 
 vlan 41
  name "Vision_Control"
