@@ -50,6 +50,8 @@ interface {{interface.name}}
             {%- elif interface.mode == 'access' %}
  switchport mode access
  switchport access vlan {{interface.untagged_vlan.vid}}
+            {%- else %}
+ no switchport
             {%- endif %}
             {%- set description = interface.description %}
             {%- if description == '' %}
