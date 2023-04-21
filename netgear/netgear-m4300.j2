@@ -19,7 +19,7 @@ ip ssh server enable
 configure
 no sntp server time-a.netgear.com
 no sntp server time-c.netgear.com
-sntp server {{sntp_server}}
+sntp server "{{sntp_server}}"
 snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
@@ -34,11 +34,11 @@ exit
 line ssh
 password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
 exit
-{# port-channel name {{interface.lag.label}} {{interface.lag.description|replace(' ', '_') or interface.lag.name|replace(' ', '_')}} #}
+{#- port-channel name {{interface.lag.label}} {{interface.lag.description|replace(' ', '_') or interface.lag.name|replace(' ', '_')}} #}
 {% include 'netgear/spanning_tree.j2' %}
 {%- for interface in device.interfaces.all() %}
     {%- if interface.enabled == True and interface.mgmt_only != True %}
-interface 1/{{interface.label}}
+interface {{interface.label|replace('0/','1/0/')}}
         {%- if interface.mode == 'tagged-all' %}
             switchport mode trunk
             vlan participation auto 1
@@ -63,12 +63,12 @@ interface 1/{{interface.label}}
 exit
     {%- endif %}
 {%- endfor %}
-{#- interface vlan 41
+interface vlan {{management_vlan}}
     routing
-    ip address 10.40.40.1 255.255.248.0
-exit #}
+    ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+exit
 ip management vlan {{management_vlan}} {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
-ip management source-interface vlan 41
+ip management source-interface vlan {{management_vlan}}
 router rip
 exit
 router ospf
