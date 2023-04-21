@@ -30,7 +30,7 @@ qos map dscp-queue 46 to 7
 interface {{interface.label}}
  channel-group {{interface.lag.label|replace('po','')}} mode active
 !
-        {%- if interface.enabled == True %}
+        {%- if interface.enabled == True and interface.mgmt_only != True %}
 interface {{interface.label}}
             {%- if interface.mode == 'tagged-all' %}
  switchport trunk allowed vlan add 1-4094
@@ -45,7 +45,7 @@ interface {{interface.label}}
  switchport access vlan {{interface.untagged_vlan.vid}}
             {%- endif %}
 !
-        {% endif %}
-    {% endif %}
-{% endfor %}
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
 !
