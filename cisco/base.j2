@@ -10,6 +10,9 @@ username "{{user}}" secret encrypted {{secret}}
 no passwords complexity enable
 passwords aging 0
 !
+
+{{device.interfaces.all()|map(attribute='untagged_vlan')|map(attribute='vid')|join(',')}}
+
 vlan 41
  name "Vision_Control"
 vlan 999
