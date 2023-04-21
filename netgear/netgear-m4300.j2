@@ -64,8 +64,8 @@ addport {{interface.lag.label}}
         {%- endif %}
         {%- if interface.description %}
 {#- description '{{interface.description}}' #}
-description '{{interface.link_peers}}'
         {%- endif %}
+description '{{interface.link_peers}}'
 exit
     {%- endif %}
 {%- endfor %}
