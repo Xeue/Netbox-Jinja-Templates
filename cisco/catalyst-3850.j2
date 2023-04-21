@@ -24,7 +24,7 @@ interface {{interface.name}}
  channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
 !
     {%- else -%}
-        {%- if interface.enabled == True and interface.mgmt_only == True -%}
+        {%- if interface.enabled == True and interface.mgmt_only != True -%}
 interface {{interface.name}}
             {%- if interface.mode == 'tagged-all' -%}
  switchport trunk allowed vlan 1-4094
