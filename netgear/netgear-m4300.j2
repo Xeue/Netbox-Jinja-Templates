@@ -62,8 +62,13 @@ no switchport
         {%- if interface.lag.label is defined %}
 addport {{interface.lag.label}}
         {%- endif %}
-        {%- if interface.description is defined %}
-description '{{interface.description}}'
+        {%- if interface.description %}
+            {%- if interface.device.name == interface.cable.b_terminations[0].device.name %}
+                {%- set from = interface.cable.a_terminations[0] %}
+            {%- else %}
+                {%- set from = interface.cable.b_terminations[0] %}
+            {%- endif %}
+description '{{interface.description or from.device.name}}'
         {%- endif %}
 exit
     {%- endif %}
