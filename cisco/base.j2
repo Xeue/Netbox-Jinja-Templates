@@ -10,20 +10,12 @@ username "{{user}}" secret encrypted {{secret}}
 no passwords complexity enable
 passwords aging 0
 !
-
 {% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
-
-{% for interface in device.interfaces.all() %}
-    {% for vlan in interface.tagged_vlans.all() %}
-        {{ vlans.append(vlan) }}
-    {% endfor %}
-{% endfor %}
-
-{% for vlan in vlans %}
+{% for interface in device.interfaces.all() %}{% for vlan in interface.tagged_vlans.all() %}{{vlans.append(vlan)}}{% endfor %}{% endfor %}
+{{ vlans|unique }}{% for vlan in vlans %}
 vlan {{vlan.vid}}
- name "{{vlan.name}}"
-{% endfor %}
-
+ name "{{vlan.name}}"{% endfor %}
+!
 management-vlan vlan {{management_vlan}}
 !
 {% include 'cisco/spanning_tree.j2' %}
