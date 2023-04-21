@@ -18,12 +18,9 @@ vlan {{vlan.vid}}
  name "{{vlan.name}}"
 {% endfor %}
 
-{% set vlans2 = device.interfaces.all()|map(attribute='tagged_vlans') %}
-
-{% for vlanG in vlans2 %}
-    {% for vlan in vlanG %}
-    vlan {{vlan.vid}}
-    name "{{vlan.name}}"
+{% for interface in device.interfaces.all() %}
+    {% for vlan in interface.tagged_vlans.all() %}
+        {% do vlans.append(vlan) %}
     {% endfor %}
 {% endfor %}
 
