@@ -37,7 +37,7 @@ exit
 {% include 'netgear/spanning_tree.j2' %}
 {%- for interface in device.interfaces.all() %}
     {%- if interface.is_lag == True %}
-port-channel name {{interface.lag.label}} {{interface.lag.description|replace(' ', '_') or interface.lag.name|replace(' ', '_')}}
+port-channel name {{interface.label}} {{interface.description|replace(' ', '_') or interface.name|replace(' ', '_')}}
     {%- endif %}
 {%- endfor %}
 {%- for interface in device.interfaces.all() %}
