@@ -9,9 +9,21 @@ clock timezone GMT 0 minutes 0
 username "{{user}}" secret encrypted {{secret}}
 no passwords complexity enable
 passwords aging 0
-!{% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}{% for interface in device.interfaces.all() %}{% for vlan in interface.tagged_vlans.all() %}{% set x = vlans.append(vlan) %}{% endfor %}{% endfor %}{% set x = vlans|unique %}{% for vlan in vlans %}{% if vlan.vid is defined %}
+!
+{%- set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
+{%- for interface in device.interfaces.all() %}
+    {%- for vlan in interface.tagged_vlans.all() %}
+        {%- set x = vlans.append(vlan) %}
+    {%- endfor %}
+{%- endfor %}
+{%- set x = vlans|unique %}
+{%- for vlan in vlans %}
+    {%- if vlan.vid is defined %}
 vlan {{vlan.vid}}
- name "{{vlan.name}}"{% endif %}{% endfor %}
+ name "{{vlan.name}}"
+!
+    {%- endif %}
+{%- endfor %}
 !
 management-vlan vlan {{management_vlan}}
 !
