@@ -40,25 +40,27 @@ exit
     {%- if interface.enabled == True and interface.mgmt_only != True %}
 interface {{interface.label|replace('0/','1/0/')}}
         {%- if interface.mode == 'tagged-all' %}
-            switchport mode trunk
-            vlan participation auto 1
+switchport mode trunk
+vlan participation auto 1
         {%- elif interface.mode == 'tagged' %}
-            switchport mode trunk
-            switchport trunk allowed vlan {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
+switchport mode trunk
+switchport trunk allowed vlan {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
             {%- if interface.untagged_vlan.vid is defined %}
-                switchport trunk native vlan {{interface.untagged_vlan.vid}}
-            	vlan pvid {{interface.untagged_vlan.vid}}
-                vlan participation auto 1
+switchport trunk native vlan {{interface.untagged_vlan.vid}}
+vlan pvid {{interface.untagged_vlan.vid}}
+vlan participation auto 1
             {%- endif %}
         {%- elif interface.mode == 'access' %}
-            switchport mode access
-            switchport access vlan {{interface.untagged_vlan.vid}}
-            vlan pvid {{interface.untagged_vlan.vid}}
-            vlan participation include {{interface.untagged_vlan.vid}}
-            vlan participation auto 1
+switchport mode access
+switchport access vlan {{interface.untagged_vlan.vid}}
+vlan pvid {{interface.untagged_vlan.vid}}
+vlan participation include {{interface.untagged_vlan.vid}}
+vlan participation auto 1
+        {%- else %}
+no switchport
         {%- endif %}
         {%- if interface.lag.label is defined %}
-            addport {{interface.lag.label}}
+addport {{interface.lag.label}}
         {%- endif %}
 exit
     {%- endif %}
