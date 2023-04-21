@@ -59,7 +59,7 @@ interface 1/{{interface.label}}
         {%- endif %}
         {%- if interface.lag.label is defined %}
             addport {{interface.lag.label}}
-        {%- else %}
+        {%- endif %}
 exit
     {%- endif %}
 {%- endfor %}
