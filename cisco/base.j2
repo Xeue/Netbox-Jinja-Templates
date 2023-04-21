@@ -14,10 +14,9 @@ passwords aging 0
 {% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique %}
 
 {% for vlan in vlans %}
-{% endfor %}
 vlan {{vlan.vid}}
  name "{{vlan.name}}"
-{{vlans|join(',')}}
+{% endfor %}
 
 {% set vlans2 = device.interfaces.all()|map(attribute='tagged_vlans')|pprint() %}
 {{vlans2|join(',')}}
