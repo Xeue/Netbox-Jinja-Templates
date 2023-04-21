@@ -1,0 +1,34 @@
+hostname "NEP-WBS-{{device.name}}"
+interface Vlan{{management_vlan}}
+ ip-address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+!
+ip default-gateway {{device.primary_ip4|gateway()}}
+no ip http server
+ip http authentication local
+ip http secure-server
+!
+username "{{user}}" secret encrypted {{secret}}
+no passwords complexity enable
+passwords aging 0
+!{% set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}{% for interface in device.interfaces.all() %}{% for vlan in interface.tagged_vlans.all() %}{% set x = vlans.append(vlan) %}{% endfor %}{% endfor %}{% set x = vlans|unique %}{% for vlan in vlans %}{% if vlan.vid is defined %}
+vlan {{vlan.vid}}
+ name "{{vlan.name}}"{% endif %}{% endfor %}
+!
+{% include 'cisco/spanning_tree.j2' %}
+!
+ip ssh server
+!
+!{% for interface in device.interfaces.all() %}{% if interface.lag.name is defined %}
+interface {{interface.name}}
+ channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
+!{% else %}{% if interface.enabled == True %}
+interface {{interface.name}}{% if interface.mode == 'tagged-all' %}
+ switchport trunk allowed vlan 1-4094
+ switchport mode trunk{% endif %}{% if interface.mode == 'tagged' %}
+ switchport trunk allowed vlan add {{interface.tagged_vlans.all()|join(',',attribute='vid')}}{% if interface.untagged_vlan.vid is defined %}
+ switchport trunk native vlan {{interface.untagged_vlan.vid}}
+ switchport default-vlan tagged
+ switchport mode trunk{% endif %}{% endif %}{% if interface.mode == 'access' %}
+ switchport mode access
+ switchport access vlan {{interface.untagged_vlan.vid}}{% endif %}
+!{% endif %}{% endif %}{% endfor %}
