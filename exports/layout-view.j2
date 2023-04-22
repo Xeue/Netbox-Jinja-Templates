@@ -177,7 +177,442 @@
             border: 2px solid rgb(101, 105, 110);
         }
 
-        {% include 'exports/layouts/sg-series.j2' %}
+main.SG300-10P {
+    grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi9f gi10 gi10f";
+    grid-template-columns: repeat(12, var(--column-width));
+    grid-template-rows: repeat(1, var(--row-height));
+}
+main.SG220-26P {
+    grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi10 gi11 gi12 gi25 gi25f" "gi13 gi14 gi15 gi16 gi17 gi18 gi19 gi20 gi21 gi22 gi23 gi24 gi26 gi26f";
+    grid-template-columns: repeat(14, var(--column-width));
+    grid-template-rows: repeat(2, var(--row-height));
+}
+
+@media (min-width: 1px) {
+
+    .gi1.Fibre ~ .empty.e1 {grid-area: gi1;background: var(--disabled);} .gi1 ~ .empty.e1::before {content: 'Disabled\A 1 SFP';white-space: pre;}
+    .gi2.Fibre ~ .empty.e2 {grid-area: gi2;background: var(--disabled);} .gi2 ~ .empty.e2::before {content: 'Disabled\A 2 SFP';white-space: pre;}
+    .gi3.Fibre ~ .empty.e3 {grid-area: gi3;background: var(--disabled);} .gi3 ~ .empty.e3::before {content: 'Disabled\A 3 SFP';white-space: pre;}
+    .gi4.Fibre ~ .empty.e4 {grid-area: gi4;background: var(--disabled);} .gi4 ~ .empty.e4::before {content: 'Disabled\A 4 SFP';white-space: pre;}
+    .gi5.Fibre ~ .empty.e5 {grid-area: gi5;background: var(--disabled);} .gi5 ~ .empty.e5::before {content: 'Disabled\A 5 SFP';white-space: pre;}
+    .gi6.Fibre ~ .empty.e6 {grid-area: gi6;background: var(--disabled);} .gi6 ~ .empty.e6::before {content: 'Disabled\A 6 SFP';white-space: pre;}
+    .gi7.Fibre ~ .empty.e7 {grid-area: gi7;background: var(--disabled);} .gi7 ~ .empty.e7::before {content: 'Disabled\A 7 SFP';white-space: pre;}
+    .gi8.Fibre ~ .empty.e8 {grid-area: gi8;background: var(--disabled);} .gi8 ~ .empty.e8::before {content: 'Disabled\A 8 SFP';white-space: pre;}
+    .gi9.Fibre ~ .empty.e9 {grid-area: gi9;background: var(--disabled);} .gi9 ~ .empty.e9::before {content: 'Disabled\A 9 SFP';white-space: pre;}
+    .gi10.Fibre ~ .empty.e10 {grid-area: gi10;background: var(--disabled);} .gi10 ~ .empty.e10::before {content: 'Disabled\A 10 SFP';white-space: pre;}
+    .gi11.Fibre ~ .empty.e11 {grid-area: gi11;background: var(--disabled);} .gi11 ~ .empty.e11::before {content: 'Disabled\A 11 SFP';white-space: pre;}
+    .gi12.Fibre ~ .empty.e12 {grid-area: gi12;background: var(--disabled);} .gi12 ~ .empty.e12::before {content: 'Disabled\A 12 SFP';white-space: pre;}
+    .gi13.Fibre ~ .empty.e13 {grid-area: gi13;background: var(--disabled);} .gi13 ~ .empty.e13::before {content: 'Disabled\A 13 SFP';white-space: pre;}
+    .gi14.Fibre ~ .empty.e14 {grid-area: gi14;background: var(--disabled);} .gi14 ~ .empty.e14::before {content: 'Disabled\A 14 SFP';white-space: pre;}
+    .gi15.Fibre ~ .empty.e15 {grid-area: gi15;background: var(--disabled);} .gi15 ~ .empty.e15::before {content: 'Disabled\A 15 SFP';white-space: pre;}
+    .gi16.Fibre ~ .empty.e16 {grid-area: gi16;background: var(--disabled);} .gi16 ~ .empty.e16::before {content: 'Disabled\A 16 SFP';white-space: pre;}
+    .gi17.Fibre ~ .empty.e17 {grid-area: gi17;background: var(--disabled);} .gi17 ~ .empty.e17::before {content: 'Disabled\A 17 SFP';white-space: pre;}
+    .gi18.Fibre ~ .empty.e18 {grid-area: gi18;background: var(--disabled);} .gi18 ~ .empty.e18::before {content: 'Disabled\A 18 SFP';white-space: pre;}
+    .gi19.Fibre ~ .empty.e19 {grid-area: gi19;background: var(--disabled);} .gi19 ~ .empty.e19::before {content: 'Disabled\A 19 SFP';white-space: pre;}
+    .gi20.Fibre ~ .empty.e20 {grid-area: gi20;background: var(--disabled);} .gi20 ~ .empty.e20::before {content: 'Disabled\A 20 SFP';white-space: pre;}
+    .gi21.Fibre ~ .empty.e21 {grid-area: gi21;background: var(--disabled);} .gi21 ~ .empty.e21::before {content: 'Disabled\A 21 SFP';white-space: pre;}
+    .gi22.Fibre ~ .empty.e22 {grid-area: gi22;background: var(--disabled);} .gi22 ~ .empty.e22::before {content: 'Disabled\A 22 SFP';white-space: pre;}
+    .gi23.Fibre ~ .empty.e23 {grid-area: gi23;background: var(--disabled);} .gi23 ~ .empty.e23::before {content: 'Disabled\A 23 SFP';white-space: pre;}
+    .gi24.Fibre ~ .empty.e24 {grid-area: gi24;background: var(--disabled);} .gi24 ~ .empty.e24::before {content: 'Disabled\A 24 SFP';white-space: pre;}
+    .gi25.Fibre ~ .empty.e25 {grid-area: gi25;background: var(--disabled);} .gi25 ~ .empty.e25::before {content: 'Disabled\A 25 SFP';white-space: pre;}
+    .gi26.Fibre ~ .empty.e26 {grid-area: gi26;background: var(--disabled);} .gi26 ~ .empty.e26::before {content: 'Disabled\A 26 SFP';white-space: pre;}
+    .gi27.Fibre ~ .empty.e27 {grid-area: gi27;background: var(--disabled);} .gi27 ~ .empty.e27::before {content: 'Disabled\A 27 SFP';white-space: pre;}
+    .gi28.Fibre ~ .empty.e28 {grid-area: gi28;background: var(--disabled);} .gi28 ~ .empty.e28::before {content: 'Disabled\A 28 SFP';white-space: pre;}
+    .gi29.Fibre ~ .empty.e29 {grid-area: gi29;background: var(--disabled);} .gi29 ~ .empty.e29::before {content: 'Disabled\A 29 SFP';white-space: pre;}
+    .gi30.Fibre ~ .empty.e30 {grid-area: gi30;background: var(--disabled);} .gi30 ~ .empty.e30::before {content: 'Disabled\A 30 SFP';white-space: pre;}
+    .gi31.Fibre ~ .empty.e31 {grid-area: gi31;background: var(--disabled);} .gi31 ~ .empty.e31::before {content: 'Disabled\A 31 SFP';white-space: pre;}
+    .gi32.Fibre ~ .empty.e32 {grid-area: gi32;background: var(--disabled);} .gi32 ~ .empty.e32::before {content: 'Disabled\A 32 SFP';white-space: pre;}
+    .gi33.Fibre ~ .empty.e33 {grid-area: gi33;background: var(--disabled);} .gi33 ~ .empty.e33::before {content: 'Disabled\A 33 SFP';white-space: pre;}
+    .gi34.Fibre ~ .empty.e34 {grid-area: gi34;background: var(--disabled);} .gi34 ~ .empty.e34::before {content: 'Disabled\A 34 SFP';white-space: pre;}
+    .gi35.Fibre ~ .empty.e35 {grid-area: gi35;background: var(--disabled);} .gi35 ~ .empty.e35::before {content: 'Disabled\A 35 SFP';white-space: pre;}
+    .gi36.Fibre ~ .empty.e36 {grid-area: gi36;background: var(--disabled);} .gi36 ~ .empty.e36::before {content: 'Disabled\A 36 SFP';white-space: pre;}
+    .gi37.Fibre ~ .empty.e37 {grid-area: gi37;background: var(--disabled);} .gi37 ~ .empty.e37::before {content: 'Disabled\A 37 SFP';white-space: pre;}
+    .gi38.Fibre ~ .empty.e38 {grid-area: gi38;background: var(--disabled);} .gi38 ~ .empty.e38::before {content: 'Disabled\A 38 SFP';white-space: pre;}
+    .gi39.Fibre ~ .empty.e39 {grid-area: gi39;background: var(--disabled);} .gi39 ~ .empty.e39::before {content: 'Disabled\A 39 SFP';white-space: pre;}
+    .gi40.Fibre ~ .empty.e40 {grid-area: gi40;background: var(--disabled);} .gi40 ~ .empty.e40::before {content: 'Disabled\A 40 SFP';white-space: pre;}
+    .gi41.Fibre ~ .empty.e41 {grid-area: gi41;background: var(--disabled);} .gi41 ~ .empty.e41::before {content: 'Disabled\A 41 SFP';white-space: pre;}
+    .gi42.Fibre ~ .empty.e42 {grid-area: gi42;background: var(--disabled);} .gi42 ~ .empty.e42::before {content: 'Disabled\A 42 SFP';white-space: pre;}
+    .gi43.Fibre ~ .empty.e43 {grid-area: gi43;background: var(--disabled);} .gi43 ~ .empty.e43::before {content: 'Disabled\A 43 SFP';white-space: pre;}
+    .gi44.Fibre ~ .empty.e44 {grid-area: gi44;background: var(--disabled);} .gi44 ~ .empty.e44::before {content: 'Disabled\A 44 SFP';white-space: pre;}
+    .gi45.Fibre ~ .empty.e45 {grid-area: gi45;background: var(--disabled);} .gi45 ~ .empty.e45::before {content: 'Disabled\A 45 SFP';white-space: pre;}
+    .gi46.Fibre ~ .empty.e46 {grid-area: gi46;background: var(--disabled);} .gi46 ~ .empty.e46::before {content: 'Disabled\A 46 SFP';white-space: pre;}
+    .gi47.Fibre ~ .empty.e47 {grid-area: gi47;background: var(--disabled);} .gi47 ~ .empty.e47::before {content: 'Disabled\A 47 SFP';white-space: pre;}
+    .gi48.Fibre ~ .empty.e48 {grid-area: gi48;background: var(--disabled);} .gi48 ~ .empty.e48::before {content: 'Disabled\A 48 SFP';white-space: pre;}
+    .gi49.Fibre ~ .empty.e49 {grid-area: gi49;background: var(--disabled);} .gi49 ~ .empty.e49::before {content: 'Disabled\A 49 SFP';white-space: pre;}
+    .gi50.Fibre ~ .empty.e50 {grid-area: gi50;background: var(--disabled);} .gi50 ~ .empty.e50::before {content: 'Disabled\A 50 SFP';white-space: pre;}
+    .gi51.Fibre ~ .empty.e51 {grid-area: gi51;background: var(--disabled);} .gi51 ~ .empty.e51::before {content: 'Disabled\A 51 SFP';white-space: pre;}
+    .gi52.Fibre ~ .empty.e52 {grid-area: gi52;background: var(--disabled);} .gi52 ~ .empty.e52::before {content: 'Disabled\A 52 SFP';white-space: pre;}
+    .gi53.Fibre ~ .empty.e53 {grid-area: gi53;background: var(--disabled);} .gi53 ~ .empty.e53::before {content: 'Disabled\A 53 SFP';white-space: pre;}
+    .gi54.Fibre ~ .empty.e54 {grid-area: gi54;background: var(--disabled);} .gi54 ~ .empty.e54::before {content: 'Disabled\A 54 SFP';white-space: pre;}
+    .gi55.Fibre ~ .empty.e55 {grid-area: gi55;background: var(--disabled);} .gi55 ~ .empty.e55::before {content: 'Disabled\A 55 SFP';white-space: pre;}
+    .gi56.Fibre ~ .empty.e56 {grid-area: gi56;background: var(--disabled);} .gi56 ~ .empty.e56::before {content: 'Disabled\A 56 SFP';white-space: pre;}
+    .gi57.Fibre ~ .empty.e57 {grid-area: gi57;background: var(--disabled);} .gi57 ~ .empty.e57::before {content: 'Disabled\A 57 SFP';white-space: pre;}
+    .gi58.Fibre ~ .empty.e58 {grid-area: gi58;background: var(--disabled);} .gi58 ~ .empty.e58::before {content: 'Disabled\A 58 SFP';white-space: pre;}
+    .gi59.Fibre ~ .empty.e59 {grid-area: gi59;background: var(--disabled);} .gi59 ~ .empty.e59::before {content: 'Disabled\A 59 SFP';white-space: pre;}
+    .gi60.Fibre ~ .empty.e60 {grid-area: gi60;background: var(--disabled);} .gi60 ~ .empty.e60::before {content: 'Disabled\A 60 SFP';white-space: pre;}
+    .gi61.Fibre ~ .empty.e61 {grid-area: gi61;background: var(--disabled);} .gi61 ~ .empty.e61::before {content: 'Disabled\A 61 SFP';white-space: pre;}
+    .gi62.Fibre ~ .empty.e62 {grid-area: gi62;background: var(--disabled);} .gi62 ~ .empty.e62::before {content: 'Disabled\A 62 SFP';white-space: pre;}
+    .gi63.Fibre ~ .empty.e63 {grid-area: gi63;background: var(--disabled);} .gi63 ~ .empty.e63::before {content: 'Disabled\A 63 SFP';white-space: pre;}
+    .gi64.Fibre ~ .empty.e64 {grid-area: gi64;background: var(--disabled);} .gi64 ~ .empty.e64::before {content: 'Disabled\A 64 SFP';white-space: pre;}
+    .gi65.Fibre ~ .empty.e65 {grid-area: gi65;background: var(--disabled);} .gi65 ~ .empty.e65::before {content: 'Disabled\A 65 SFP';white-space: pre;}
+    .gi66.Fibre ~ .empty.e66 {grid-area: gi66;background: var(--disabled);} .gi66 ~ .empty.e66::before {content: 'Disabled\A 66 SFP';white-space: pre;}
+    .gi67.Fibre ~ .empty.e67 {grid-area: gi67;background: var(--disabled);} .gi67 ~ .empty.e67::before {content: 'Disabled\A 67 SFP';white-space: pre;}
+    .gi68.Fibre ~ .empty.e68 {grid-area: gi68;background: var(--disabled);} .gi68 ~ .empty.e68::before {content: 'Disabled\A 68 SFP';white-space: pre;}
+    .gi69.Fibre ~ .empty.e69 {grid-area: gi69;background: var(--disabled);} .gi69 ~ .empty.e69::before {content: 'Disabled\A 69 SFP';white-space: pre;}
+    .gi70.Fibre ~ .empty.e70 {grid-area: gi70;background: var(--disabled);} .gi70 ~ .empty.e70::before {content: 'Disabled\A 70 SFP';white-space: pre;}
+    .gi71.Fibre ~ .empty.e71 {grid-area: gi71;background: var(--disabled);} .gi71 ~ .empty.e71::before {content: 'Disabled\A 71 SFP';white-space: pre;}
+    .gi72.Fibre ~ .empty.e72 {grid-area: gi72;background: var(--disabled);} .gi72 ~ .empty.e72::before {content: 'Disabled\A 72 SFP';white-space: pre;}
+
+
+    .gi9 ~ .empty.e9 {
+        grid-area: gi9f;
+        background: var(--disabled);
+    }
+    .gi10 ~ .empty.e10 {
+        grid-area: gi10f;
+        background: var(--disabled);
+    }
+    .gi25 ~ .empty.e25 {
+        grid-area: gi25f;
+        background: var(--disabled);
+    }
+    .gi26 ~ .empty.e26 {
+        grid-area: gi26f;
+        background: var(--disabled);
+    }
+    .gi9.Fibre ~ .empty.e9::before {
+        content: "Disabled\A 9 RJ45";
+        white-space: pre;
+    }
+    .gi10.Fibre ~ .empty.e10::before {
+        content: "Disabled\A 10 RJ45";
+        white-space: pre;
+    }
+    .gi25.Fibre ~ .empty.e25::before {
+        content: "Disabled\A 25 RJ45";
+        white-space: pre;
+    }
+    .gi26.Fibre ~ .empty.e26::before {
+        content: "Disabled\A 26 RJ45";
+        white-space: pre;
+    }
+
+    .blank {grid-area: blank;}
+    .gi1 {grid-area:gi1;} .gi1::before {content: '1';}
+    .gi2 {grid-area:gi2;} .gi2::before {content: '2';}
+    .gi3 {grid-area:gi3;} .gi3::before {content: '3';}
+    .gi4 {grid-area:gi4;} .gi4::before {content: '4';}
+    .gi5 {grid-area:gi5;} .gi5::before {content: '5';}
+    .gi6 {grid-area:gi6;} .gi6::before {content: '6';}
+    .gi7 {grid-area:gi7;} .gi7::before {content: '7';}
+    .gi8 {grid-area:gi8;} .gi8::before {content: '8';}
+    .gi9 {grid-area:gi9;} .gi9::before {content: '9';}
+    .gi9.Fibre {grid-area:gi9f;} .gi9.Fibre::before {content: '9 SFP';}
+    .gi10 {grid-area:gi10;} .gi10::before {content: '10';}
+    .gi10.Fibre {grid-area:gi10f;} .gi10.Fibre::before {content: '10 SFP';}
+    .gi11 {grid-area:gi11;} .gi11::before {content: '11';}
+    .gi12 {grid-area:gi12;} .gi12::before {content: '12';}
+    .gi13 {grid-area:gi13;} .gi13::before {content: '13';}
+    .gi14 {grid-area:gi14;} .gi14::before {content: '14';}
+    .gi15 {grid-area:gi15;} .gi15::before {content: '15';}
+    .gi16 {grid-area:gi16;} .gi16::before {content: '16';}
+    .gi17 {grid-area:gi17;} .gi17::before {content: '17';}
+    .gi18 {grid-area:gi18;} .gi18::before {content: '18';}
+    .gi19 {grid-area:gi19;} .gi19::before {content: '19';}
+    .gi20 {grid-area:gi20;} .gi20::before {content: '20';}
+    .gi21 {grid-area:gi21;} .gi21::before {content: '21';}
+    .gi22 {grid-area:gi22;} .gi22::before {content: '22';}
+    .gi23 {grid-area:gi23;} .gi23::before {content: '23';}
+    .gi24 {grid-area:gi24;} .gi24::before {content: '24';}
+    .gi25 {grid-area:gi25;} .gi25::before {content: '25';}
+    .gi26 {grid-area:gi26;} .gi26::before {content: '26';}
+    .gi25.Fibre {grid-area:gi25f;}  .gi25.Fibre::before {content: '25 SFP';}
+    .gi26.Fibre {grid-area:gi26f;} .gi26.Fibre::before {content: '26 SFP';}
+    .gi1-0-0 {grid-area:gi0;} .gi1-0-0::before {content: '0';}
+    .gi1-0-1 {grid-area:gi1;} .gi1-0-1::before {content: '1';}
+    .gi1-0-2 {grid-area:gi2;} .gi1-0-2::before {content: '2';}
+    .gi1-0-3 {grid-area:gi3;} .gi1-0-3::before {content: '3';}
+    .gi1-0-4 {grid-area:gi4;} .gi1-0-4::before {content: '4';}
+    .gi1-0-5 {grid-area:gi5;} .gi1-0-5::before {content: '5';}
+    .gi1-0-6 {grid-area:gi6;} .gi1-0-6::before {content: '6';}
+    .gi1-0-7 {grid-area:gi7;} .gi1-0-7::before {content: '7';}
+    .gi1-0-8 {grid-area:gi8;} .gi1-0-8::before {content: '8';}
+    .gi1-0-9 {grid-area:gi9;} .gi1-0-9::before {content: '9';}
+    .gi1-0-10 {grid-area:gi10;} .gi1-0-10::before {content: '10';}
+    .gi1-0-11 {grid-area:gi11;} .gi1-0-11::before {content: '11';}
+    .gi1-0-12 {grid-area:gi12;} .gi1-0-12::before {content: '12';}
+    .gi1-0-13 {grid-area:gi13;} .gi1-0-13::before {content: '13';}
+    .gi1-0-14 {grid-area:gi14;} .gi1-0-14::before {content: '14';}
+    .gi1-0-15 {grid-area:gi15;} .gi1-0-15::before {content: '15';}
+    .gi1-0-16 {grid-area:gi16;} .gi1-0-16::before {content: '16';}
+    .gi1-0-17 {grid-area:gi17;} .gi1-0-17::before {content: '17';}
+    .gi1-0-18 {grid-area:gi18;} .gi1-0-18::before {content: '18';}
+    .gi1-0-19 {grid-area:gi19;} .gi1-0-19::before {content: '19';}
+    .gi1-0-20 {grid-area:gi20;} .gi1-0-20::before {content: '20';}
+    .gi1-0-21 {grid-area:gi21;} .gi1-0-21::before {content: '21';}
+    .gi1-0-22 {grid-area:gi22;} .gi1-0-22::before {content: '22';}
+    .gi1-0-24 {grid-area:gi24;} .gi1-0-24::before {content: '24';}
+    .gi1-0-23 {grid-area:gi23;} .gi1-0-23::before {content: '23';}
+    .gi1-0-25 {grid-area:gi25;} .gi1-0-25::before {content: '25';}
+    .gi1-0-26 {grid-area:gi26;} .gi1-0-26::before {content: '26';}
+    .gi1-0-27 {grid-area:gi27;} .gi1-0-27::before {content: '27';}
+    .gi1-0-28 {grid-area:gi28;} .gi1-0-28::before {content: '28';}
+    .gi1-0-29 {grid-area:gi29;} .gi1-0-29::before {content: '29';}
+    .gi1-0-30 {grid-area:gi30;} .gi1-0-30::before {content: '30';}
+    .gi1-0-31 {grid-area:gi31;} .gi1-0-31::before {content: '31';}
+    .gi1-0-32 {grid-area:gi32;} .gi1-0-32::before {content: '32';}
+    .gi1-0-33 {grid-area:gi33;} .gi1-0-33::before {content: '33';}
+    .gi1-0-34 {grid-area:gi34;} .gi1-0-34::before {content: '34';}
+    .gi1-0-35 {grid-area:gi35;} .gi1-0-35::before {content: '35';}
+    .gi1-0-36 {grid-area:gi36;} .gi1-0-36::before {content: '36';}
+    .gi1-0-37 {grid-area:gi37;} .gi1-0-37::before {content: '37';}
+    .gi1-0-38 {grid-area:gi38;} .gi1-0-38::before {content: '38';}
+    .gi1-0-39 {grid-area:gi39;} .gi1-0-39::before {content: '39';}
+    .gi1-0-40 {grid-area:gi40;} .gi1-0-40::before {content: '40';}
+    .gi1-0-41 {grid-area:gi41;} .gi1-0-41::before {content: '41';}
+    .gi1-0-42 {grid-area:gi42;} .gi1-0-42::before {content: '42';}
+    .gi1-0-43 {grid-area:gi43;} .gi1-0-43::before {content: '43';}
+    .gi1-0-44 {grid-area:gi44;} .gi1-0-44::before {content: '44';}
+    .gi1-0-45 {grid-area:gi45;} .gi1-0-45::before {content: '45';}
+    .gi1-0-46 {grid-area:gi46;} .gi1-0-46::before {content: '46';}
+    .gi1-0-47 {grid-area:gi47;} .gi1-0-47::before {content: '47';}
+    .gi1-0-48 {grid-area:gi48;} .gi1-0-48::before {content: '48';}
+    .gi1-1-0 {grid-area:gi1-0;} .gi1-1-0::before {content: 'SFP 0';}
+    .gi1-1-1 {grid-area:gi1-1;} .gi1-1-1::before {content: 'SFP 1';}
+    .gi1-1-2 {grid-area:gi1-2;} .gi1-1-2::before {content: 'SFP 2';}
+    .gi1-1-3 {grid-area:gi1-3;} .gi1-1-3::before {content: 'SFP 3';}
+    .gi1-1-4 {grid-area:gi1-4;} .gi1-1-4::before {content: 'SFP 4';}
+
+    .gi1-1 {grid-area: gi1;} .gi1-1::before {content:'1';}
+    .gi1-2 {grid-area: gi2;} .gi1-2::before {content:'2';}
+    .gi1-3 {grid-area: gi3;} .gi1-3::before {content:'3';}
+    .gi1-4 {grid-area: gi4;} .gi1-4::before {content:'4';}
+    .gi1-5 {grid-area: gi5;} .gi1-5::before {content:'5';}
+    .gi1-6 {grid-area: gi6;} .gi1-6::before {content:'6';}
+    .gi1-7 {grid-area: gi7;} .gi1-7::before {content:'7';}
+    .gi1-8 {grid-area: gi8;} .gi1-8::before {content:'8';}
+    .gi1-9 {grid-area: gi9;} .gi1-9::before {content:'9';}
+    .gi1-10 {grid-area: gi10;} .gi1-10::before {content:'10';}
+    .gi1-11 {grid-area: gi11;} .gi1-11::before {content:'11';}
+    .gi1-12 {grid-area: gi12;} .gi1-12::before {content:'12';}
+    .gi1-13 {grid-area: gi13;} .gi1-13::before {content:'13';}
+    .gi1-14 {grid-area: gi14;} .gi1-14::before {content:'14';}
+    .gi1-15 {grid-area: gi15;} .gi1-15::before {content:'15';}
+    .gi1-16 {grid-area: gi16;} .gi1-16::before {content:'16';}
+    .gi1-17 {grid-area: gi17;} .gi1-17::before {content:'17';}
+    .gi1-18 {grid-area: gi18;} .gi1-18::before {content:'18';}
+    .gi1-19 {grid-area: gi19;} .gi1-19::before {content:'19';}
+    .gi1-20 {grid-area: gi20;} .gi1-20::before {content:'20';}
+    .gi1-21 {grid-area: gi21;} .gi1-21::before {content:'21';}
+    .gi1-22 {grid-area: gi22;} .gi1-22::before {content:'22';}
+    .gi1-23 {grid-area: gi23;} .gi1-23::before {content:'23';}
+    .gi1-24 {grid-area: gi24;} .gi1-24::before {content:'24';}
+    .gi1-25 {grid-area: gi25;} .gi1-25::before {content:'25';}
+    .gi1-26 {grid-area: gi26;} .gi1-26::before {content:'26';}
+    .gi1-27 {grid-area: gi27;} .gi1-27::before {content:'27';}
+    .gi1-28 {grid-area: gi28;} .gi1-28::before {content:'28';}
+    .gi1-29 {grid-area: gi29;} .gi1-29::before {content:'29';}
+    .gi1-30 {grid-area: gi30;} .gi1-30::before {content:'30';}
+    .gi1-31 {grid-area: gi31;} .gi1-31::before {content:'31';}
+    .gi1-32 {grid-area: gi32;} .gi1-32::before {content:'32';}
+    .gi1-33 {grid-area: gi33;} .gi1-33::before {content:'33';}
+    .gi1-34 {grid-area: gi34;} .gi1-34::before {content:'34';}
+    .gi1-35 {grid-area: gi35;} .gi1-35::before {content:'35';}
+    .gi1-36 {grid-area: gi36;} .gi1-36::before {content:'36';}
+    .gi1-37 {grid-area: gi37;} .gi1-37::before {content:'37';}
+    .gi1-38 {grid-area: gi38;} .gi1-38::before {content:'38';}
+    .gi1-39 {grid-area: gi39;} .gi1-39::before {content:'39';}
+    .gi1-40 {grid-area: gi40;} .gi1-40::before {content:'40';}
+    .gi1-41 {grid-area: gi41;} .gi1-41::before {content:'41';}
+    .gi1-42 {grid-area: gi42;} .gi1-42::before {content:'42';}
+    .gi1-43 {grid-area: gi43;} .gi1-43::before {content:'43';}
+    .gi1-44 {grid-area: gi44;} .gi1-44::before {content:'44';}
+    .gi1-45 {grid-area: gi45;} .gi1-45::before {content:'45';}
+    .gi1-46 {grid-area: gi46;} .gi1-46::before {content:'46';}
+    .gi1-47 {grid-area: gi47;} .gi1-47::before {content:'47';}
+    .gi1-48 {grid-area: gi48;} .gi1-48::before {content:'48';}
+    .gi2-1-1 {grid-area: qgi1-1;} .gi2-1-1::before {content:'Q 1-1';}
+    .gi2-1-2 {grid-area: qgi1-2;} .gi2-1-2::before {content:'Q 1-2';}
+    .gi2-1-3 {grid-area: qgi1-3;} .gi2-1-3::before {content:'Q 1-3';}
+    .gi2-1-4 {grid-area: qgi1-4;} .gi2-1-4::before {content:'Q 1-4';}
+    .gi2-2-1 {grid-area: qgi2-1;} .gi2-2-1::before {content:'Q 2-1';}
+    .gi2-2-2 {grid-area: qgi2-2;} .gi2-2-2::before {content:'Q 2-2';}
+    .gi2-2-3 {grid-area: qgi2-3;} .gi2-2-3::before {content:'Q 2-3';}
+    .gi2-2-4 {grid-area: qgi2-4;} .gi2-2-4::before {content:'Q 2-4';}
+    .gi2-3-1 {grid-area: qgi3-1;} .gi2-3-1::before {content:'Q 3-1';}
+    .gi2-3-2 {grid-area: qgi3-2;} .gi2-3-2::before {content:'Q 3-2';}
+    .gi2-3-3 {grid-area: qgi3-3;} .gi2-3-3::before {content:'Q 3-3';}
+    .gi2-3-4 {grid-area: qgi3-4;} .gi2-3-4::before {content:'Q 3-4';}
+    .gi2-4-1 {grid-area: qgi4-1;} .gi2-4-1::before {content:'Q 4-1';}
+    .gi2-4-2 {grid-area: qgi4-2;} .gi2-4-2::before {content:'Q 4-2';}
+    .gi2-4-3 {grid-area: qgi4-3;} .gi2-4-3::before {content:'Q 4-3';}
+    .gi2-4-4 {grid-area: qgi4-4;} .gi2-4-4::before {content:'Q 4-4';}
+    .gi2-5-1 {grid-area: qgi5-1;} .gi2-5-1::before {content:'Q 5-1';}
+    .gi2-5-2 {grid-area: qgi5-2;} .gi2-5-2::before {content:'Q 5-2';}
+    .gi2-5-3 {grid-area: qgi5-3;} .gi2-5-3::before {content:'Q 5-3';}
+    .gi2-5-4 {grid-area: qgi5-4;} .gi2-5-4::before {content:'Q 5-4';}
+    .gi2-6-1 {grid-area: qgi6-1;} .gi2-6-1::before {content:'QSFP 6';}
+
+    .gi0-1 {grid-area: gi1;} .gi0-1::before {content:'1';}
+    .gi0-2 {grid-area: gi2;} .gi0-2::before {content:'2';}
+    .gi0-3 {grid-area: gi3;} .gi0-3::before {content:'3';}
+    .gi0-4 {grid-area: gi4;} .gi0-4::before {content:'4';}
+    .gi0-5 {grid-area: gi5;} .gi0-5::before {content:'5';}
+    .gi0-6 {grid-area: gi6;} .gi0-6::before {content:'6';}
+    .gi0-7 {grid-area: gi7;} .gi0-7::before {content:'7';}
+    .gi0-8 {grid-area: gi8;} .gi0-8::before {content:'8';}
+    .gi0-9 {grid-area: gi9;} .gi0-9::before {content:'9';}
+    .gi0-10 {grid-area: gi10;} .gi0-10::before {content:'10';}
+    .gi0-11 {grid-area: gi11;} .gi0-11::before {content:'11';}
+    .gi0-12 {grid-area: gi12;} .gi0-12::before {content:'12';}
+    .gi0-13 {grid-area: gi13;} .gi0-13::before {content:'13';}
+    .gi0-14 {grid-area: gi14;} .gi0-14::before {content:'14';}
+    .gi0-15 {grid-area: gi15;} .gi0-15::before {content:'15';}
+    .gi0-16 {grid-area: gi16;} .gi0-16::before {content:'16';}
+    .gi0-17 {grid-area: gi17;} .gi0-17::before {content:'17';}
+    .gi0-18 {grid-area: gi18;} .gi0-18::before {content:'18';}
+    .gi0-19 {grid-area: gi19;} .gi0-19::before {content:'19';}
+    .gi0-20 {grid-area: gi20;} .gi0-20::before {content:'20';}
+    .gi0-21 {grid-area: gi21;} .gi0-21::before {content:'21';}
+    .gi0-22 {grid-area: gi22;} .gi0-22::before {content:'22';}
+    .gi0-23 {grid-area: gi23;} .gi0-23::before {content:'23';}
+    .gi0-24 {grid-area: gi24;} .gi0-24::before {content:'24';}
+    .gi0-25 {grid-area: gi25;} .gi0-25::before {content:'25';}
+    .gi0-26 {grid-area: gi26;} .gi0-26::before {content:'26';}
+    .gi0-27 {grid-area: gi27;} .gi0-27::before {content:'27';}
+    .gi0-28 {grid-area: gi28;} .gi0-28::before {content:'28';}
+    .gi0-29 {grid-area: gi29;} .gi0-29::before {content:'29';}
+    .gi0-30 {grid-area: gi30;} .gi0-30::before {content:'30';}
+    .gi0-31 {grid-area: gi31;} .gi0-31::before {content:'31';}
+    .gi0-32 {grid-area: gi32;} .gi0-32::before {content:'32';}
+    .gi0-33 {grid-area: gi33;} .gi0-33::before {content:'33';}
+    .gi0-34 {grid-area: gi34;} .gi0-34::before {content:'34';}
+    .gi0-35 {grid-area: gi35;} .gi0-35::before {content:'35';}
+    .gi0-36 {grid-area: gi36;} .gi0-36::before {content:'36';}
+    .gi0-37 {grid-area: gi37;} .gi0-37::before {content:'37';}
+    .gi0-38 {grid-area: gi38;} .gi0-38::before {content:'38';}
+    .gi0-39 {grid-area: gi39;} .gi0-39::before {content:'39';}
+    .gi0-40 {grid-area: gi40;} .gi0-40::before {content:'40';}
+    .gi0-41 {grid-area: gi41;} .gi0-41::before {content:'41';}
+    .gi0-42 {grid-area: gi42;} .gi0-42::before {content:'42';}
+    .gi0-43 {grid-area: gi43;} .gi0-43::before {content:'43';}
+    .gi0-44 {grid-area: gi44;} .gi0-44::before {content:'44';}
+    .gi0-45 {grid-area: gi45;} .gi0-45::before {content:'45';}
+    .gi0-46 {grid-area: gi46;} .gi0-46::before {content:'46';}
+    .gi0-47 {grid-area: gi47;} .gi0-47::before {content:'47';}
+    .gi0-48 {grid-area: gi48;} .gi0-48::before {content:'48';}
+    .gi0-49 {grid-area: gi49;} .gi0-49::before {content:'49';}
+    .gi0-50 {grid-area: gi50;} .gi0-50::before {content:'50';}
+    .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
+    .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
+
+    .qsfp-1 {grid-area: qgi1-1 / qgi1-1 / qgi1-1 / qgi1-4;}
+    .qsfp-2 {grid-area: qgi2-1 / qgi2-1 / qgi2-1 / qgi2-4;}
+    .qsfp-3 {grid-area: qgi3-1 / qgi3-1 / qgi3-1 / qgi3-4;}
+    .qsfp-4 {grid-area: qgi4-1 / qgi4-1 / qgi4-1 / qgi4-4;}
+    .qsfp-5 {grid-area: qgi5-1 / qgi5-1 / qgi5-1 / qgi5-4;}
+    .qsfp-6 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-1;}
+
+    .e0 {grid-area: gi0;} .e0::before {content: 'Free\A 0'; white-space: pre;}
+    .e1 {grid-area: gi1;} .e1::before {content: 'Free\A 1'; white-space: pre;}
+    .e2 {grid-area: gi2;} .e2::before {content: 'Free\A 2'; white-space: pre;}
+    .e3 {grid-area: gi3;} .e3::before {content: 'Free\A 3'; white-space: pre;}
+    .e4 {grid-area: gi4;} .e4::before {content: 'Free\A 4'; white-space: pre;}
+    .e5 {grid-area: gi5;} .e5::before {content: 'Free\A 5'; white-space: pre;}
+    .e6 {grid-area: gi6;} .e6::before {content: 'Free\A 6'; white-space: pre;}
+    .e7 {grid-area: gi7;} .e7::before {content: 'Free\A 7'; white-space: pre;}
+    .e8 {grid-area: gi8;} .e8::before {content: 'Free\A 8'; white-space: pre;}
+    .e9 {grid-area: gi9;} .e9::before {content: 'Free\A 9'; white-space: pre;}
+    .e10 {grid-area: gi10;} .e10::before {content: 'Free\A 10'; white-space: pre;}
+    .e11 {grid-area: gi11;} .e11::before {content: 'Free\A 11'; white-space: pre;}
+    .e12 {grid-area: gi12;} .e12::before {content: 'Free\A 12'; white-space: pre;}
+    .e13 {grid-area: gi13;} .e13::before {content: 'Free\A 13'; white-space: pre;}
+    .e14 {grid-area: gi14;} .e14::before {content: 'Free\A 14'; white-space: pre;}
+    .e15 {grid-area: gi15;} .e15::before {content: 'Free\A 15'; white-space: pre;}
+    .e16 {grid-area: gi16;} .e16::before {content: 'Free\A 16'; white-space: pre;}
+    .e17 {grid-area: gi17;} .e17::before {content: 'Free\A 17'; white-space: pre;}
+    .e18 {grid-area: gi18;} .e18::before {content: 'Free\A 18'; white-space: pre;}
+    .e19 {grid-area: gi19;} .e19::before {content: 'Free\A 19'; white-space: pre;}
+    .e20 {grid-area: gi20;} .e20::before {content: 'Free\A 20'; white-space: pre;}
+    .e21 {grid-area: gi21;} .e21::before {content: 'Free\A 21'; white-space: pre;}
+    .e22 {grid-area: gi22;} .e22::before {content: 'Free\A 22'; white-space: pre;}
+    .e23 {grid-area: gi23;} .e23::before {content: 'Free\A 23'; white-space: pre;}
+    .e24 {grid-area: gi24;} .e24::before {content: 'Free\A 24'; white-space: pre;}
+    .e25 {grid-area: gi25;} .e25::before {content: 'Free\A 25'; white-space: pre;}
+    .e26 {grid-area: gi26;} .e26::before {content: 'Free\A 26'; white-space: pre;}
+    .e27 {grid-area: gi27;} .e27::before {content: 'Free\A 27'; white-space: pre;}
+    .e28 {grid-area: gi28;} .e28::before {content: 'Free\A 28'; white-space: pre;}
+    .e29 {grid-area: gi29;} .e29::before {content: 'Free\A 29'; white-space: pre;}
+    .e30 {grid-area: gi30;} .e30::before {content: 'Free\A 30'; white-space: pre;}
+    .e31 {grid-area: gi31;} .e31::before {content: 'Free\A 31'; white-space: pre;}
+    .e32 {grid-area: gi32;} .e32::before {content: 'Free\A 32'; white-space: pre;}
+    .e33 {grid-area: gi33;} .e33::before {content: 'Free\A 33'; white-space: pre;}
+    .e34 {grid-area: gi34;} .e34::before {content: 'Free\A 34'; white-space: pre;}
+    .e35 {grid-area: gi35;} .e35::before {content: 'Free\A 35'; white-space: pre;}
+    .e36 {grid-area: gi36;} .e36::before {content: 'Free\A 36'; white-space: pre;}
+    .e37 {grid-area: gi37;} .e37::before {content: 'Free\A 37'; white-space: pre;}
+    .e38 {grid-area: gi38;} .e38::before {content: 'Free\A 38'; white-space: pre;}
+    .e39 {grid-area: gi39;} .e39::before {content: 'Free\A 39'; white-space: pre;}
+    .e40 {grid-area: gi40;} .e40::before {content: 'Free\A 40'; white-space: pre;}
+    .e41 {grid-area: gi41;} .e41::before {content: 'Free\A 41'; white-space: pre;}
+    .e42 {grid-area: gi42;} .e42::before {content: 'Free\A 42'; white-space: pre;}
+    .e43 {grid-area: gi43;} .e43::before {content: 'Free\A 43'; white-space: pre;}
+    .e44 {grid-area: gi44;} .e44::before {content: 'Free\A 44'; white-space: pre;}
+    .e45 {grid-area: gi45;} .e45::before {content: 'Free\A 45'; white-space: pre;}
+    .e46 {grid-area: gi46;} .e46::before {content: 'Free\A 46'; white-space: pre;}
+    .e47 {grid-area: gi47;} .e47::before {content: 'Free\A 47'; white-space: pre;}
+    .e48 {grid-area: gi48;} .e48::before {content: 'Free\A 48'; white-space: pre;}
+    .e49 {grid-area: gi49;} .e49::before {content: 'Free\A 49'; white-space: pre;}
+    .e50 {grid-area: gi50;} .e50::before {content: 'Free\A 50'; white-space: pre;}
+    .e51 {grid-area: gi51;} .e51::before {content: 'Free\A 51'; white-space: pre;}
+    .e52 {grid-area: gi52;} .e52::before {content: 'Free\A 52'; white-space: pre;}
+    .e53 {grid-area: gi53;} .e53::before {content: 'Free\A 53'; white-space: pre;}
+    .e54 {grid-area: gi54;} .e54::before {content: 'Free\A 54'; white-space: pre;}
+    .e55 {grid-area: gi55;} .e55::before {content: 'Free\A 55'; white-space: pre;}
+    .e56 {grid-area: gi56;} .e56::before {content: 'Free\A 56'; white-space: pre;}
+    .e57 {grid-area: gi57;} .e57::before {content: 'Free\A 57'; white-space: pre;}
+    .e58 {grid-area: gi58;} .e58::before {content: 'Free\A 58'; white-space: pre;}
+    .e59 {grid-area: gi59;} .e59::before {content: 'Free\A 59'; white-space: pre;}
+    .e60 {grid-area: gi60;} .e60::before {content: 'Free\A 60'; white-space: pre;}
+    .e61 {grid-area: gi61;} .e61::before {content: 'Free\A 61'; white-space: pre;}
+    .e62 {grid-area: gi62;} .e62::before {content: 'Free\A 62'; white-space: pre;}
+    .e63 {grid-area: gi63;} .e63::before {content: 'Free\A 63'; white-space: pre;}
+    .e64 {grid-area: gi64;} .e64::before {content: 'Free\A 64'; white-space: pre;}
+    .e65 {grid-area: gi65;} .e65::before {content: 'Free\A 65'; white-space: pre;}
+    .e66 {grid-area: gi66;} .e66::before {content: 'Free\A 66'; white-space: pre;}
+    .e67 {grid-area: gi67;} .e67::before {content: 'Free\A 67'; white-space: pre;}
+    .e68 {grid-area: gi68;} .e68::before {content: 'Free\A 68'; white-space: pre;}
+    .e69 {grid-area: gi69;} .e69::before {content: 'Free\A 69'; white-space: pre;}
+    .e70 {grid-area: gi70;} .e70::before {content: 'Free\A 70'; white-space: pre;}
+    .e71 {grid-area: gi71;} .e71::before {content: 'Free\A 71'; white-space: pre;}
+    .e72 {grid-area: gi72;} .e72::before {content: 'Free\A 72'; white-space: pre;}
+    .e1-0 {grid-area: gi1-0} .e1-0::before {content: 'Free\A SFP 0'; white-space: pre;}
+    .e1-1 {grid-area: gi1-1} .e1-1::before {content: 'Free\A SFP 1'; white-space: pre;}
+    .e1-2 {grid-area: gi1-2} .e1-2::before {content: 'Free\A SFP 2'; white-space: pre;}
+    .e1-3 {grid-area: gi1-3} .e1-3::before {content: 'Free\A SFP 3'; white-space: pre;}
+    .e1-4 {grid-area: gi1-4} .e1-4::before {content: 'Free\A SFP 4'; white-space: pre;}
+    .e2-1-1 {grid-area: qgi1-1;} .e2-1-1::before {content:'Free\A QSFP 1-1'; white-space: pre;}
+    .e2-1-2 {grid-area: qgi1-2;} .e2-1-2::before {content:'Free\A QSFP 1-2'; white-space: pre;}
+    .e2-1-3 {grid-area: qgi1-3;} .e2-1-3::before {content:'Free\A QSFP 1-3'; white-space: pre;}
+    .e2-1-4 {grid-area: qgi1-4;} .e2-1-4::before {content:'Free\A QSFP 1-4'; white-space: pre;}
+    .e2-2-1 {grid-area: qgi2-1;} .e2-2-1::before {content:'Free\A QSFP 2-1'; white-space: pre;}
+    .e2-2-2 {grid-area: qgi2-2;} .e2-2-2::before {content:'Free\A QSFP 2-2'; white-space: pre;}
+    .e2-2-3 {grid-area: qgi2-3;} .e2-2-3::before {content:'Free\A QSFP 2-3'; white-space: pre;}
+    .e2-2-4 {grid-area: qgi2-4;} .e2-2-4::before {content:'Free\A QSFP 2-4'; white-space: pre;}
+    .e2-3-1 {grid-area: qgi3-1;} .e2-3-1::before {content:'Free\A QSFP 3-1'; white-space: pre;}
+    .e2-3-2 {grid-area: qgi3-2;} .e2-3-2::before {content:'Free\A QSFP 3-2'; white-space: pre;}
+    .e2-3-3 {grid-area: qgi3-3;} .e2-3-3::before {content:'Free\A QSFP 3-3'; white-space: pre;}
+    .e2-3-4 {grid-area: qgi3-4;} .e2-3-4::before {content:'Free\A QSFP 3-4'; white-space: pre;}
+    .e2-4-1 {grid-area: qgi4-1;} .e2-4-1::before {content:'Free\A QSFP 4-1'; white-space: pre;}
+    .e2-4-2 {grid-area: qgi4-2;} .e2-4-2::before {content:'Free\A QSFP 4-2'; white-space: pre;}
+    .e2-4-3 {grid-area: qgi4-3;} .e2-4-3::before {content:'Free\A QSFP 4-3'; white-space: pre;}
+    .e2-4-4 {grid-area: qgi4-4;} .e2-4-4::before {content:'Free\A QSFP 4-4'; white-space: pre;}
+    .e2-5-1 {grid-area: qgi5-1;} .e2-5-1::before {content:'Free\A QSFP 5-1'; white-space: pre;}
+    .e2-5-2 {grid-area: qgi5-2;} .e2-5-2::before {content:'Free\A QSFP 5-2'; white-space: pre;}
+    .e2-5-3 {grid-area: qgi5-3;} .e2-5-3::before {content:'Free\A QSFP 5-3'; white-space: pre;}
+    .e2-5-4 {grid-area: qgi5-4;} .e2-5-4::before {content:'Free\A QSFP 5-4'; white-space: pre;}
+    .e2-6-1 {grid-area: qgi6-1;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
+}
 
         .Vision {
             background-color: var(--vision);
