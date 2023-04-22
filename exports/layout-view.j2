@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" data-netbox-color-mode="dark">
+<head>
+    <title>{{queryset[0].device.name}} Layout</title>
+    <link rel="stylesheet" href="/static/netbox-external.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-external.css'">
+    <link rel="stylesheet" href="/static/netbox-light.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-light.css'">
+    <link rel="stylesheet" href="/static/netbox-dark.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-dark.css'">
+    <link rel="icon" type="image/png" href="/static/netbox.ico">
+    <link rel="apple-touch-icon" type="image/png" href="/static/netbox_touch-icon-180.png">
+    <style>
+        html {
+            width: max-content;
+            --row-height: 110px;
+            --column-width: 170px;
+            --port-active: rgb(49, 58, 64);
+            --bg-col: rgb(27, 31, 34);
+            --port-inactive: rgb(36, 40, 43);
+            --text-primary: rgb(255, 255, 255);
+            --text-secondary: rgba(255, 255, 255, 0.25);
+            --weight: normal;
+            --disabled: rgb(57, 29, 29);
+            --vision: rgb(42, 83, 44);
+            --comms: rgb(68, 82, 83);
+            --wifi: rgb(43, 70, 46);
+            --router-panel: rgb(52, 93, 54);
+            --omneo-1013: rgb(76, 66, 98);
+            --omneo-1021: rgb(35, 88, 108);
+            --omneo-1022: rgb(72, 95, 130);
+        }
+
+        html[data-netbox-color-mode="light"] {
+            --row-height: 110px;
+            --column-width: 170px;
+            --port-active: rgb(219, 219, 219);
+            --bg-col: rgb(255, 255, 255);
+            --port-inactive: rgb(241, 241, 241);
+            --text-primary: rgb(0, 0, 0);
+            --text-secondary: rgba(0, 0, 0, 0.25);
+            --weight: bold;
+            --disabled: rgb(249, 201, 201);
+            --vision: rgb(87, 177, 90);
+            --comms: rgb(158, 158, 158);
+            --wifi: rgb(157, 251, 167);
+            --router-panel: rgb(127, 223, 131);
+            --omneo-1013: rgb(194, 167, 254);
+            --omneo-1021: rgb(140, 223, 255);
+            --omneo-1022: rgb(141, 186, 255);
+        }
+
+        body {
+            padding: 0 10px;
+            width: max-content;
+            background-color: var(--bg-col) !important;
+        }
+
+        main {
+            display: grid;
+            grid-gap: 10px;
+        }
+        main.Catalyst-3850-48T {
+            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 blank blank blank blank" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi1-1 gi1-2 gi1-3 gi1-4";
+            grid-template-columns: repeat(28, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
+        }
+        main.ProSafe-M4300-52G-PoE {
+            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 gi49 gi1-1" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi50 gi1-2";
+            grid-template-columns: repeat(26, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
+        }
+        main.EX4300-48 {
+            grid-template-areas: "gi0 gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 blank blank blank blank" "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 gi1-0 gi1-1 gi1-2 gi1-3";
+            grid-template-columns: repeat(28, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
+        }
+        main.Nexus-93180YC-FX3 {
+            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi1-1 qgi1-2 qgi1-3 qgi1-4 qgi3-1 qgi3-2 qgi3-3 qgi3-4 qgi5-1 qgi5-2 qgi5-3 qgi5-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi2-1 qgi2-2 qgi2-3 qgi2-4 qgi4-1 qgi4-2 qgi4-3 qgi4-4 qgi6-1 qgi6-1 qgi6-1 qgi6-1";
+            grid-template-columns: repeat(36, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
+        }
+        header {
+            font-size: 24pt;
+            margin: 10px 0px;
+            color: var(--text-primary);
+            font-weight: var(--weight);
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            height: 2em;
+            margin-right: 10px;
+        }
+        .logo-dark {
+            display: none;
+        }
+
+        .logo-light {
+            display: block;
+        }
+
+        html[data-netbox-color-mode="dark"] .logo-dark {
+            display: block;
+        }
+
+        html[data-netbox-color-mode="dark"] .logo-light {
+            display: none;
+        }
+
+        .manage-link {
+            font-size: 0.6em;
+        }
+        .manage-link a {
+            text-decoration: none !important;
+        }
+
+        .to-cont {
+          color: var(--text-primary);
+          font-weight: var(--weight);
+        }
+        .to-device, .to-port {
+            font-weight: normal;
+            font-size: 0.9em;
+        }
+        .from-name,
+        .from-label,
+        .from-type,
+        .from-cont,
+        .port-mode,
+        .to-label,
+        .to-type {
+           display: none;
+        }
+        .switchport {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var(--port-active);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1;
+        }
+        .switchport > a {
+            position: absolute;
+            inset: 0;
+            text-decoration: none !important;
+        }
+        .switchport::before,
+        .empty::before {
+            position: absolute;
+            left: 50%;
+            translate: -50% 0%;
+            font-weight: bold;
+            font-size: 34pt;
+            color: var(--text-secondary);
+            height: max-content;
+            text-align: center;
+            bottom: 0px;
+            white-space: nowrap;
+        }
+        .empty::before {
+            content:"Free";
+            font-size: 21pt;
+            bottom: 50%;
+            translate: -50% 50%;
+        }
+        .empty {
+            background-color: var(--port-inactive);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .Nexus-93180YC-FX3 .qsfp {
+            background: var(--port-inactive);
+            border-radius: 14px;
+            margin: -4px;
+            border: 2px solid rgb(101, 105, 110);
+        }
+
+        {% include 'exports/layouts/sg-series.j2' %}
+
+        .Vision {
+            background-color: var(--vision);
+        }
+        .Comms {
+            background-color: var(--comms)
+        }
+        .WiFi {
+            background-color: var(--wifi)
+        }
+        .Router-Panel {
+            background-color: var(--router-panel)
+        }
+        .Omneo-1013 {
+            background-color: var(--omneo-1013)
+        }
+        .Omneo-1021 {
+            background-color: var(--omneo-1021)
+        }
+        .Omneo-1022 {
+            background-color: var(--omneo-1022)
+        }
+        @media print {
+            html[data-netbox-color-mode="light"],
+            html[data-netbox-color-mode="dark"] {
+                font-size: 18pt;
+                --row-height: 180px;
+                --column-width: 190px;
+                --port-active: rgb(219, 219, 219);
+                --bg-col: rgb(255, 255, 255);
+                --port-inactive: rgb(241, 241, 241);
+                --text-primary: rgb(0, 0, 0);
+                --text-secondary: rgba(0, 0, 0, 0.25);
+                --weight: bold;
+                --disabled: rgb(249, 201, 201);
+                --vision: rgb(87, 177, 90);
+                --comms: rgb(158, 158, 158);
+                --wifi: rgb(157, 251, 167);
+                --router-panel: rgb(127, 223, 131);
+                --omneo-1013: rgb(194, 167, 254);
+                --omneo-1021: rgb(140, 223, 255);
+                --omneo-1022: rgb(141, 186, 255);
+            }
+            .switchport {
+                border: 1px solid rgb(191, 191, 191);
+            }
+            .gi9 ~ .empty.e9,
+            .gi10 ~ .empty.e10,
+            .gi25 ~ .empty.e25,
+            .gi26 ~ .empty.e26,
+            .gi9.Fibre ~ .empty.e9,
+            .gi10.Fibre ~ .empty.e10,
+            .gi25.Fibre ~ .empty.e25,
+            .gi26.Fibre ~ .empty.e26 {
+                background: var(--disabled);
+            }
+            .logo-dark {
+                display: none !important;
+            }
+
+            .logo-light {
+                display: block !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: black !important;
+            }
+            .manage-link {
+                display: none;
+            }
+        }
+        .Switch .link-normal {
+            display: contents;
+        }
+        .link-switch {
+            display: contents;
+        }
+        .Switch .link-switch {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
+    <script>initMode()</script>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <img src="/static/nep_logo.svg" class="sidenav-brand-img logo-light logo" alt="NetBox Logo" height="48">
+            <img src="/static/nep_logo_light.svg" class="sidenav-brand-img logo-dark logo" alt="NetBox Logo" height="48">
+        </a>
+        <a href="/dcim/devices/{{queryset[0].device.id}}">{{queryset[0].device.name}} </a>
+        <span>&nbsp;Layout -&nbsp;</span>
+        <a href="/dcim/device-types/{{queryset[0].device.device_type.id}}"> {{queryset[0].device.device_type}}</a>
+        {% set ip = queryset[0].device.primary_ip4|ip() %}
+        <span class="manage-link">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ssh://{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
+            &nbsp;&nbsp;&nbsp;<a href="http://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> HTTP <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
+            &nbsp;&nbsp;&nbsp;<a href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
+        </span>
+    </header>
+    <main class="{{queryset[0].device.device_type|replace(' ', '-')}}">
+        {% for connection in queryset %}
+            {% if connection.device.name == connection.cable.b_terminations[0].device.name %}
+                {% set from = connection.cable.a_terminations[0] %}
+            {% else %}
+                {% set from = connection.cable.b_terminations[0] %}
+            {% endif %}	
+            {% set label = connection.label|replace('/','-')|replace('gi','')|replace('Ethernet', '')|replace('ge-0-0-', '1-0-')|replace('xe-0-2-', '1-1-') %}
+            {% set name = connection.name|replace('(','')|replace(')','') %}
+            <section class="switchport {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
+                <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
+                <a class="link-switch" href="/dcim/interface-connections/?device_id={{ from.device.id}}&export=switch-layout"></a>
+                <div class="from-cont">
+                    <div class="from-name">{{ connection.device}}</div>
+                    <div class="from-port">{{ connection.name}}</div>
+                    <div class="from-label">{{ connection.label}}</div>
+                    <div class="from-type">{{ connection.type}}</div>
+                </div>
+                <div class="to-cont">
+                    <div class="to-name">{{ from.device.name}}</div>
+                    <div class="to-device">{{ from.device.device_type}}</div>
+                    <div class="to-port">{{ from.name}}</div>
+                    <div class="to-label">{{ from.label}}</div>
+                    <div class="to-type">{{ from.type}}</div>
+                </div>
+                <div class="port-mode">{{ connection.type}}</div>
+            </section>		
+        {% endfor %}
+        <div class="empty e0"></div><div class="empty e1"></div><div class="empty e2"></div><div class="empty e3"></div><div class="empty e4"></div><div class="empty e5"></div><div class="empty e6"></div><div class="empty e7"></div><div class="empty e8"></div><div class="empty e9"></div><div class="empty e10"></div><div class="empty e11"></div><div class="empty e12"></div><div class="empty e13"></div><div class="empty e14"></div><div class="empty e15"></div><div class="empty e16"></div><div class="empty e17"></div><div class="empty e18"></div><div class="empty e19"></div><div class="empty e20"></div><div class="empty e21"></div><div class="empty e22"></div><div class="empty e23"></div><div class="empty e24"></div><div class="empty e25"></div><div class="empty e26"></div><div class="empty e27"></div><div class="empty e28"></div><div class="empty e29"></div><div class="empty e30"></div><div class="empty e31"></div><div class="empty e32"></div><div class="empty e33"></div><div class="empty e34"></div><div class="empty e35"></div><div class="empty e36"></div><div class="empty e37"></div><div class="empty e38"></div><div class="empty e39"></div><div class="empty e40"></div><div class="empty e41"></div><div class="empty e42"></div><div class="empty e43"></div><div class="empty e44"></div><div class="empty e45"></div><div class="empty e46"></div><div class="empty e47"></div><div class="empty e48"></div>
+        <div class="empty e49"></div><div class="empty e50"></div><div class="empty e51"></div><div class="empty e52"></div><div class="empty e53"></div><div class="empty e54"></div><div class="empty e55"></div><div class="empty e56"></div>
+        <div class="empty e2-1-1"></div><div class="empty e2-1-2"></div><div class="empty e2-1-3"></div><div class="empty e2-1-4"></div><div class="empty e2-2-1"></div><div class="empty e2-2-2"></div><div class="empty e2-2-3"></div><div class="empty e2-2-4"></div><div class="empty e2-3-1"></div><div class="empty e2-3-2"></div><div class="empty e2-3-3"></div><div class="empty e2-3-4"></div><div class="empty e2-4-1"></div><div class="empty e2-4-2"></div><div class="empty e2-4-3"></div><div class="empty e2-4-4"></div><div class="empty e2-5-1"></div><div class="empty e2-5-2"></div><div class="empty e2-5-3"></div><div class="empty e2-5-4"></div><div class="empty e2-6-1"></div>
+        <div class="empty e1-0"></div><div class="empty e1-1"></div><div class="empty e1-2"></div><div class="empty e1-3"></div><div class="empty e1-4"></div>
+        <div class="qsfp-1 qsfp"></div><div class="qsfp-2 qsfp"></div><div class="qsfp-3 qsfp"></div><div class="qsfp-4 qsfp"></div><div class="qsfp-5 qsfp"></div><div class="qsfp-6 qsfp"></div>
+        <div class="blank"></div>
+    </main>
+</body>
+</html>
