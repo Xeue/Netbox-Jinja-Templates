@@ -85,6 +85,9 @@
             display: flex;
             align-items: center;
         }
+        a.badge.link {
+            font-size: 1rem;
+        }
         .logo {
             height: 2em;
             margin-right: 10px;
@@ -709,9 +712,9 @@ main.SG220-26P {
         <a href="/dcim/device-types/{{queryset[0].device.device_type.id}}"> {{queryset[0].device.device_type}}</a>
         {% set ip = queryset[0].device.primary_ip4|ip() %}
         <span class="manage-link">
-            <a class="badge bg-green ms-5" href="ssh://{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
-            <a class="badge bg-green ms-3" href="http://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> HTTP <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
-            <a class="badge bg-green ms-3" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
+            <a class="badge bg-green ms-4 link" href="ssh://{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
+            <a class="badge bg-green ms-2 link" href="http://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> HTTP <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
+            <a class="badge bg-blue ms-2 link" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
         </span>
     </header>
     <main class="{{queryset[0].device.device_type|replace(' ', '-')}}">
