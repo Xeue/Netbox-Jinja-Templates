@@ -249,72 +249,47 @@
             }
         {% endfor %}
 
-        .blank {grid-area: blank;}
+        {% for i in range(6) %}
+            .gi1-1-{{i}} {
+                grid-area:gi1-{{i}};
+            }
+            .gi1-1-{{i}}::before {
+                content: 'SFP {{i}}';
+            }
+            .qsfp-{{i+1}} {
+                grid-area: qgi{{i+1}}-1 / qgi{{i+1}}-1 / qgi{{i+1}}-1 / qgi{{i+1}}-4;
+            }
+            .e1-{{i}} {
+                grid-area: gi1-{{i}}
+            }
+            .e1-{{i}}::before {
+                content: 'Free\A SFP {{i}}'; white-space: pre;
+            }
+            {% for lane in range(4) %}
+                .gi2-{{i+1}}-{{lane+1}} {
+                    grid-area: qgi{{i+1}}-{{lane+1}};
+                }
+                .gi2-{{i+1}}-{{lane+1}}::before {
+                    content: 'Q {{i+1}}-{{lane+1}}';
+                }
 
-            .gi1-1-0 {grid-area:gi1-0;} .gi1-1-0::before {content: 'SFP 0';}
-            .gi1-1-1 {grid-area:gi1-1;} .gi1-1-1::before {content: 'SFP 1';}
-            .gi1-1-2 {grid-area:gi1-2;} .gi1-1-2::before {content: 'SFP 2';}
-            .gi1-1-3 {grid-area:gi1-3;} .gi1-1-3::before {content: 'SFP 3';}
-            .gi1-1-4 {grid-area:gi1-4;} .gi1-1-4::before {content: 'SFP 4';}
+                .e2-{{i+1}}-{{lane+1}} {
+                    grid-area: qgi1-1;
+                }
+                .e2-{{i+1}}-{{lane+1}}::before {
+                    content: 'Free\A QSFP {{i+1}}-{{lane+1}}';
+                    white-space: pre;
+                }
 
-            .gi2-1-1 {grid-area: qgi1-1;} .gi2-1-1::before {content:'Q 1-1';}
-            .gi2-1-2 {grid-area: qgi1-2;} .gi2-1-2::before {content:'Q 1-2';}
-            .gi2-1-3 {grid-area: qgi1-3;} .gi2-1-3::before {content:'Q 1-3';}
-            .gi2-1-4 {grid-area: qgi1-4;} .gi2-1-4::before {content:'Q 1-4';}
-            .gi2-2-1 {grid-area: qgi2-1;} .gi2-2-1::before {content:'Q 2-1';}
-            .gi2-2-2 {grid-area: qgi2-2;} .gi2-2-2::before {content:'Q 2-2';}
-            .gi2-2-3 {grid-area: qgi2-3;} .gi2-2-3::before {content:'Q 2-3';}
-            .gi2-2-4 {grid-area: qgi2-4;} .gi2-2-4::before {content:'Q 2-4';}
-            .gi2-3-1 {grid-area: qgi3-1;} .gi2-3-1::before {content:'Q 3-1';}
-            .gi2-3-2 {grid-area: qgi3-2;} .gi2-3-2::before {content:'Q 3-2';}
-            .gi2-3-3 {grid-area: qgi3-3;} .gi2-3-3::before {content:'Q 3-3';}
-            .gi2-3-4 {grid-area: qgi3-4;} .gi2-3-4::before {content:'Q 3-4';}
-            .gi2-4-1 {grid-area: qgi4-1;} .gi2-4-1::before {content:'Q 4-1';}
-            .gi2-4-2 {grid-area: qgi4-2;} .gi2-4-2::before {content:'Q 4-2';}
-            .gi2-4-3 {grid-area: qgi4-3;} .gi2-4-3::before {content:'Q 4-3';}
-            .gi2-4-4 {grid-area: qgi4-4;} .gi2-4-4::before {content:'Q 4-4';}
-            .gi2-5-1 {grid-area: qgi5-1;} .gi2-5-1::before {content:'Q 5-1';}
-            .gi2-5-2 {grid-area: qgi5-2;} .gi2-5-2::before {content:'Q 5-2';}
-            .gi2-5-3 {grid-area: qgi5-3;} .gi2-5-3::before {content:'Q 5-3';}
-            .gi2-5-4 {grid-area: qgi5-4;} .gi2-5-4::before {content:'Q 5-4';}
+            {% endfor %}
+        {% endfor %}
+
+            .blank {grid-area: blank;}
             .gi2-6-1 {grid-area: qgi6-1;} .gi2-6-1::before {content:'QSFP 6';}
-
 
             .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
             .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
 
-            .qsfp-1 {grid-area: qgi1-1 / qgi1-1 / qgi1-1 / qgi1-4;}
-            .qsfp-2 {grid-area: qgi2-1 / qgi2-1 / qgi2-1 / qgi2-4;}
-            .qsfp-3 {grid-area: qgi3-1 / qgi3-1 / qgi3-1 / qgi3-4;}
-            .qsfp-4 {grid-area: qgi4-1 / qgi4-1 / qgi4-1 / qgi4-4;}
-            .qsfp-5 {grid-area: qgi5-1 / qgi5-1 / qgi5-1 / qgi5-4;}
-            .qsfp-6 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-1;}
-
-            .e1-0 {grid-area: gi1-0} .e1-0::before {content: 'Free\A SFP 0'; white-space: pre;}
-            .e1-1 {grid-area: gi1-1} .e1-1::before {content: 'Free\A SFP 1'; white-space: pre;}
-            .e1-2 {grid-area: gi1-2} .e1-2::before {content: 'Free\A SFP 2'; white-space: pre;}
-            .e1-3 {grid-area: gi1-3} .e1-3::before {content: 'Free\A SFP 3'; white-space: pre;}
-            .e1-4 {grid-area: gi1-4} .e1-4::before {content: 'Free\A SFP 4'; white-space: pre;}
-            .e2-1-1 {grid-area: qgi1-1;} .e2-1-1::before {content:'Free\A QSFP 1-1'; white-space: pre;}
-            .e2-1-2 {grid-area: qgi1-2;} .e2-1-2::before {content:'Free\A QSFP 1-2'; white-space: pre;}
-            .e2-1-3 {grid-area: qgi1-3;} .e2-1-3::before {content:'Free\A QSFP 1-3'; white-space: pre;}
-            .e2-1-4 {grid-area: qgi1-4;} .e2-1-4::before {content:'Free\A QSFP 1-4'; white-space: pre;}
-            .e2-2-1 {grid-area: qgi2-1;} .e2-2-1::before {content:'Free\A QSFP 2-1'; white-space: pre;}
-            .e2-2-2 {grid-area: qgi2-2;} .e2-2-2::before {content:'Free\A QSFP 2-2'; white-space: pre;}
-            .e2-2-3 {grid-area: qgi2-3;} .e2-2-3::before {content:'Free\A QSFP 2-3'; white-space: pre;}
-            .e2-2-4 {grid-area: qgi2-4;} .e2-2-4::before {content:'Free\A QSFP 2-4'; white-space: pre;}
-            .e2-3-1 {grid-area: qgi3-1;} .e2-3-1::before {content:'Free\A QSFP 3-1'; white-space: pre;}
-            .e2-3-2 {grid-area: qgi3-2;} .e2-3-2::before {content:'Free\A QSFP 3-2'; white-space: pre;}
-            .e2-3-3 {grid-area: qgi3-3;} .e2-3-3::before {content:'Free\A QSFP 3-3'; white-space: pre;}
-            .e2-3-4 {grid-area: qgi3-4;} .e2-3-4::before {content:'Free\A QSFP 3-4'; white-space: pre;}
-            .e2-4-1 {grid-area: qgi4-1;} .e2-4-1::before {content:'Free\A QSFP 4-1'; white-space: pre;}
-            .e2-4-2 {grid-area: qgi4-2;} .e2-4-2::before {content:'Free\A QSFP 4-2'; white-space: pre;}
-            .e2-4-3 {grid-area: qgi4-3;} .e2-4-3::before {content:'Free\A QSFP 4-3'; white-space: pre;}
-            .e2-4-4 {grid-area: qgi4-4;} .e2-4-4::before {content:'Free\A QSFP 4-4'; white-space: pre;}
-            .e2-5-1 {grid-area: qgi5-1;} .e2-5-1::before {content:'Free\A QSFP 5-1'; white-space: pre;}
-            .e2-5-2 {grid-area: qgi5-2;} .e2-5-2::before {content:'Free\A QSFP 5-2'; white-space: pre;}
-            .e2-5-3 {grid-area: qgi5-3;} .e2-5-3::before {content:'Free\A QSFP 5-3'; white-space: pre;}
-            .e2-5-4 {grid-area: qgi5-4;} .e2-5-4::before {content:'Free\A QSFP 5-4'; white-space: pre;}
             .e2-6-1 {grid-area: qgi6-1;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
         }
 
