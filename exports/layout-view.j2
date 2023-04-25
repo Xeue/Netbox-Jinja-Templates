@@ -73,8 +73,18 @@
             grid-template-rows: repeat(2, var(--row-height));
         }
         main.Nexus-93180YC-FX3 {
-            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi1-1 qgi1-2 qgi1-3 qgi1-4 qgi3-1 qgi3-2 qgi3-3 qgi3-4 qgi5-1 qgi5-2 qgi5-3 qgi5-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi2-1 qgi2-2 qgi2-3 qgi2-4 qgi4-1 qgi4-2 qgi4-3 qgi4-4 qgi6-1 qgi6-1 qgi6-1 qgi6-1";
+            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi1-1 qgi1-2 qgi1-3 qgi1-4 qgi3-1 qgi3-2 qgi3-3 qgi3-4 qgi5-1 qgi5-2 qgi5-3 qgi5-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi2-1 qgi2-2 qgi2-3 qgi2-4 qgi4-1 qgi4-2 qgi4-3 qgi4-4 qgi6-1 qgi6-2 qgi6-3 qgi6-4";
             grid-template-columns: repeat(36, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
+        }
+        main.SG300-10P {
+            grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi9f gi10 gi10f";
+            grid-template-columns: repeat(12, var(--column-width));
+            grid-template-rows: repeat(1, var(--row-height));
+        }
+        main.SG220-26P {
+            grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi10 gi11 gi12 gi25 gi25f" "gi13 gi14 gi15 gi16 gi17 gi18 gi19 gi20 gi21 gi22 gi23 gi24 gi26 gi26f";
+            grid-template-columns: repeat(14, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
         header {
@@ -180,17 +190,6 @@
             border: 2px solid rgb(101, 105, 110);
         }
 
-        main.SG300-10P {
-            grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi9f gi10 gi10f";
-            grid-template-columns: repeat(12, var(--column-width));
-            grid-template-rows: repeat(1, var(--row-height));
-        }
-        main.SG220-26P {
-            grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi10 gi11 gi12 gi25 gi25f" "gi13 gi14 gi15 gi16 gi17 gi18 gi19 gi20 gi21 gi22 gi23 gi24 gi26 gi26f";
-            grid-template-columns: repeat(14, var(--column-width));
-            grid-template-rows: repeat(2, var(--row-height));
-        }
-
         @media (min-width: 1px) {
 
         {% for i in range(73) %}
@@ -285,12 +284,12 @@
         {% endfor %}
 
             .blank {grid-area: blank;}
-            .gi2-6-1 {grid-area: qgi6-1;} .gi2-6-1::before {content:'QSFP 6';}
+            .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .gi2-6-1::before {content:'QSFP 6';}
 
             .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
             .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
 
-            .e2-6-1 {grid-area: qgi6-1;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
+            .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
         }
 
         .Vision {
