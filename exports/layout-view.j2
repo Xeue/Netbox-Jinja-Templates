@@ -721,11 +721,7 @@
     </header>
     <main class="{{queryset[0].device.device_type|replace(' ', '-')}}">
         {% for connection in queryset %}
-            {% if connection.device.name == connection.cable.b_terminations[0].device.name %}
-                {% set from = connection.cable.a_terminations[0] %}
-            {% else %}
-                {% set from = connection.cable.b_terminations[0] %}
-            {% endif %}	
+            {% set from = connection.link_peers|first %}
             {% set label = connection.label|replace('/','-')|replace('gi','')|replace('Ethernet', '')|replace('ge-0-0-', '1-0-')|replace('xe-0-2-', '1-1-') %}
             {% set name = connection.name|replace('(','')|replace(')','') %}
             <section class="switchport {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
