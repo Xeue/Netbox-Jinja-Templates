@@ -746,10 +746,10 @@
         {% for n in range(73) %}
             <div class="empty e{{n}}"></div>
         {% endfor %}
-        {% for qsfp in range(7) %}
-            <div class="qsfp-{{qsfp}} qsfp"></div>
+        {% for qsfp in range(6) %}
+            <div class="qsfp-{{qsfp+1}} qsfp"></div>
             {% for port in range(5) %}
-                <div class="empty e2-{{qsfp}}-{{port}}"></div>
+                <div class="empty e2-{{qsfp+1}}-{{port}}"></div>
             {% endfor %}
         {% endfor %}
         <div class="empty e1-0"></div><div class="empty e1-1"></div><div class="empty e1-2"></div><div class="empty e1-3"></div><div class="empty e1-4"></div>
