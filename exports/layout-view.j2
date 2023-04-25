@@ -189,8 +189,8 @@
             grid-template-columns: repeat(36, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .gi2-6-1::before {content:'QSFP 6';}
-        .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
+        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;} .gi2-6-1::before {content:'QSFP 6' !important;}
+        .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;} .e2-6-1::before {content:'Free\A QSFP 6' !important; white-space: pre;}
         .qsfp {
             background: var(--port-inactive);
             border-radius: 14px;
@@ -213,7 +213,7 @@
         }
         {% endif %}
 
-        {% for i in range(73) %}
+        {% for i in range(ports) %}
             .gi{{i}}.Fibre ~ .empty.e{{i}} {
                 grid-area: gi{{i}};
                 background: var(--disabled);
