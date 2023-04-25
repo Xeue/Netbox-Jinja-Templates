@@ -57,11 +57,17 @@
             display: grid;
             grid-gap: 10px;
         }
-        main.Catalyst-3850-48T {
+
+        {% if queryset[0].device.device_type|replace(' ', '-') == 'Catalyst-3850-48T' %}
+        main {
             grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 blank blank blank blank" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi1-1 gi1-2 gi1-3 gi1-4";
             grid-template-columns: repeat(28, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
+        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .gi2-6-1::before {content:'QSFP 6';}
+        .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
+        {% endif %}
+
         main.ProSafe-M4300-52G-PoE {
             grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 gi49 gi1-1" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi50 gi1-2";
             grid-template-columns: repeat(26, var(--column-width));
@@ -190,8 +196,6 @@
             border: 2px solid rgb(101, 105, 110);
         }
 
-        @media (min-width: 1px) {
-
         {% for i in range(73) %}
             .gi{{i}}.Fibre ~ .empty.e{{i}} {
                 grid-area: gi{{i}};
@@ -283,14 +287,10 @@
             {% endfor %}
         {% endfor %}
 
-            .blank {grid-area: blank;}
-            .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .gi2-6-1::before {content:'QSFP 6';}
+        .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
+        .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
 
-            .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
-            .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
-
-            .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4;} .e2-6-1::before {content:'Free\A QSFP 6'; white-space: pre;}
-        }
+        .blank {grid-area: blank;}
 
         .Vision {
             background-color: var(--vision);
