@@ -3,8 +3,8 @@ hostname "NEP-WBS-{{device.name}}"
 interface Vlan{{management_vlan}}
  ip-address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 !
-{%- endif %}
 ip default-gateway {{device.primary_ip4|gateway()}}
+{%- endif %}
 no ip http server
 ip http authentication local
 ip http secure-server
