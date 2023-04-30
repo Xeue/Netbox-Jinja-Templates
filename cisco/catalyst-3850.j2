@@ -1,7 +1,9 @@
 hostname "NEP-WBS-{{device.name}}"
+{%- if device.primary_ip4 %}
 interface Vlan{{management_vlan}}
  ip-address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 !
+{%- endif %}
 ip default-gateway {{device.primary_ip4|gateway()}}
 no ip http server
 ip http authentication local

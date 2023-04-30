@@ -1,5 +1,7 @@
 hostname "NEP-WBS-{{device.name}}"
+{%- if device.primary_ip4 %}
 management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
+{%- endif %}
 no management vlan ip dhcp client
 ip default-gateway {{device.primary_ip4|gateway()}}
 clock source sntp
