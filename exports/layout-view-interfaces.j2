@@ -132,7 +132,8 @@
             text-decoration: none !important;
         }
         .switchport::before,
-        .empty::before {
+        .empty::before,
+        .port-label {
             position: absolute;
             left: 50%;
             translate: -50% 0%;
@@ -145,10 +146,7 @@
             white-space: nowrap;
         }
         .empty::before {
-            content:"Free";
-            font-size: 21pt;
-            bottom: 50%;
-            translate: -50% 50%;
+            content: none !important;
         }
         .empty {
             background-color: var(--port-inactive);
@@ -430,6 +428,7 @@
                         <div class="to-type">{{ from.type}}</div>
                     </div>
                     <div class="port-mode">{{ interface.type}}</div>
+                    <div class="port-number">{{label}}</div>
                 </section>
             {% else %}
                 <section class="empty {{vlan}} gi{{label}} {{name}}">
