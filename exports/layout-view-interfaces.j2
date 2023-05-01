@@ -383,7 +383,7 @@
                     <div class="port-label">{{label}}</div>
                 </section>
             {% else %}
-                <section class="empty {{vlan}} gi{{label}} {{name}} {% if !interface.enabled %}disabled{% endif %}">
+                <section class="empty {{vlan}} gi{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}">
                     <div class="empty-text">Empty
                         {% if interface.mode == 'access' %}
                             <div class="empty-mode">{{interface.untagged_vlan}}</div>
