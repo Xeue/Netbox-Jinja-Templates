@@ -410,9 +410,10 @@
         {% for interface in queryset %}
             {% set label = interface.label|replace('/','-')|replace('gi','')|replace('Ethernet', '')|replace('ge-0-0-', '1-0-')|replace('xe-0-2-', '1-1-') %}
             {% set name = interface.name|replace('(','')|replace(')','') %}
+            {% set vlan = 'vlan_' ~ interface.untagged_vlan.vid %}
             {% if interface.link_peers %}
                 {% set from = interface.link_peers|first %}
-                <section class="switchport {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
+                <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
                     <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                     <a class="link-switch" href="/dcim/interface-connections/?device_id={{ from.device.id}}&export=switch-layout"></a>
                     <div class="from-cont">
@@ -431,14 +432,14 @@
                     <div class="port-mode">{{ interface.type}}</div>
                 </section>
             {% else %}
-                <section class="empty gi{{label}} {{name}}">
+                <section class="empty {{vlan}} gi{{label}} {{name}}">
+                    <div class="empty-text">Empty</div>
                     {% if interface.mode == 'access' %}
-                        <div>Vlan</div><div>{{interface.untagged_vlan}}</div>
+                        <div class="empty-mode">{{interface.untagged_vlan}}</div>
                     {% elif interface.mode == 'tagged' %}
-                        <div>Trunk</div>
-                    {% else %}
-                        <div>Free</div><div>{{label}}</div>
+                        <div class="empty-mode">Trunk</div>
                     {% endif %}
+                    <div class="port-number">{{label}}</div>
                 </section>
             {% endif %}
         {% endfor %}
