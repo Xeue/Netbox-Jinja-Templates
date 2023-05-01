@@ -374,7 +374,7 @@
             {% set label = interface.label|replace('/','-')|replace('gi','')|replace('Ethernet', '')|replace('ge-0-0-', '1-0-')|replace('xe-0-2-', '1-1-') %}
             {% set name = interface.name|replace('(','')|replace(')','') %}
             {% set vlan = 'vlan_' ~ interface.untagged_vlan.vid %}
-            {% if interface.mgmt_only == false and interface.is_lag == false %}
+            {% if interface.mgmt_only == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
                     <section class="switchport {{vlan}} mode-{{interface.type}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
