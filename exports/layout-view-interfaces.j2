@@ -161,7 +161,9 @@
             align-items: center;
             justify-content: center;
         }
-
+        .Fibre .port-label::after {
+            content: " SFP";
+        }
         .disabled {
             background-color: var(--disabled);
             color: var(--disabled-text);
@@ -305,10 +307,6 @@
             }
             .switchport {
                 border: 1px solid rgb(191, 191, 191);
-            }
-
-            .Fibre .port-label::after {
-                content: " SFP";
             }
 
             .logo-dark {
