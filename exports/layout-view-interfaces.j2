@@ -212,58 +212,20 @@
         {% endif %}
 
         {% for i in range(ports) %}
-            .gi{{i}}.Fibre ~ .empty.e{{i}} {
-                grid-area: gi{{i}};
-                background: var(--disabled);
-            }
-            .gi{{i}} ~ .empty.e{{i}}::before {
-                content: 'Disabled\A {{i}} SFP';
-                white-space: pre;
-            }
-
-            .gi{{i}} ~ .empty.e{{i}} {
-                grid-area: gi{{i}}f;
-                background: var(--disabled);
-            }
-            .gi{{i}}.Fibre ~ .empty.e{{i}}::before {
-                content: "Disabled\A {{i}} RJ45";
-                white-space: pre;
-            }
             .gi{{i}} {
                 grid-area:gi{{i}};
-            }
-            .gi{{i}}::before {
-                content: '{{i}}';
             }
             .gi{{i}}.Fibre {
                 grid-area:gi{{i}}f;
             }
-            .gi{{i}}.Fibre::before {
-                content: '{{i}} SFP';
-            }
             .gi1-0-{{i}} {
                 grid-area:gi{{i}};
-            }
-            .gi1-0-{{i}}::before {
-                content: '{{i}}';
             }
             .gi1-{{i}} {
                 grid-area: gi{{i}};
             }
-            .gi1-{{i}}::before {
-                content:'{{i}}';
-            }
             .gi0-{{i}}1 {
                 grid-area: gi{{i}};
-            }
-            .gi0-{{i}}::before {
-                content:'{{i}}';
-            }
-            .e{{i}} {
-                grid-area: gi{{i}};
-            }
-            .e{{i}}::before {
-                content: 'Free\A {{i}}'; white-space: pre;
             }
         {% endfor %}
 
@@ -271,34 +233,16 @@
             .gi1-1-{{i}} {
                 grid-area:gi1-{{i}};
             }
-            .gi1-1-{{i}}::before {
-                content: 'SFP {{i}}';
-            }
             .qsfp-{{i+1}} {
                 grid-area: qgi{{i+1}}-1 / qgi{{i+1}}-1 / qgi{{i+1}}-1 / qgi{{i+1}}-4;
             }
             .e1-{{i}} {
                 grid-area: gi1-{{i}}
             }
-            .e1-{{i}}::before {
-                content: 'Free\A SFP {{i}}'; white-space: pre;
-            }
             {% for lane in range(4) %}
                 .gi2-{{i+1}}-{{lane+1}} {
                     grid-area: qgi{{i+1}}-{{lane+1}};
                 }
-                .gi2-{{i+1}}-{{lane+1}}::before {
-                    content: 'Q {{i+1}}-{{lane+1}}';
-                }
-
-                .e2-{{i+1}}-{{lane+1}} {
-                    grid-area: qgi{{i+1}}-{{lane+1}};
-                }
-                .e2-{{i+1}}-{{lane+1}}::before {
-                    content: 'Free\A QSFP {{i+1}}-{{lane+1}}';
-                    white-space: pre;
-                }
-
             {% endfor %}
         {% endfor %}
 
@@ -444,11 +388,7 @@
         {% endfor %}
         {% for qsfp in range(6) %}
             <div class="qsfp-{{qsfp+1}} qsfp"></div>
-            {% for port in range(5) %}
-                <div class="empty e2-{{qsfp+1}}-{{port}}"></div>
-            {% endfor %}
         {% endfor %}
-        <div class="empty e1-0"></div><div class="empty e1-1"></div><div class="empty e1-2"></div><div class="empty e1-3"></div><div class="empty e1-4"></div>
         <div class="blank"></div><div class="blank2"></div>
     </main>
 </body>
