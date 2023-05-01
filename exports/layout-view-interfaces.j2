@@ -163,10 +163,15 @@
         }
         .Fibre .port-label::after,
         .mode-1000base-x-sfp .port-label::after {
-            content: " SFP";
+            content: " (SFP)";
         }
         .mode-10gbase-x-sfpp .port-label::after {
-            content: " SFP+";
+            content: " (SFP+)";
+        }
+
+        .mode-10gbase-x-sfpp .port-label,
+        .mode-1000base-x-sfp .port-label {
+            font-size: 20pt !important;
         }
         .disabled {
             background-color: var(--disabled);
