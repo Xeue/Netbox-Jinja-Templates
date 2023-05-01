@@ -162,6 +162,11 @@
             justify-content: center;
         }
 
+        .disabled {
+            background-color: var(--disabled);
+            color: var(--disabled-text);
+        }
+
         .blank {grid-area: blank;}
 
         {%- if switch == 'Catalyst-3850-48T' %}
@@ -300,11 +305,6 @@
             }
             .switchport {
                 border: 1px solid rgb(191, 191, 191);
-            }
-
-            .disabled {
-                background-color: var(--disabled);
-                color: var(--disabled-text);
             }
 
             .Fibre .port-label::after {
