@@ -431,14 +431,16 @@
                     <div class="port-mode">{{ interface.type}}</div>
                 </section>
             {% else %}
-                <section class="empty e{{label}} {{name}}">
-                    {{interface.mode}}
-                    {{interface.untagged_vlan}}
+                <section class="empty gi{{label}} {{name}}">
+                    {% if interface.mode == 'access' %}
+                        <div>Vlan</div><div>{{interface.untagged_vlan}}</div>
+                    {% elif interface.mode == 'tagged' %}
+                        <div>Trunk</div>
+                    {% else %}
+                        <div>Free</div><div>{{label}}</div>
+                    {% endif %}
                 </section>
             {% endif %}
-        {% endfor %}
-        {% for n in range(ports) %}
-            <div class="empty e{{n}}"></div>
         {% endfor %}
         {% for qsfp in range(6) %}
             <div class="qsfp-{{qsfp+1}} qsfp"></div>
