@@ -145,9 +145,6 @@
             bottom: 0px;
             white-space: nowrap;
         }
-        .empty::before {
-            content: none !important;
-        }
         .empty {
             background-color: var(--port-inactive);
             border-radius: 10px;
@@ -168,52 +165,54 @@
         .blank {grid-area: blank;}
 
         {%- if switch == 'Catalyst-3850-48T' %}
-            {%- set ports = 49 %}
+        {%- set ports = 49 %}
         main {
             grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 blank blank blank blank" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi1-1 gi1-2 gi1-3 gi1-4";
             grid-template-columns: repeat(28, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        {% elif switch == 'ProSafe-M4300-52G-PoE' %}
-            {%- set ports = 53 %}
+
+        {%- elif switch == 'ProSafe-M4300-52G-PoE' %}
+        {%- set ports = 53 %}
         main {
             grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 gi49 gi51" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 gi50 gi52";
             grid-template-columns: repeat(26, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        .gi0-51 {grid-area: gi1-1;} .gi0-51::before {content:'SFP+ 1';}
-        .gi0-52 {grid-area: gi1-2;} .gi0-52::before {content:'SFP+ 2';}
-        {% elif switch == 'EX4300-48' %}
-            {%- set ports = 49 %}
+
+        {%- elif switch == 'EX4300-48' %}
+        {%- set ports = 49 %}
         main {
             grid-template-areas: "gi0 gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 blank blank blank blank" "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 gi1-0 gi1-1 gi1-2 gi1-3";
             grid-template-columns: repeat(28, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        {% elif switch == 'Nexus-93180YC-FX3' %}
-            {%- set ports = 73 %}
+
+        {%- elif switch == 'Nexus-93180YC-FX3' %}
+        {%- set ports = 73 %}
         main {
             grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi1-1 qgi1-2 qgi1-3 qgi1-4 qgi3-1 qgi3-2 qgi3-3 qgi3-4 qgi5-1 qgi5-2 qgi5-3 qgi5-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi2-1 qgi2-2 qgi2-3 qgi2-4 qgi4-1 qgi4-2 qgi4-3 qgi4-4 qgi6-1 qgi6-2 qgi6-3 qgi6-4";
             grid-template-columns: repeat(36, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;} .gi2-6-1::before {content:'QSFP 6' !important;}
-        .e2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;} .e2-6-1::before {content:'Free\A QSFP 6' !important; white-space: pre;}
+        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;}
         .qsfp {
             background: var(--port-inactive);
             border-radius: 14px;
             margin: -4px;
             border: 2px solid rgb(101, 105, 110);
         }
-        {% elif switch == 'SG300-10P' %}
-            {%- set ports = 11 %}
+
+        {%- elif switch == 'SG300-10P' %}
+        {%- set ports = 11 %}
         main {
             grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi9f gi10 gi10f";
             grid-template-columns: repeat(12, var(--column-width));
             grid-template-rows: repeat(1, var(--row-height));
         }
-        {% elif switch == 'SG220-26P' %}
-            {%- set ports = 27 %}
+
+        {%- elif switch == 'SG220-26P' %}
+        {%- set ports = 27 %}
         main {
             grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi10 gi11 gi12 gi25 gi25f" "gi13 gi14 gi15 gi16 gi17 gi18 gi19 gi20 gi21 gi22 gi23 gi24 gi26 gi26f";
             grid-template-columns: repeat(14, var(--column-width));
