@@ -22,6 +22,7 @@
             --text-secondary: rgba(255, 255, 255, 0.25);
             --weight: normal;
             --disabled: rgb(57, 29, 29);
+            --disabled-text: rgb(106, 85, 85);
             --vision: rgb(42, 83, 44);
             --comms: rgb(68, 82, 83);
             --wifi: rgb(43, 70, 46);
@@ -41,6 +42,7 @@
             --text-secondary: rgba(0, 0, 0, 0.25);
             --weight: bold;
             --disabled: rgb(249, 201, 201);
+            --disabled-text: rgb(106, 85, 85);
             --vision: rgb(87, 177, 90);
             --comms: rgb(158, 158, 158);
             --wifi: rgb(157, 251, 167);
@@ -232,7 +234,7 @@
             .gi1-{{i}} {
                 grid-area: gi{{i}};
             }
-            .gi0-{{i}}1 {
+            .gi0-{{i}} {
                 grid-area: gi{{i}};
             }
         {% endfor %}
@@ -288,6 +290,7 @@
                 --text-secondary: rgba(0, 0, 0, 0.25);
                 --weight: bold;
                 --disabled: rgb(249, 201, 201);
+                --disabled-text: rgb(106, 85, 85);
                 --vision: rgb(87, 177, 90);
                 --comms: rgb(158, 158, 158);
                 --wifi: rgb(157, 251, 167);
@@ -299,16 +302,16 @@
             .switchport {
                 border: 1px solid rgb(191, 191, 191);
             }
-            .gi9 ~ .empty.e9,
-            .gi10 ~ .empty.e10,
-            .gi25 ~ .empty.e25,
-            .gi26 ~ .empty.e26,
-            .gi9.Fibre ~ .empty.e9,
-            .gi10.Fibre ~ .empty.e10,
-            .gi25.Fibre ~ .empty.e25,
-            .gi26.Fibre ~ .empty.e26 {
-                background: var(--disabled);
+
+            .disabled {
+                background-color: var(--disabled);
+                color: var(--disabled-text);
             }
+
+            .Fibre .port-label::after {
+                content: " SFP";
+            }
+
             .logo-dark {
                 display: none !important;
             }
@@ -333,6 +336,10 @@
         }
         .Switch .link-switch {
             display: block;
+        }
+        .link-switch,
+        .link-normal {
+            z-index: 1;
         }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
