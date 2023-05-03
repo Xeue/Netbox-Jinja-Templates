@@ -353,9 +353,8 @@
         initMode()
         document.addEventListener("DOMContentLoaded", e => {
             document.getElementById('typeCheckbox').addEventListener('click', e => {
-                console.log(e.target);
                 let bodyElement = document.getElementsByTagName('body')[0];
-                if (true) {
+                if (e.target.checked) {
                     bodyElement.classList.add('show-types');
                 } else {
                     bodyElement.classList.remove('show-types');
