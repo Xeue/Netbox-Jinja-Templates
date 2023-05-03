@@ -162,15 +162,15 @@
             justify-content: center;
         }
         .Fibre .port-label::after,
-        .mode-1000base-x-sfp .port-label::after {
+        [data-mode="1000base-x-sfp"] .port-label::after {
             content: " (SFP)";
         }
-        .mode-10gbase-x-sfpp .port-label::after {
+        [data-mode="10gbase-x-sfpp"] .port-label::after {
             content: " (SFP+)";
         }
 
-        .mode-10gbase-x-sfpp .port-label,
-        .mode-1000base-x-sfp .port-label {
+        [data-mode="1000base-x-sfp"] .port-label,
+        [data-mode="10gbase-x-sfpp"] .port-label {
             font-size: 20pt !important;
         }
         .disabled {
@@ -377,7 +377,7 @@
             {% if interface.mgmt_only == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
-                    <section class="switchport {{vlan}} mode-{{interface.type}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
+                    <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}" data-mode="{{interface.type}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
@@ -397,7 +397,7 @@
                         <div class="port-label">{{label}}</div>
                     </section>
                 {% else %}
-                    <section class="empty {{vlan}} gi{{label}} {{name}} mode-{{interface.type}} {% if interface.enabled == false %}disabled{% endif %}">
+                    <section class="empty {{vlan}} gi{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}" data-mode="{{interface.type}}">
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
