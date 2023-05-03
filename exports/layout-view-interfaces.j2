@@ -366,8 +366,8 @@
                 <a class="badge bg-green ms-4 link" href="ssh://{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
                 <a class="badge bg-green ms-2 link" href="http://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> HTTP <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
                 <a class="badge bg-blue ms-2 link" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
-                <input type="checkbox">
-                <span>Show cable type</span>
+                <input type="checkbox" class="ms-2" id="typeCheckbox">
+                <span>Show Cable/SFP Type</span>
             {% endif %}
         </span>
 
