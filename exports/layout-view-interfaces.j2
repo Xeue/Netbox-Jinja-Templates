@@ -351,15 +351,17 @@
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script>
         initMode()
-        document.getElementById('typeCheckbox').addEventListener('click', e => {
-            console.log(e.target);
-            let bodyElement = document.getElementsByTagName('body')[0];
-            if (true) {
-                bodyElement.classList.add('show-types');
-            } else {
-                bodyElement.classList.remove('show-types');
-            }
-        })
+        document.addEventListener("DOMContentLoaded", e => {
+            document.getElementById('typeCheckbox').addEventListener('click', e => {
+                console.log(e.target);
+                let bodyElement = document.getElementsByTagName('body')[0];
+                if (true) {
+                    bodyElement.classList.add('show-types');
+                } else {
+                    bodyElement.classList.remove('show-types');
+                }
+            })
+        });
     </script>
 </head>
 <body>
