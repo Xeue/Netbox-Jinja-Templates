@@ -377,7 +377,9 @@
             {% if interface.mgmt_only == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
-                    <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}" data-mode="{{interface.type}}">
+                    <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}"
+                        data-mode="{{interface.type}}"
+                        data-cable="{{interface.cable.color}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
