@@ -360,14 +360,17 @@
         <a href="/dcim/devices/{{queryset[0].device.id}}">{{queryset[0].device.name}} </a>
         <span>&nbsp;Layout -&nbsp;</span>
         <a href="/dcim/device-types/{{queryset[0].device.device_type.id}}"> {{queryset[0].device.device_type}}</a>
-        {% if queryset[0].device.primary_ip4 %}
-            {% set ip = queryset[0].device.primary_ip4|ip() %}
-            <span class="manage-link">
+        <span class="manage-link">
+            {% if queryset[0].device.primary_ip4 %}
+                {% set ip = queryset[0].device.primary_ip4|ip() %}
                 <a class="badge bg-green ms-4 link" href="ssh://{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
                 <a class="badge bg-green ms-2 link" href="http://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> HTTP <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
                 <a class="badge bg-blue ms-2 link" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
-            </span>
-        {% endif %}
+                <input type="checkbox">
+                <span>Show cable type</span>
+            {% endif %}
+        </span>
+
     </header>
     <main class="{{switch}}">
         {% for interface in queryset %}
@@ -379,7 +382,8 @@
                     {% set from = interface.link_peers|first %}
                     <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}"
                         data-mode="{{interface.type}}"
-                        data-cable="{{interface.cable.color}}">
+                        data-cable="{{interface.cable.color}}"
+                        data-type="{{interface.cable.type}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
