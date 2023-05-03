@@ -379,7 +379,7 @@
                     {% set from = interface.link_peers|first %}
                     <section class="switchport {{vlan}} mode-{{interface.type}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}gi{{label}} {{name}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
-                        <a class="link-switch" href="/dcim/interface-connections/?device_id={{ from.device.id}}&export=switch-layout"></a>
+                        <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
                             <div class="from-name">{{ interface.device}}</div>
                             <div class="from-port">{{ interface.name}}</div>
