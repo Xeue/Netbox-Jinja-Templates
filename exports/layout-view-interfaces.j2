@@ -207,11 +207,11 @@
         {%- elif switch == 'Nexus-93180YC-FX3' %}
         {%- set ports = 73 %}
         main {
-            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi1-1 qgi1-2 qgi1-3 qgi1-4 qgi3-1 qgi3-2 qgi3-3 qgi3-4 qgi5-1 qgi5-2 qgi5-3 qgi5-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi2-1 qgi2-2 qgi2-3 qgi2-4 qgi4-1 qgi4-2 qgi4-3 qgi4-4 qgi6-1 qgi6-2 qgi6-3 qgi6-4";
+            grid-template-areas: "gi1 gi3 gi5 gi7 gi9 gi11 gi13 gi15 gi17 gi19 gi21 gi23 gi25 gi27 gi29 gi31 gi33 gi35 gi37 gi39 gi41 gi43 gi45 gi47 qgi49-1 qgi49-2 qgi49-3 qgi49-4 qgi51-1 qgi51-2 qgi51-3 qgi51-4 qgi53-1 qgi53-2 qgi53-3 qgi53-4" "gi2 gi4 gi6 gi8 gi10 gi12 gi14 gi16 gi18 gi20 gi22 gi24 gi26 gi28 gi30 gi32 gi34 gi36 gi38 gi40 gi42 gi44 gi46 gi48 qgi50-1 qgi50-2 qgi50-3 qgi50-4 qgi52-1 qgi52-2 qgi52-3 qgi52-4 qgi54-1 qgi54-2 qgi54-3 qgi54-4";
             grid-template-columns: repeat(36, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        .gi2-6-1 {grid-area: qgi6-1 / qgi6-1 / qgi6-1 / qgi6-4 !important;}
+        .gi1-54-1 {grid-area: qgi54-1 / qgi54-1 / qgi54-1 / qgi54-4 !important;}
         .qsfp {
             background: var(--port-inactive);
             border-radius: 14px;
@@ -265,8 +265,8 @@
                 grid-area: gi1-{{i}}
             }
             {% for lane in range(4) %}
-                .gi2-{{i+1}}-{{lane+1}} {
-                    grid-area: qgi{{i+1}}-{{lane+1}};
+                .gi2-{{i+49}}-{{lane+1}} {
+                    grid-area: qgi{{i+49}}-{{lane+1}};
                 }
             {% endfor %}
         {% endfor %}
