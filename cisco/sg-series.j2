@@ -52,7 +52,7 @@ interface {{interface.label}}
                 {%- set description = peer.device %}
             {%- endif %}
         {%- endif %}
- description '{{description}}'
+ description "{{description}}"
 !
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}
