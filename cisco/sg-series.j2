@@ -1,4 +1,4 @@
-hostname "NEP-WBS-{{device.name}}"
+hostname "{{device.name}}"
 {%- if device.primary_ip4 %}
 management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
 no management vlan ip dhcp client
