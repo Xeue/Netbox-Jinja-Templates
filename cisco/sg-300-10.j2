@@ -32,12 +32,11 @@ clock source sntp
 sntp unicast client enable
 sntp server {{sntp_server}}
 sntp source-interface vlan {{management_vlan}}
-!
 {% include 'cisco/spanning_tree.j2' %}
 interface vlan {{management_vlan}}
  ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
  no ip address dhcp
-!
+exit
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
@@ -50,7 +49,7 @@ interface {{interface.label}}
             {%- endif %}
         {%- endif %}
  description "{{description}}"
-!
+exit
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}
 interface {{interface.label}}
@@ -76,7 +75,7 @@ interface {{interface.label}}
                 {%- endif %}
             {%- endif %}
  description "{{description}}"
-!
+exit
         {%- endif %}
     {%- endif %}
 {%- endfor %}
