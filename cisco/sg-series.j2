@@ -46,7 +46,7 @@ interface {{interface.label}}
         {%- if description == '' %}
             {%- if interface.link_peers %}
                 {%- set peer = interface.link_peers|first %}
-                {%- set description = peer.device %}
+                {%- set description = peer.device.name %}
             {%- endif %}
         {%- endif %}
  description "{{description}}"
@@ -72,7 +72,7 @@ interface {{interface.label}}
             {%- if description == '' %}
                 {%- if interface.link_peers %}
                     {%- set peer = interface.link_peers|first %}
-                    {%- set description = peer.device %}
+                    {%- set description = peer.device.name %}
                 {%- endif %}
             {%- endif %}
  description "{{description}}"
