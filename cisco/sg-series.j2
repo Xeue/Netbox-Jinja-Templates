@@ -1,4 +1,4 @@
-hostname "{{device.name}}"
+hostname "{{device.name|replace("#","")|replace(" ","-")}}"
 {%- if device.primary_ip4 %}
 management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
 no management vlan ip dhcp client
@@ -10,9 +10,6 @@ snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
 clock timezone GMT 0 minutes 0
-username "{{user}}" secret encrypted {{secret}}
-no passwords complexity enable
-passwords aging 0
 !
 {%- set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
 {%- for interface in device.interfaces.all() %}
@@ -52,7 +49,7 @@ interface {{interface.label}}
                 {%- set description = peer.device %}
             {%- endif %}
         {%- endif %}
- description '{{description}}'
+ description "{{description}}"
 !
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}
@@ -78,7 +75,7 @@ interface {{interface.label}}
                     {%- set description = peer.device %}
                 {%- endif %}
             {%- endif %}
- description '{{description}}'
+ description "{{description}}"
 !
         {%- endif %}
     {%- endif %}
