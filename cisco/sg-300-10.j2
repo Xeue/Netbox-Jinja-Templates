@@ -14,7 +14,7 @@ vlan database
 {%- endfor %}
 
 exit
-hostname "{{device.name|replace("#","")|replace(" ","-")}}"
+hostname "{{device.name|replace("#","")|replace(" ","-")|replace("(","")|replace(")","")|replace("Switch","")}}"
 aaa authentication login authorization SSH local
 aaa authentication enable authorization SSH enable
 line ssh
