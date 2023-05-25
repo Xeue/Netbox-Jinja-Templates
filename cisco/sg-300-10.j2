@@ -1,8 +1,3 @@
-spanning-tree mode mst
-spanning-tree priority 36864
-spanning-tree mst configuration
-name MSTP0
-exit
 vlan database
 {%- set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
 {%- for interface in device.interfaces.all() %}
@@ -33,108 +28,59 @@ username admin password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privi
 username cisco password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
 ip ssh server
 ip ssh password-auth
-snmp-server location "Fox Asia Frame 38"              
-clock timezone GMT 0 minutes 0
-clock source sntp
-config-file-header
-NEPUK-foxasia38-ac01
-v1.4.2.4 / R800_NIK_1_4_194_194
-CLI v1.0
-set system mode switch 
-
-file SSD indicator encrypted
-@
-ssd-control-start
-ssd config
-ssd file passphrase control unrestricted
-no ssd file integrity control
-ssd-control-end cb0a3fdb1f3a1af4e4430033719968c0
-!
-spanning-tree mode mst
-spanning-tree priority 36864
-spanning-tree mst configuration
-name MSTP0
-exit
-vlan database
-vlan 41,999,1011-1012,1021-1022
-exit
-voice vlan oui-table add 0001e3 Siemens_AG_phone________
-voice vlan oui-table add 00036b Cisco_phone_____________
-voice vlan oui-table add 00096e Avaya___________________
-voice vlan oui-table add 000fe2 H3C_Aolynk______________
-voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
-voice vlan oui-table add 00d01e Pingtel_phone___________
-voice vlan oui-table add 00e075 Polycom/Veritel_phone___
-voice vlan oui-table add 00e0bb 3Com_phone______________
-hostname NEPUK-foxasia38-ac01
-aaa authentication login authorization SSH local
-aaa authentication enable authorization SSH enable
-line ssh
-login authentication SSH
-enable authentication SSH
-password da39a3ee5e6b4b0d3255bfef95601890afd80709 encrypted
-exit
-no passwords complexity enable
-passwords aging 0
-username admin password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
-username cisco password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
-ip ssh server
-ip ssh password-auth
-snmp-server location "Fox Asia Frame 38"              
-clock timezone GMT 0 minutes 0
-clock source sntp
-snmp-server location "Fox Asia Frame 38"              
+snmp-server location "{{device.name|replace("#","")|replace(" ","-")}}"              
 clock timezone GMT 0 minutes 0
 clock source sntp
 sntp unicast client enable
-sntp server 10.40.40.11
-sntp source-interface vlan 41
+sntp server {{sntp_server}}
+sntp source-interface vlan {{management_vlan}}
 !
-interface vlan 41
- ip address 10.40.40.214 255.255.248.0
+{% include 'cisco/spanning_tree.j2' %}
+interface vlan {{management_vlan}}
+ ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
  no ip address dhcp
 !
-interface gigabitethernet1
+{%- for interface in device.interfaces.all() %}
+    {%- if interface.lag.label is defined %}
+interface {{interface.label}}
+ channel-group {{interface.lag.label|replace('po','')}} mode active
+        {%- set description = interface.description %}
+        {%- if description == '' %}
+            {%- if interface.link_peers %}
+                {%- set peer = interface.link_peers|first %}
+                {%- set description = peer.device %}
+            {%- endif %}
+        {%- endif %}
+ description "{{description}}"
+!
+    {%- else %}
+        {%- if interface.enabled == True and interface.mgmt_only != True %}
+interface {{interface.label}}
+            {%- if interface.mode == 'tagged-all' %}
+ switchport trunk allowed vlan add 1-4094
+            {%- elif interface.mode == 'tagged' %}
+ switchport trunk allowed vlan add {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
+                {%- if interface.untagged_vlan.vid is defined %}
+ switchport trunk native vlan {{interface.untagged_vlan.vid}}
+ switchport default-vlan tagged
+                {%- endif %}
+            {%- elif interface.mode == 'access' %}
  switchport mode access
- switchport access vlan 41
+ switchport access vlan {{interface.untagged_vlan.vid}}
+            {%- else %}
+ no switchport
+            {%- endif %}
+            {%- set description = interface.description %}
+            {%- if description == '' %}
+                {%- if interface.link_peers %}
+                    {%- set peer = interface.link_peers|first %}
+                    {%- set description = peer.device %}
+                {%- endif %}
+            {%- endif %}
+ description "{{description}}"
 !
-interface gigabitethernet2
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet3
- switchport mode access
- switchport access vlan 41
-!                                                     
-interface gigabitethernet4
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet5
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet6
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet7
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet8
- switchport mode access
- switchport access vlan 41
-!
-interface gigabitethernet9
- channel-group 1 mode auto                            
-!
-interface gigabitethernet10
- channel-group 1 mode auto
-!
-interface Port-channel1
- switchport trunk allowed vlan add 41,999,1011-1012,1021-1022
-!
-exit
-banner login ^C
-NEP UK - Fox Asia Frame 38 Cisco Switch
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
+banner login
+NEP UK - {{device.name|replace("#","")|replace(" ","-")}} Cisco Switch
