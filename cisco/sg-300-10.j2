@@ -35,7 +35,9 @@ sntp source-interface vlan {{management_vlan}}
 {% include 'cisco/spanning_tree.j2' %}
 interface vlan {{management_vlan}}
  ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+ Y
  no ip address dhcp
+ Y
 exit
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
