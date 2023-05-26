@@ -18,6 +18,7 @@ clock timezone GMT 0 minutes 0
     {%- endfor %}
 {%- endfor %}
 {%- set x = vlans|unique %}
+{%- set vlans = device.site.vlans.all() %}
 {%- for vlan in vlans %}
     {%- if vlan.vid is defined %}
 vlan {{vlan.vid}}
