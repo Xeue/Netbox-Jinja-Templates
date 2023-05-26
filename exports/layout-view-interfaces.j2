@@ -184,7 +184,7 @@
         .blank {grid-area: blank;}
 
         {%- if switch == 'Catalyst-3850-48T' %}
-            {%- set ports1 = 49 %}
+            {%- set ports1 = 48 %}
             {%- set ports2 = 4 %}
             {%- set prefix1 = "gi1-0-" %}
             {%- set prefix2 = "gi1-1-" %}
@@ -243,7 +243,7 @@
         }
         {% endif %}
 
-        {% for i in range(ports1) %}
+        {% for i in range(ports1+1) %}
 
             .port_{{prefix1}}{{i}} {
                 grid-area:e{{i}};
@@ -272,11 +272,11 @@
             }*/
         {% endfor %}
 
-        {% for i in range(ports2) %}
+        {% for i in range(ports2+1) %}
             .port_{{prefix2}}{{i}} {
                 grid-area: f{{i}};
             }
-            
+
             .gi1-1-{{i}} {
                 grid-area: e1-{{i}};
             }
