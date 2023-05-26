@@ -36,7 +36,7 @@ exit
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
- channel-group {{interface.lag.label|replace('po','')}} mode active
+ channel-group {{interface.lag.label|replace('po','')}} mode auto
         {%- set description = interface.description %}
         {%- if description == '' %}
             {%- if interface.link_peers %}
