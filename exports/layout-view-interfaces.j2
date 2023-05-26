@@ -1,4 +1,4 @@
-
+{%- set startport = 1 %}
 {%- set ports1 = 73 %}
 {%- set ports2 = 6 %}
 {%- set prefix1 = "gi" %}
@@ -211,6 +211,7 @@
         }
 
         {%- elif switch == 'EX4300-48' %}
+            {%- set startport = 0 %}
             {%- set ports1 = 48 %}
             {%- set ports2 = 4 %}
             {%- set prefix1 = "ge-0-0-" %}
@@ -231,6 +232,7 @@
         }
 
         {%- elif switch == 'SRX1500' %}
+            {%- set startport = 0 %}
             {%- set ports1 = 16 %}
             {%- set prefix1 = "ge-0-0-" %}
             {%- set ports2 = 4 %}
@@ -273,7 +275,7 @@
         }
         {% endif %}
 
-        {% for i in range(ports1+1) %}
+        {% for i in range(ports1+startport) %}
             .port_{{prefix1}}{{i}} {
                 grid-area:e{{i}};
             }
@@ -282,18 +284,18 @@
             }
         {% endfor %}
 
-        {% for i in range(ports2+1) %}
+        {% for i in range(ports2+startport) %}
             {% if lanes > 0 %}
                 {% for lane in range(lanes) %}
-                    .port_{{prefix2}}{{i+offset+1}}-{{lane+1}} {
-                        grid-area: q{{i+offset+1}}-{{lane+1}};
+                    .port_{{prefix2}}{{i+offset+startport}}-{{lane+1}} {
+                        grid-area: q{{i+offset+startport}}-{{lane+1}};
                     }
                 {% endfor %}
-                .qsfp-{{i+1}} {
-                    grid-area: q{{i+offset+1}}-1 / q{{i+offset+1}}-1 / q{{i+offset+1}}-1 / q{{i+offset+1}}-4;
+                .qsfp-{{i+startport}} {
+                    grid-area: q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-4;
                 }
             {% else %}
-                .port_{{prefix2}}{{i+offset}} {
+                .port_{{prefix2}}{{i+offset+startport}} {
                     grid-area: f{{i}};
                 }
             {% endif %}
@@ -470,7 +472,7 @@
         {% endfor %}
         {% if lanes > 0 %}
             {% for qsfp in range(ports2) %}
-                <div class="qsfp-{{qsfp+1}} qsfp"></div>
+                <div class="qsfp-{{qsfp+startport}} qsfp"></div>
             {% endfor %}
         {% endif %}
         <div class="blank"></div><div class="blank2"></div>
