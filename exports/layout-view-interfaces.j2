@@ -448,7 +448,7 @@
                                 <div class="empty-mode">Trunk</div>
                             {% endif %}
                         </div>
-                        <div class="port-label">{{label}}</div>
+                        <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
                     </section>
                 {% endif %}
             {% endif %}
