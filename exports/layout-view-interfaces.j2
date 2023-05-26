@@ -220,7 +220,7 @@
             border: 2px solid rgb(101, 105, 110);
         }
 
-        {%- elif switch == 'SG300-10P' %}
+        {%- elif switch == 'SG300-10P' or switch == 'SG300-10P' %}
         {%- set ports = 11 %}
         main {
             grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi9f gi10 gi10f";
@@ -228,7 +228,7 @@
             grid-template-rows: repeat(1, var(--row-height));
         }
 
-        {%- elif switch == 'SG220-26P' %}
+        {%- elif switch == 'SG220-26P' or switch == 'SG220-26' %}
         {%- set ports = 27 %}
         main {
             grid-template-areas: "gi1 gi2 gi3 gi4 gi5 gi6 gi7 gi8 gi9 gi10 gi11 gi12 gi25 gi25f" "gi13 gi14 gi15 gi16 gi17 gi18 gi19 gi20 gi21 gi22 gi23 gi24 gi26 gi26f";
