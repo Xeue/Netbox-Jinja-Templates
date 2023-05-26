@@ -182,7 +182,12 @@
             background-color: var(--disabled);
             color: var(--disabled-text);
         }
-
+        .qsfp {
+            background: var(--port-inactive);
+            border-radius: 14px;
+            margin: -4px;
+            border: 2px solid rgb(101, 105, 110);
+        }
         .blank {grid-area: blank;}
 
         {%- if switch == 'Catalyst-3850-48T' %}
@@ -226,13 +231,6 @@
         }
         .{{prefix2}}53-1 {grid-area: q53-1 / q53-1 / q53-1 / q53-4 !important;}
         .{{prefix2}}54-1 {grid-area: q54-1 / q54-1 / q54-1 / q54-4 !important;}
-        .qsfp {
-            background: var(--port-inactive);
-            border-radius: 14px;
-            margin: -4px;
-            border: 2px solid rgb(101, 105, 110);
-        }
-
         {%- elif switch == 'SG300-10P' or switch == 'SG300-10P' %}
         {%- set ports1 = 11 %}
         main {
@@ -266,6 +264,9 @@
                         grid-area: q{{i+offset+1}}-{{lane+1}};
                     }
                 {% endfor %}
+                .qsfp-{{i+1}} {
+                    grid-area: q{{i+offset+1}}-1 / q{{i+offset+1}}-1 / q{{i+offset+1}}-1 / q{{i+offset+1}}-4;
+                }
             {% else %}
                 .port_{{prefix2}}{{i}} {
                     grid-area: f{{i}};
