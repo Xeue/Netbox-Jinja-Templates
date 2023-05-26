@@ -231,13 +231,13 @@
         }
 
         {%- elif switch == 'SRX1500' %}
-            {%- set ports1 = 12 %}
+            {%- set ports1 = 16 %}
             {%- set prefix1 = "ge-0-0-" %}
-            {%- set ports2 = 8 %}
+            {%- set ports2 = 4 %}
             {%- set prefix2 = "xe-0-0-" %}
-            {%- set offset = 12 %}
+            {%- set offset = 16 %}
         main {
-            grid-template-areas: "e0 e2 e4 e6 e8 e10 e12 f0 f2 f4 f6" "e1 e3 e5 e7 e9 e11 f1 f3 f5 f7";
+            grid-template-areas: "e0 e2 e4 e6 e8 e10 e12 e14 f0 f2" "e1 e3 e5 e7 e9 e11 e13 e15 f1 f3";
             grid-template-columns: repeat(28, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
