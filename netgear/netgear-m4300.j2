@@ -1,10 +1,4 @@
-{%- set vlans = device.interfaces.all()|map(attribute='untagged_vlan')|unique|list %}
-{%- for interface in device.interfaces.all() %}
-    {%- for vlan in interface.tagged_vlans.all() %}
-        {%- set x = vlans.append(vlan) %}
-    {%- endfor %}
-{%- endfor %}
-{%- set x = vlans|unique %}
+{%- set vlans = device.site.vlans.all() %}
 vlan database
 vlan {{vlans|map(attribute='vid')|join(',')}}
 {%- for vlan in vlans %}
