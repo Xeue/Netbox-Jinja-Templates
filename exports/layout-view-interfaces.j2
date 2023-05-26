@@ -224,8 +224,8 @@
             grid-template-columns: repeat(36, var(--column-width));
             grid-template-rows: repeat(2, var(--row-height));
         }
-        .gi1-53-1 {grid-area: q53-1 / q53-1 / q53-1 / q53-4 !important;}
-        .gi1-54-1 {grid-area: q54-1 / q54-1 / q54-1 / q54-4 !important;}
+        .{{prefix2}}53-1 {grid-area: q53-1 / q53-1 / q53-1 / q53-4 !important;}
+        .{{prefix2}}54-1 {grid-area: q54-1 / q54-1 / q54-1 / q54-4 !important;}
         .qsfp {
             background: var(--port-inactive);
             border-radius: 14px;
@@ -251,32 +251,12 @@
         {% endif %}
 
         {% for i in range(ports1+1) %}
-
             .port_{{prefix1}}{{i}} {
                 grid-area:e{{i}};
             }
             .port_{{prefix1}}{{i}}.Fibre {
                 grid-area:f{{i}};
             }
-
-
-
-
-            /*.gi{{i}} {
-                grid-area:gi{{i}};
-            }
-            .gi{{i}}.Fibre {
-                grid-area:gi{{i}}f;
-            }
-            .gi1-0-{{i}} { Catalyst
-                grid-area:gi{{i}};
-            }
-            .gi1-{{i}} {
-                grid-area: e{{i}};
-            }
-            .gi0-{{i}} {
-                grid-area: e{{i}};
-            }*/
         {% endfor %}
 
         {% for i in range(ports2+1) %}
@@ -291,17 +271,6 @@
                     grid-area: f{{i}};
                 }
             {% endif %}
-
-            .gi1-1-{{i}} {
-                grid-area: e1-{{i}};
-            }
-            .qsfp-{{i+1}} {
-                grid-area: q{{i+49}}-1 / q{{i+49}}-1 / q{{i+49}}-1 / q{{i+49}}-4;
-            }
-            .e1-{{i}} {
-                grid-area: e1-{{i}}
-            }
-
         {% endfor %}
 
         .Vision {
@@ -473,9 +442,11 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
-        {% for qsfp in range(6) %}
-            <div class="qsfp-{{qsfp+1}} qsfp"></div>
-        {% endfor %}
+        {% if lanes > 0 %}
+            {% for qsfp in range(ports2) %}
+                <div class="qsfp-{{qsfp+1}} qsfp"></div>
+            {% endfor %}
+        {% endif %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
 </body>
