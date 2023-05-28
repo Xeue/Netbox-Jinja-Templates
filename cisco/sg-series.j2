@@ -11,7 +11,7 @@ snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
 clock timezone GMT 0 minutes 0
 !
-{%- set vlans = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
+{%- set vlans = device.site.region.vlans.all()|list + device.site.vlans.all()|list %}
 {%- for vlan in vlans %}
     {%- if vlan.vid is defined %}
 vlan {{vlan.vid}}
