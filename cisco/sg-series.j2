@@ -20,7 +20,7 @@ vlan {{vlan.vid}}
     {%- endif %}
 {%- endfor %}
 !
-management-vlan vlan {{device.primary_ip4|ip()|split(",")}}
+management-vlan vlan {{device.primary_ip4|ip()|split(3,".")}}
 !
 {% include 'cisco/spanning_tree.j2' %}
 !

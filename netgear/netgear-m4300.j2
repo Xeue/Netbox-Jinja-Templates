@@ -7,7 +7,7 @@ vlan name {{vlan.vid}} "{{vlan.name}}"
     {%- endif %}
 {%- endfor %}
 no vlan routing 1
-vlan routing {{management_vlan}} 1
+vlan routing {{device.primary_ip4|ip()|split(3,".")}} 1
 exit
 ip ssh server enable
 configure
@@ -72,12 +72,12 @@ exit
     {%- endif %}
 {%- endfor %}
 {%- if device.primary_ip4 %}
-interface vlan {{management_vlan}}
+interface vlan {{device.primary_ip4|ip()|split(3,".")}}
 routing
 ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 exit
-ip management vlan {{management_vlan}} {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
-ip management source-interface vlan {{management_vlan}}
+ip management vlan {{device.primary_ip4|ip()|split(3,".")}} {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+ip management source-interface vlan {{device.primary_ip4|ip()|split(3,".")}}
 {%- endif %}
 router rip
 exit
