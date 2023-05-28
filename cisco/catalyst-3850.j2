@@ -15,7 +15,7 @@ snmp-server contact "{{snmp_contact}}"
 username "{{user}}" secret encrypted {{secret}}
 no passwords complexity enable
 passwords aging 0
-{%- set vlans = device.site.vlans.all() %}
+{%- set vlans = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
 {%- for vlan in vlans %}
     {%- if vlan.vid is defined %}
 vlan {{vlan.vid}}

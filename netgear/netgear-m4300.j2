@@ -1,4 +1,4 @@
-{%- set vlans = device.site.vlans.all() %}
+{%- set vlans = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
 vlan database
 vlan {{vlans|map(attribute='vid')|join(',')}}
 {%- for vlan in vlans %}
