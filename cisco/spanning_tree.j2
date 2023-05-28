@@ -1,7 +1,7 @@
 spanning-tree mode mstp
 spanning-tree mst configuration
- name "WBSControl"
- revision 1
+ name "{{mst_name}}"
+ revision {{mst_revision}}
 {%- set groups = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
 {%- for group in groups %}
  instance {{loop.index}} vlan {{group.vlans.all()|map(attribute='vid')|join(",")}}

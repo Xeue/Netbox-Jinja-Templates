@@ -1,5 +1,8 @@
-spanning-tree configuration name "MSTP0"
+spanning-tree configuration name "{{mst_name}}"
 spanning-tree mode mst
-spanning-tree mst priority 0 4096
-spanning-tree mst instance 1
-spanning-tree mst vlan 1 10
+spanning-tree mst priority 0 36864
+{%- set groups = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
+{%- for group in groups %}
+ spanning-tree mst instance {{loop.index}}
+ spanning-tree mst vlan {{group.vlans.all()|map(attribute='vid')|join(" ")}}
+{%- endfor %}
