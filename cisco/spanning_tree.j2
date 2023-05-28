@@ -1,6 +1,10 @@
-no spanning-tree
 spanning-tree mode mstp
-spanning-tree priority 36864
 spanning-tree mst configuration
- name "MSTP0"
+ name "WBSControl"
+ revision 1
+{%- set groups = device.site.region.vlan_groups.all()|list + device.site.vlan_groups.all()|list %}
+{%- for group in groups %}
+ instance {{loop.index}} vlan {{group.vlans.all()|map(attribute='vid')|join(",")}}
+{%- endfor %}
+exit
 spanning-tree mst 0 priority 36864
