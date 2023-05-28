@@ -27,7 +27,7 @@ sntp unicast client enable
 sntp server {{sntp_server}}
 sntp source-interface vlan {{management_vlan}}
 {% include 'cisco/spanning_tree.j2' %}
-interface vlan {{device.primary_ip4|ip()|split(3,".")}}
+interface vlan {{device.primary_ip4|ip()|string()|split(3,".")}}
  ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
  Y
  no ip address dhcp

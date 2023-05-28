@@ -1,6 +1,6 @@
 hostname "NEP-WBS-{{device.name}}"
 {%- if device.primary_ip4 %}
-interface Vlan{{device.primary_ip4|ip()|split(3,".")}}
+interface Vlan{{device.primary_ip4|ip()|string()|split(3,".")}}
  ip-address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
 !
 ip default-gateway {{device.primary_ip4|gateway()}}
