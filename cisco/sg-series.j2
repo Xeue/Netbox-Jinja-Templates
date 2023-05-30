@@ -7,7 +7,7 @@ ip default-gateway {{device.primary_ip4|gateway()}}
 clock source sntp
 sntp server {{sntp_server}} port {{sntp_port}}
 snmp-server sysname "{{snmp_sysname}}"
-snmp-server location "{{snmp_location}}"
+snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"
 snmp-server contact "{{snmp_contact}}"
 clock timezone GMT 0 minutes 0
 !

@@ -20,7 +20,7 @@ username admin password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privi
 username cisco password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
 ip ssh server
 ip ssh password-auth
-snmp-server location "{{device.name|replace("#","")|replace(" ","-")}}"              
+snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"              
 clock timezone GMT 0 minutes 0
 clock source sntp
 sntp unicast client enable
