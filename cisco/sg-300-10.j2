@@ -28,10 +28,10 @@ sntp server {{sntp_server}}
 sntp source-interface vlan {{management_vlan}}
 {% include 'cisco/spanning_tree.j2' %}
 interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
- ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
- Y
- no ip address dhcp
- Y
+ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+Y
+no ip address dhcp
+Y
 exit
 ip default-gateway {{device.primary_ip4|gateway()}}
 {%- for interface in device.interfaces.all() %}
