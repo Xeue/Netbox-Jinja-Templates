@@ -60,7 +60,7 @@ interface {{interface.label}}
  switchport mode access
  switchport access vlan {{interface.untagged_vlan.vid}}
             {%- else %}
- no switchport
+ no switchport mode
             {%- endif %}
             {%- set description = interface.description %}
             {%- if description == '' %}
