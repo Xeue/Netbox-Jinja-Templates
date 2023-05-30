@@ -33,6 +33,7 @@ interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
  no ip address dhcp
  Y
 exit
+ip default-gateway {{device.primary_ip4|gateway()}}
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
