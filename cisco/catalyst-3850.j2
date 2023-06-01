@@ -20,7 +20,7 @@ passwords aging 0
     {%- if vlan.vid is defined %}
 vlan {{vlan.vid}}
  name "{{vlan.name}}"
-!
+exit
     {%- endif %}
 {%- endfor %}
 !
