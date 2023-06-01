@@ -262,8 +262,15 @@
             {%- set ports1 = 10 %}
         main {
             grid-template-areas: "e1 e2 e3 e4 e5 e6 e7 e8 e9 f9 e10 f10";
-            grid-template-columns: repeat(12, var(--column-width));
+            grid-template-columns: repeat(11, var(--column-width));
             grid-template-rows: repeat(1, var(--row-height));
+        }
+        {%- elif switch == 'SG350-20' or switch == 'SG350-20P' %}
+            {%- set ports1 = 10 %}
+        main {
+            grid-template-areas: "e1 e2 e3 e4 e5 e6 e7 e8 e17 f17 f19" "e9 e10 e11 e12 e13 e14 e15 e16 e18 f18 f20";
+            grid-template-columns: repeat(11, var(--column-width));
+            grid-template-rows: repeat(2, var(--row-height));
         }
 
         {%- elif switch == 'SG220-26P' or switch == 'SG220-26' %}
