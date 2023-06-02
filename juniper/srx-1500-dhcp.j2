@@ -1,3 +1,20 @@
 {%- for range in queryset %}
-	{{range}}
+pool {{range.description}} {
+	family inet {
+		network {{start_address|network()}};
+		range InternetRange {
+			low {{start_address}};
+			high {{end_address}};
+		}
+		dhcp-attributes {
+			name-server {
+				62.244.176.176;
+				62.244.177.177;
+			}
+			router {
+				{{start_address|gateway()}};
+			}
+		}
+	}
+}
 {%- endfor %}
