@@ -1,3 +1,4 @@
+<pre>
 {%- for range in queryset %}
 pool {{range.description}} {
 	family inet {
@@ -18,3 +19,4 @@ pool {{range.description}} {
 	}
 }
 {%- endfor %}
+</pre>
