@@ -3,8 +3,8 @@ pool {{range.description}} {
 	family inet {
 		network {#{start_address|network()}#};
 		range InternetRange {
-			low {{start_address}};
-			high {{end_address}};
+			low {#{start_address}#};
+			high {#{end_address}#};
 		}
 		dhcp-attributes {
 			name-server {
