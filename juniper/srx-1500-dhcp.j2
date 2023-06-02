@@ -244,8 +244,9 @@
 	<h1>Commands</h1><h1>Output Preview</h1>
 	{%- for range in queryset %}
 		<section>
+			<h2>{{range.description}}</h2>
 			<pre>
-edit pool {{range.description}}
+edit pool {{range.description|replace(' ','-')}}
 edit family
 edit inet
 set network {{range.start_address|network()}}
@@ -269,7 +270,7 @@ up
 		</section>
 		<section>
 			<pre>
-pool {{range.description}} {
+pool {{range.description|replace(' ','-')}} {
 	family inet {
 		network {{range.start_address|network()}};
 		range InternetRange {
