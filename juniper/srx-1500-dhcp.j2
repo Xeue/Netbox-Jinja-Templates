@@ -1,7 +1,7 @@
 {%- for range in queryset %}
 pool {{range.description}} {
 	family inet {
-		network {{start_address|network()}};
+		network {#{start_address|network()}#};
 		range InternetRange {
 			low {{start_address}};
 			high {{end_address}};
@@ -12,7 +12,7 @@ pool {{range.description}} {
 				62.244.177.177;
 			}
 			router {
-				{{start_address|gateway()}};
+				{#{start_address|gateway()}#};
 			}
 		}
 	}
