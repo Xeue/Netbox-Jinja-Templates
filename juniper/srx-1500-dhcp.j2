@@ -1,50 +1,73 @@
-<main>
-{%- for range in queryset %}
-<section>
-<pre>
-pool {{range.description}} {
-	family inet {
-		network {{range.start_address|network()}};
-		range InternetRange {
-			low {{range.start_address}};
-			high {{range.end_address}};
-		}
-		dhcp-attributes {
-			name-server {
-				62.244.176.176;
-				62.244.177.177;
-			}
-			router {
-				{{range.start_address|gateway()}};
-			}
-		}
-	}
-}
-</pre>
-</section>
-<section>
-<pre>
-edit pool {{range.description}}
-edit family
-edit inet
-set network {{range.start_address|network()}}
-edit range InternetRange
-set low {{range.start_address}};
-set high {{range.end_address}};
-up
-edit dhcp-attributes
-edit name-server
-set 62.244.176.176
-set 62.244.177.177
-up
-edit router
-set {{range.start_address|gateway()}}
-up
-up
-up
-up
-up
-</pre>
-</section>
-{%- endfor %}
-</main>
+<!DOCTYPE html>
+<html lang="en" data-netbox-color-mode="dark">
+<head>
+    <title>{{queryset[0].device.name}} Layout</title>
+    <link rel="stylesheet" href="/static/netbox-external.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-external.css'">
+    <link rel="stylesheet" href="/static/netbox-light.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-light.css'">
+    <link rel="stylesheet" href="/static/netbox-dark.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-dark.css'">
+    <link rel="icon" type="image/png" href="/static/netbox.ico">
+    <link rel="apple-touch-icon" type="image/png" href="/static/netbox_touch-icon-180.png">
+    <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
+    <script>
+        initMode()
+	</script>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <img src="/static/nep_logo.svg" class="sidenav-brand-img logo-light logo" alt="NetBox Logo" height="48">
+            <img src="/static/nep_logo_light.svg" class="sidenav-brand-img logo-dark logo" alt="NetBox Logo" height="48">
+        </a>
+        <span>&nbsp;Juniper SRX DHCP Config&nbsp;</span>
+
+    </header>
+	<main>
+	{%- for range in queryset %}
+		<section>
+			<pre>
+				pool {{range.description}} {
+					family inet {
+						network {{range.start_address|network()}};
+						range InternetRange {
+							low {{range.start_address}};
+							high {{range.end_address}};
+						}
+						dhcp-attributes {
+							name-server {
+								62.244.176.176;
+								62.244.177.177;
+							}
+							router {
+								{{range.start_address|gateway()}};
+							}
+						}
+					}
+				}
+			</pre>
+		</section>
+		<section>
+			<pre>
+				edit pool {{range.description}}
+				edit family
+				edit inet
+				set network {{range.start_address|network()}}
+				edit range InternetRange
+				set low {{range.start_address}};
+				set high {{range.end_address}};
+				up
+				edit dhcp-attributes
+				edit name-server
+				set 62.244.176.176
+				set 62.244.177.177
+				up
+				edit router
+				set {{range.start_address|gateway()}}
+				up
+				up
+				up
+				up
+				up
+			</pre>
+		</section>
+	{%- endfor %}
+	</main>
