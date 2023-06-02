@@ -62,9 +62,6 @@
         }
 
 		pre {
-			background: var(--bs-dark);
-			border-radius: 10px;
-			border: 1px solid var(--bs-gray);
 			padding: 10px;
 			margin: 0 !important;
 		}
@@ -100,84 +97,6 @@
             display: none;
         }
 
-        .manage-link {
-            font-size: 0.6em;
-        }
-        .manage-link a {
-            text-decoration: none !important;
-        }
-
-        .to-cont {
-          color: var(--text-primary);
-          font-weight: var(--weight);
-        }
-        .to-device, .to-port {
-            font-weight: normal;
-            font-size: 0.9em;
-        }
-        .from-name,
-        .from-label,
-        .from-type,
-        .from-cont,
-        .port-mode,
-        .to-label,
-        .to-type {
-           display: none;
-        }
-        .switchport {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: var(--port-active);
-            border-radius: 10px;
-            padding: 10px;
-            z-index: 1;
-        }
-        .switchport > a {
-            position: absolute;
-            inset: 0;
-            text-decoration: none !important;
-        }
-        .port-label {
-            position: absolute;
-            left: 50%;
-            translate: -50% 0%;
-            font-weight: bold;
-            font-size: 34pt;
-            color: var(--text-secondary);
-            height: max-content;
-            text-align: center;
-            bottom: 0px;
-            white-space: nowrap;
-        }
-        .empty {
-            background-color: var(--port-inactive);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            font-size: 14pt;
-            color: rgb(91, 94, 96);
-            font-weight: bold;
-        }
-        .empty-mode {
-            text-align: center;
-        }
-        .empty-text {
-            height: 3em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .disabled {
-            background-color: var(--disabled);
-            color: var(--disabled-text);
-        }
-
-        .blank {grid-area: blank;}
-
         main {
             grid-template-columns: repeat(2, 1fr);
 			user-select: none;
@@ -208,9 +127,6 @@
                 --omneo-1013: rgb(194, 167, 254);
                 --omneo-1021: rgb(140, 223, 255);
                 --omneo-1022: rgb(141, 186, 255);
-            }
-            .switchport {
-                border: 1px solid rgb(191, 191, 191);
             }
 
             .logo-dark {
@@ -249,7 +165,7 @@
 	{%- for range in queryset %}
 		<section>
 			<h3>{{range.description}}</h3>
-			<pre class="commands">
+			<pre class="commands card">
 edit pool {{range.description|replace(' ','-')}}
 edit family
 edit inet
@@ -273,7 +189,7 @@ up</pre>
 		</section>
 		<section>
 			<h3>&nbsp;&nbsp;&nbsp;</h3>
-			<pre>
+			<pre class="card">
 pool {{range.description|replace(' ','-')}} {
 	family inet {
 		network {{range.start_address|network()}};
