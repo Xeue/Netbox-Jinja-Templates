@@ -244,7 +244,7 @@
 	<h1>Commands</h1><h1>Output Preview</h1>
 	{%- for range in queryset %}
 		<section>
-			<h2>{{range.description}}</h2>
+			<h3>{{range.description}}</h3>
 			<pre>
 edit pool {{range.description|replace(' ','-')}}
 edit family
@@ -269,6 +269,7 @@ up
 			</pre>
 		</section>
 		<section>
+			<h3>&nbsp;&nbsp;&nbsp;</h3>
 			<pre>
 pool {{range.description|replace(' ','-')}} {
 	family inet {
