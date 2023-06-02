@@ -4,7 +4,7 @@ pool {{range.description}} {
 		network {#{start_address|network()}#};
 		range InternetRange {
 			low {#{start_address}#};
-			high {#{end_address}#};
+			high {{end_address}};
 		}
 		dhcp-attributes {
 			name-server {
