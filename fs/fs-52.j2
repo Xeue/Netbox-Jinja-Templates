@@ -10,7 +10,7 @@ interface {{interface.label}}
             {%- endif %}
         {%- endif %}
  description "{{description}}"
-!
+exit
     {%- else %}
         {%- if interface.enabled == True and interface.mgmt_only != True %}
 interface {{interface.label}}
@@ -39,8 +39,7 @@ interface {{interface.label}}
                 {%- endif %}
             {%- endif %}
  description "{{description}}"
-!
+exit
         {%- endif %}
     {%- endif %}
 {%- endfor %}
-!
