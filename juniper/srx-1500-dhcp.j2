@@ -163,6 +163,7 @@
 	<main>
 	<h1>Commands</h1><h1>Output Preview</h1>
 	{%- for range in queryset %}
+        {{range.role}}
         {%- if range.role == "DHCP" %}
 		<section>
 			<h3>{{range.description}}</h3>
