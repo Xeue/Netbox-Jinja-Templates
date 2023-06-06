@@ -176,14 +176,14 @@
 		<section>
 			<h3>{{range.description}}</h3>
 			<pre class="commands card">
-edit address {{range.description|replace(' ','-')}}
+edit address {{range.description|replace(' &', '')|replace(' ','-')}}
 set range-address {{range.start_address}} to {{range.end_address}}
 exit</pre>
 		</section>
 		<section>
 			<h3>&nbsp;&nbsp;&nbsp;</h3>
 			<pre class="card">
-address {{range.description|replace(' ','-')}} {
+address {{range.description|replace(' &', '')|replace(' ','-')}} {
 	range-address {{range.start_address}} to {{range.end_address}}
 }</pre>
 		</section>
