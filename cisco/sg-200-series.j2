@@ -10,6 +10,8 @@ snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"
 snmp-server contact "{{snmp_contact}}"
 clock timezone GMT 0 minutes 0
+username "{{user}} secret encrypted {{secret}}
+passwords aging 0
 !
 {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
 {%- for vlan in vlans %}
