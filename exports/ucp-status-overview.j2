@@ -232,15 +232,17 @@
                                 {%- endif %}
                             {%- endif %}
                         </td>
+                        {% set count = namespace(value=0) %}
                         {% for card in frame.get_children() %}
-                            {% set count = loop.index %}
+                            {{ count.value }}
+                            {% set count.value = count.value + 1 %}
                             <td class="card-wrapper">
                                 <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
                                     <span class="status_label">{{card.status|capitalize()}}</span>
                                 </span>
                             </td>
                         {% endfor %}
-                        {{count}}
+                        {{ count.value }}
                     </tr>
                 {% endfor %}
             </tbody>
