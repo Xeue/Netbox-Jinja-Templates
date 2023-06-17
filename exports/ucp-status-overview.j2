@@ -201,10 +201,19 @@
             <tbody>
                 {% for frame in queryset %}
                     <tr class="group-frame">                    
-                        <td><div class="frame-name">{{frame.name}}</div></td>
+                        <td>
+                            {%- set tags = frame.tags.all()|map(attribute='name') %}
+                            {%- for tag in tags %}
+                                {%- if tag == 'Singlemode' %}
+                                    <div class="frame-name bg-yellow">{{frame.name}}</div>
+                                {%- if tag == 'Multimode' %}
+                                    <div class="frame-name bg-aqua">{{frame.name}}</div>
+                                {%- endif %}
+                            {%- endfor %}
+                        </td>
                         <td class="frame-wrapper">
                             <span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
-                                <span class="status_label">{{frame.status}}</span>
+                                <span class="status_label">{{frame.status|capitalize()}}</span>
                             </span>
                         </td>
                         {%- set interfaces = [] %}
@@ -222,7 +231,7 @@
                                     {%- for tag in tags %}
                                         {%- if tag == 'Nodes' %}
                                             <span class="status_dropdown card-satus badge bg-{{farSide.device.get_status_color()}}" href="/dcim/status/{{farSide.device.id}}/">
-                                                <span class="status_label">{{farSide.device.status}}</span>
+                                                <span class="status_label">{{farSide.device.status|capitalize()}}</span>
                                             </span>
                                         {%- endif %}
                                     {%- endfor %}
@@ -232,7 +241,7 @@
                         {% for card in frame.get_children() %}
                             <td class="card-wrapper">
                                 <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
-                                    <span class="status_label">{{card.status}}</span>
+                                    <span class="status_label">{{card.status|capitalize()}}</span>
                                 </span>
                             </td>
                         {% endfor %}
