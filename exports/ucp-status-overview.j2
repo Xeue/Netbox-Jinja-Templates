@@ -201,15 +201,17 @@
             <tbody>
                 {% for frame in queryset %}
                     <tr class="group-frame">                    
-                        <td>
-                            {%- set tags = frame.tags.all()|map(attribute='name') %}
-                            {%- for tag in tags %}
-                                {%- if tag == 'Singlemode' %}
-                                    <div class="frame-name bg-yellow">{{frame.name}}</div>
-                                {%- elif tag == 'Multimode' %}
-                                    <div class="frame-name bg-aqua">{{frame.name}}</div>
-                                {%- endif %}
-                            {%- endfor %}
+                        {%- set tags = frame.tags.all()|map(attribute='name') %}
+                        {%- for tag in tags %}
+                            {%- if tag == 'Singlemode' %}
+                                <td class="bg-yellow text-black">
+                            {%- elif tag == 'Multimode' %}
+                                <td class="bg-cyan text-black">
+                            {%- else %}
+                                <td>
+                            {%- endif %}
+                        {%- endfor %}
+                            <div class="frame-name">{{frame.name}}</div>
                         </td>
                         <td class="frame-wrapper">
                             <span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
