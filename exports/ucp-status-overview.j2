@@ -187,7 +187,6 @@
             <thead class="sticky-top bg-body">
                 <th>Frame</th>
                 <th>Frame Status</th>
-                <th>Switch</th>
                 <th>Slot 2</th>
                 <th>Slot 3</th>
                 <th>Slot 4</th>
@@ -197,6 +196,14 @@
                 <th>Slot 8</th>
                 <th>Slot 9</th>
                 <th>Slot 10</th>
+                <th>Switch</th>
+                <th>Mode</th>
+                <th>UHD</th>
+                <th>A</th>
+                <th>B</th>
+                <th>Control</th>
+                <th>Ref</th>
+                <th>Routed</th>
             </thead>
             <tbody>
                 {% for frame in queryset %}
@@ -210,6 +217,25 @@
                                 <span class="status_label">{{frame.status|capitalize()}}</span>
                             </span>
                         </td>
+
+                        {# Creates status drop down for child devices using device bay #}
+                        {% set count = namespace(value=0) %}
+                        {% for card in frame.get_children() %}
+                            {% set count.value = count.value + 1 %}
+                            <td class="card-wrapper">
+                                <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
+                                    <span class="status_label">{{card.status|capitalize()}}</span>
+                                </span>
+                            </td>
+                        {% endfor %}
+
+                        {# Fills blank cells #}
+                        {% set loopLength = 9 - count.value %}
+                        {% for n in range(loopLength) %}
+                            <td></td>
+                        {% endfor %}
+
+                        {# Switch status, finds first connection of frame and checks for precence of 'Nodes' tag #}
                         {%- set interfaces = [] %}
                         {%- for interface in frame.my_interfaces() %}
                             {%- if interface.link_peers|first() %}
@@ -232,19 +258,9 @@
                                 {%- endif %}
                             {%- endif %}
                         </td>
-                        {% set count = namespace(value=0) %}
-                        {% for card in frame.get_children() %}
-                            {% set count.value = count.value + 1 %}
-                            <td class="card-wrapper">
-                                <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
-                                    <span class="status_label">{{card.status|capitalize()}}</span>
-                                </span>
-                            </td>
-                        {% endfor %}
-                        {% set loopLength = 9 - count.value %}
-                        {% for n in range(loopLength) %}
-                            <td></td>
-                        {% endfor %}
+
+                        {# Custom Fields #}
+
                     </tr>
                 {% endfor %}
             </tbody>
