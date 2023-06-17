@@ -213,12 +213,12 @@
                                 {%- set _ = interfaces.append(interface) %}
                             {%- endif %}
                         {%- endfor %}
-                        {%- if interfaces|first() %}
-                            {%- set first = interfaces|first() %}
-                            {%- if first.link_peers|first() %}
-                                {%- set farSide = first.link_peers|first() %}
-                                {%- set tags = farSide.device.tags.all()|map(attribute='name') %}
-                                <td class="card-wrapper">
+                        <td class="card-wrapper">
+                            {%- if interfaces|first() %}
+                                {%- set first = interfaces|first() %}
+                                {%- if first.link_peers|first() %}
+                                    {%- set farSide = first.link_peers|first() %}
+                                    {%- set tags = farSide.device.tags.all()|map(attribute='name') %}
                                     {%- for tag in tags %}
                                         {%- if tag == 'Nodes' %}
                                             <span class="status_dropdown card-satus badge bg-{{farSide.device.get_status_color()}}" href="/dcim/status/{{farSide.device.id}}/">
@@ -226,9 +226,9 @@
                                             </span>
                                         {%- endif %}
                                     {%- endfor %}
-                                </td>
+                                {%- endif %}
                             {%- endif %}
-                        {%- endif %}
+                        </td>
                         {% for card in frame.get_children() %}
                             <td class="card-wrapper">
                                 <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
