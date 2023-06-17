@@ -217,11 +217,16 @@
                             {%- set first = interfaces|first() %}
                             {%- if first.link_peers|first() %}
                                 {%- set farSide = first.link_peers|first() %}
-                                <td class="card-wrapper">
-                                    <span class="status_dropdown card-satus badge bg-{{farSide.device.get_status_color()}}" href="/dcim/status/{{farSide.device.id}}/">
-                                        <span class="status_label">{{farSide.device.status}}</span>
-                                    </span>
-                                </td>
+                                {%- set tags = farSide.device.tags.all()|map(attribute='name') %}
+                                {%- for tag in tags %}
+                                    {%- if tag == 'Nodes' %}
+                                        <td class="card-wrapper">
+                                            <span class="status_dropdown card-satus badge bg-{{farSide.device.get_status_color()}}" href="/dcim/status/{{farSide.device.id}}/">
+                                                <span class="status_label">{{farSide.device.status}}</span>
+                                            </span>
+                                        </td>
+                                    {%- endif %}
+                                {%- endfor %}
                             {%- endif %}
                         {%- endif %}
                         {% for card in frame.get_children() %}
