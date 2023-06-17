@@ -191,7 +191,7 @@
 
     </header>
     <main class="h-100 overflow-auto">
-        <table class="table table-hover table-sm table-striped">
+        <table class="table table-hover table-sm table-striped table-active">
             <thead class="sticky-top bg-body">
                 <th>Frame</th>
                 <th>Frame Status</th>
@@ -205,13 +205,13 @@
                 <th>Slot 9</th>
                 <th>Slot 10</th>
                 <th>Switch</th>
-                <th>Mode</th>
-                <th>UHD</th>
-                <th>A</th>
-                <th>B</th>
-                <th>Control</th>
-                <th>Ref</th>
-                <th>Routed</th>
+                <th class="text-center">Mode</th>
+                <th class="text-center">UHD</th>
+                <th class="text-center">A</th>
+                <th class="text-center">B</th>
+                <th class="text-center">Control</th>
+                <th class="text-center">Ref</th>
+                <th class="text-center">Routed</th>
             </thead>
             <tbody>
                 {% for frame in queryset %}
@@ -269,23 +269,23 @@
 
                         {# Custom Fields #}
                         
-                        <td class="boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="mode" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="uhd" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="boolean-wrapper {% if frame.cf.primary == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.primary == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="primary" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="secondary" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="controlable" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
@@ -293,7 +293,7 @@
                             {{frame.cf.ref}}
                         </td>
 
-                        <td class="boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-dark{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="routed" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
                     </tr>
