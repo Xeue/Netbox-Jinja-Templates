@@ -268,25 +268,25 @@
                         </td>
 
                         {# Custom Fields #}
-                        <td class="status_dropdown boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
-                        <td class="boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
-                        <td class="boolean-wrapper {% if frame.cf.primary == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.primary == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
-                        <td class="boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
-                        <td class="boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
                         <td class="multi-wrapper">
                             {{frame.cf.ref}}
                         </td>
-                        <td class="boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-red{% endif %}">
+                        <td class="boolean_dropdown boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
                     </tr>
