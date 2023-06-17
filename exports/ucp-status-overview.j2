@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-netbox-color-mode="dark">
+<head>
+    <title>UCP Card Status Overview</title>
+    <link rel="stylesheet" href="/static/netbox-external.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-external.css'">
+    <link rel="stylesheet" href="/static/netbox-light.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-light.css'">
+    <link rel="stylesheet" href="/static/netbox-dark.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-dark.css'">
+    <link rel="icon" type="image/png" href="/static/netbox.ico">
+    <link rel="apple-touch-icon" type="image/png" href="/static/netbox_touch-icon-180.png">
+    <style>
+		html {
+            width: 100%;
+            --row-height: 110px;
+            --column-width: 170px;
+            --port-active: rgb(49, 58, 64);
+            --bg-col: rgb(27, 31, 34);
+            --port-inactive: rgb(36, 40, 43);
+            --text-primary: rgb(255, 255, 255);
+            --text-secondary: rgba(255, 255, 255, 0.25);
+            --weight: normal;
+            --disabled: rgb(57, 29, 29);
+            --disabled-text: rgb(106, 85, 85);
+            --vision: rgb(42, 83, 44);
+            --comms: rgb(68, 82, 83);
+            --wifi: rgb(43, 70, 46);
+            --router-panel: rgb(52, 93, 54);
+            --omneo-1013: rgb(76, 66, 98);
+            --omneo-1021: rgb(35, 88, 108);
+            --omneo-1022: rgb(72, 95, 130);
+        }
+
+        html[data-netbox-color-mode="light"] {
+            --row-height: 110px;
+            --column-width: 170px;
+            --port-active: rgb(219, 219, 219);
+            --bg-col: rgb(255, 255, 255);
+            --port-inactive: rgb(241, 241, 241);
+            --text-primary: rgb(0, 0, 0);
+            --text-secondary: rgba(0, 0, 0, 0.25);
+            --weight: bold;
+            --disabled: rgb(249, 201, 201);
+            --disabled-text: rgb(106, 85, 85);
+            --vision: rgb(87, 177, 90);
+            --comms: rgb(158, 158, 158);
+            --wifi: rgb(157, 251, 167);
+            --router-panel: rgb(127, 223, 131);
+            --omneo-1013: rgb(194, 167, 254);
+            --omneo-1021: rgb(140, 223, 255);
+            --omneo-1022: rgb(141, 186, 255);
+        }
+
+        body {
+            padding: 0 10px;
+            width: 100%;
+            background-color: var(--bg-col) !important;
+        }
+
+        main {
+            display: grid;
+            column-gap: 5rem;
+            margin: 10px;
+        }
+
+		pre {
+			padding: 10px;
+			margin: 0 !important;
+		}
+
+        header {
+            font-size: 24pt;
+            margin: 10px 0px;
+            color: var(--text-primary);
+            font-weight: var(--weight);
+            display: flex;
+            align-items: center;
+        }
+        a.badge.link {
+            font-size: 1rem;
+        }
+        .logo {
+            height: 2em;
+            margin-right: 10px;
+        }
+        .logo-dark {
+            display: none;
+        }
+
+        .logo-light {
+            display: block;
+        }
+
+        html[data-netbox-color-mode="dark"] .logo-dark {
+            display: block;
+        }
+
+        html[data-netbox-color-mode="dark"] .logo-light {
+            display: none;
+        }
+
+        main {
+            grid-template-columns: repeat(2, 1fr);
+			user-select: none;
+        }
+
+		.commands {
+			user-select: text;
+		}
+
+        input:checked ~* .card {
+            user-select: text;
+        }
+
+        input:checked ~* .card.commands {
+            user-select: none;
+        }
+
+        @media print {
+            html[data-netbox-color-mode="light"],
+            html[data-netbox-color-mode="dark"] {
+                font-size: 18pt;
+                --row-height: 180px;
+                --column-width: 190px;
+                --port-active: rgb(219, 219, 219);
+                --bg-col: rgb(255, 255, 255);
+                --port-inactive: rgb(241, 241, 241);
+                --text-primary: rgb(0, 0, 0);
+                --text-secondary: rgba(0, 0, 0, 0.25);
+                --weight: bold;
+                --disabled: rgb(249, 201, 201);
+                --disabled-text: rgb(106, 85, 85);
+                --vision: rgb(87, 177, 90);
+                --comms: rgb(158, 158, 158);
+                --wifi: rgb(157, 251, 167);
+                --router-panel: rgb(127, 223, 131);
+                --omneo-1013: rgb(194, 167, 254);
+                --omneo-1021: rgb(140, 223, 255);
+                --omneo-1022: rgb(141, 186, 255);
+            }
+
+            .logo-dark {
+                display: none !important;
+            }
+
+            .logo-light {
+                display: block !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: black !important;
+            }
+            .manage-link {
+                display: none;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
+    <script>
+        initMode()
+        document.addEventListener("DOMContentLoaded", e => {
+            document.getElementsByClass('status_drop').addEventListener('click', e => {
+                
+            })
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <a href="/">
+            <img src="/static/nep_logo.svg" class="sidenav-brand-img logo-light logo" alt="NetBox Logo" height="48">
+            <img src="/static/nep_logo_light.svg" class="sidenav-brand-img logo-dark logo" alt="NetBox Logo" height="48">
+        </a>
+        <span>&nbsp;UCP Card Status Overview&nbsp;</span>
+
+    </header>
+    <main>
+        {% for frame in queryset %}
+			{{frame.name}}
+        {% endfor %}
+    </main>
+</body>
+</html>
