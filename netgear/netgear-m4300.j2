@@ -17,7 +17,7 @@ sntp server "{{sntp_server}}"
 snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
-username "{{user}}" password 731ce3b40591a3d1f2102fe0a5da51e938e81b1248e803260805e0fd23aecee12d938566619ece2869c9cf65c7fb13532937d9115b258fbfeef95d6f17e8f67d level 15 encrypted
+username "{{user}}" password {{secret}}
 line console
 serial timeout 160
 password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted

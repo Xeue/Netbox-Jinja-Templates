@@ -17,8 +17,7 @@ line ssh
 exit
 no passwords complexity enable
 passwords aging 0
-username admin password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
-username cisco password encrypted 5cc4b2a823577ad2d59259c5c3ecb295d209ba32 privilege 15
+username {{user}} password {{secret}}
 ip ssh server
 ip ssh password-auth
 snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"              
