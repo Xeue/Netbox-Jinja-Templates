@@ -186,6 +186,8 @@
         <table>
             <thead>
                 <th>Frame</th>
+                <th>Frame Status</th>
+                <th>Switch</th>
                 <th>Slot 2</th>
                 <th>Slot 3</th>
                 <th>Slot 4</th>
@@ -196,24 +198,26 @@
                 <th>Slot 9</th>
                 <th>Slot 10</th>
             </thead>
-        {% for frame in queryset %}
-			<tr class="group-frame">
-				<td class="frame-wrapper">
-					<div class="frame-name">{{frame.name}}</div>
-					<span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
-                        <span class="status_label">{{frame.status}}</span>
-                    </span>
-				</td>
-                {% for card in frame.get_children() %}
-                    <td class="card-wrapper">
-                        <div class="card-name">{{card.name}}</div>
-                        <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
-                            <span class="status_label">{{card.status}}</span>
-                        </span>
-                    </td>
+            <tbody>
+                {% for frame in queryset %}
+                    <tr class="group-frame">                    
+                        <td><div class="frame-name">{{frame.name}}</div></td>
+                        <td class="frame-wrapper">
+                            <span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
+                                <span class="status_label">{{frame.status}}</span>
+                            </span>
+                        </td>
+                        <td></td>
+                        {% for card in frame.get_children() %}
+                            <td class="card-wrapper">
+                                <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
+                                    <span class="status_label">{{card.status}}</span>
+                                </span>
+                            </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-			</tr>
-        {% endfor %}
+            </tbody>
         </table>
     </main>
 </body>
