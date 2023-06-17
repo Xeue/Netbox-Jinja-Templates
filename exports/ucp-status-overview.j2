@@ -173,7 +173,7 @@
         //});
     </script>
 </head>
-<body class="h-100">
+<body class="h-100 d-flex flex-column">
     <header>
         <a href="/">
             <img src="/static/nep_logo.svg" class="sidenav-brand-img logo-light logo" alt="NetBox Logo" height="48">
@@ -182,8 +182,8 @@
         <span>&nbsp;UCP Card Status Overview&nbsp;</span>
 
     </header>
-    <main>
-        <table>
+    <main class="h-100 overflow-auto">
+        <table class="table table-hover table-sm table-striped">
             <thead class="sticky-top bg-body">
                 <th>Frame</th>
                 <th>Frame Status</th>
@@ -207,7 +207,23 @@
                                 <span class="status_label">{{frame.status}}</span>
                             </span>
                         </td>
-                        <td></td>
+                        {%- set interfaces = [] %}
+                        {%- for interface in device.my_interfaces() %}
+                            {%- if interface.link_peers|first() %}
+                                {%- set _ = interfaces.append(interface) %}
+                            {%- endif %}
+                        {%- endfor %}
+                        {%- if interfaces|first() %}
+                            {%- set first = interfaces|first() %}
+                            {%- if first.link_peers|first() %}
+                                {%- set farSide = first.link_peers|first() %}
+                                <td class="card-wrapper">
+                                    <span class="status_dropdown card-satus badge bg-{{farSide.device.get_status_color()}}" href="/dcim/status/{{farSide.device.id}}/">
+                                        <span class="status_label">{{farSide.device.status}}</span>
+                                    </span>
+                                </td>
+                            {%- endif %}
+                        {%- endif %}
                         {% for card in frame.get_children() %}
                             <td class="card-wrapper">
                                 <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
