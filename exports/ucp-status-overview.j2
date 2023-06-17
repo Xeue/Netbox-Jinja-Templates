@@ -269,7 +269,7 @@
 
                         {# Custom Fields #}
                         <td class="boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-red{% endif %}">
-                            <a class="boolean_dropdown" href="/nepapi/boolean/{{frame.id}}/">{{frame.cf.mode.label}}test</a>
+                            <a class="boolean_dropdown" data-field="mode" href="/nepapi/boolean/{{frame.id}}/"></a>
                         </td>
                         <td class="boolean_dropdown boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-red{% endif %}">
                             <a href="/nepapi/boolean/{{frame.id}}/"></a>
