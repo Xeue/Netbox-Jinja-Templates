@@ -206,7 +206,7 @@
                             {%- for tag in tags %}
                                 {%- if tag == 'Singlemode' %}
                                     <div class="frame-name bg-yellow">{{frame.name}}</div>
-                                {%- if tag == 'Multimode' %}
+                                {%- elif tag == 'Multimode' %}
                                     <div class="frame-name bg-aqua">{{frame.name}}</div>
                                 {%- endif %}
                             {%- endfor %}
