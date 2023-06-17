@@ -207,7 +207,7 @@
                 {% for card in frame.get_children() %}
                     <td class="card-wrapper">
                         <div class="card-name">{{card.name}}</div>
-                        <span class="card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
+                        <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
                             <span class="status_label">{{card.status}}</span>
                         </span>
                     </td>
