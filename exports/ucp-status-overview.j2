@@ -153,6 +153,7 @@
         }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
+    <script type="text/javascript" src="/static/nep.js" onerror="window.location='/media-failure/?filename=nep.js'"></script>
     <script>
         initMode()
         document.addEventListener("DOMContentLoaded", e => {
@@ -176,13 +177,17 @@
 			<div class="group-frame">
 				<div class="frame-wrapper">
 					<div class="frame-name">{{frame.name}}</div>
-					<div class="frame-status badge bg-{{frame.get_status_color()}}">{{frame.status}}</div>
+					<span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
+                        <span class="status_label">{{frame.status}}</span>
+                    </span>
 				</div>
 				<div class="frame-cards">
 					{% for card in frame.get_children() %}
 						<div class="card-wrapper">
 							<div class="card-name">{{card.name}}</div>
-							<div class="card-satus badge bg-{{card.get_status_color()}}">{{card.status}}</div>
+							<span class="card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
+                                <span class="status_label">{{card.status}}</span>
+                            </span>
 						</div>
 					{% endfor %}
 				</div>
