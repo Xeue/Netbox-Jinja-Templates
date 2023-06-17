@@ -176,12 +176,12 @@
 			<div>
 				<div>
 					<div>{{frame.name}}</div>
-					<div class="badge bg-{{frame.get_status_color}}">{{frame.status}}</div>
+					<div class="badge bg-{{frame.get_status_color()}}">{{frame.status}}</div>
 				</div>
 				{% for card in frame.get_children() %}
 					<div>
 						<div>{{card.name}}</div>
-						<div class="badge bg-{{card.get_status_color}}">{{card.status}}</div>
+						<div class="badge bg-{{card.get_status_color()}}">{{card.status}}</div>
 					</div>
 				{% endfor %}
 			</div>
