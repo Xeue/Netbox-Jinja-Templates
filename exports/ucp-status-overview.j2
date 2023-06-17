@@ -208,7 +208,7 @@
                             </span>
                         </td>
                         {%- set interfaces = [] %}
-                        {%- for interface in device.my_interfaces() %}
+                        {%- for interface in frame.my_interfaces() %}
                             {%- if interface.link_peers|first() %}
                                 {%- set _ = interfaces.append(interface) %}
                             {%- endif %}
