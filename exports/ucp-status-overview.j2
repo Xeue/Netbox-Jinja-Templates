@@ -161,6 +161,14 @@
         .card-wrapper {
             display: table-cell;
         }
+        .text-inherit {
+            color: inherit;
+        }
+
+        #nbcmbox {
+            color: inherit !important;
+            opacity: 60%;
+        }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script type="text/javascript" src="/static/nep.js" onerror="window.location='/media-failure/?filename=nep.js'"></script>
@@ -210,7 +218,7 @@
                     <tr class="group-frame">    
                         {%- set tags = frame.tags.all()|map(attribute='name') %}
                         <td class="{% for tag in tags %}{% if tag == 'Singlemode' %}bg-yellow text-black{% elif tag == 'Multimode' %}bg-cyan text-black{% endif %}{% endfor %}">
-                            <a class="d-flex text-black" href="/dcim/devices/{{frame.id}}/"><div class="frame-name">{{frame.name}}</div></a>
+                            <a class="d-flex text-inherit" href="/dcim/devices/{{frame.id}}/"><div class="frame-name">{{frame.name}}</div></a>
                         </td>
                         <td class="frame-wrapper">
                             <span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
