@@ -176,9 +176,15 @@
     <main>
         {% for frame in queryset %}
 			<div>
-				<div>{{frame.name}}</div>
+				<div>
+					<div>{{frame.name}}</div>
+					<div>{{frame.status}}</div>
+				</div>
 				{% for card in frame.get_children() %}
-					<div>{{card.name}}</div>
+					<div>
+						<div>{{card.name}}</div>
+						<div>{{card.status}}</div>
+					</div>
 				{% endfor %}
 			</div>
         {% endfor %}
