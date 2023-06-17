@@ -290,7 +290,7 @@
                         </td>
 
                         <td class="border-1 multi-wrapper {% if frame.cf.ref == 'None' or frame.cf.ref == null %}bg-dark{% else %}bg-green{% endif %}">
-                            <a class="multi_dropdown w-100 d-block" data-field="ref" href="/nepapi/ref/{{frame.id}}/">text</a>
+                            <a class="multi_dropdown w-100 d-block" data-field="ref" href="/nepapi/ref/{{frame.id}}/">text{{frame.cf.ref}}</a>
                         </td>
 
                         <td class="border-1 boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-dark{% endif %}">
