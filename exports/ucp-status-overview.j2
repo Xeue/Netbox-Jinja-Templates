@@ -180,8 +180,6 @@
             }).then(html => {
                 const parser = new DOMParser();
 	            const doc = parser.parseFromString(html, 'text/html');
-                console.log(document.querySelector('main').innerHTML);
-                console.log(doc.querySelector('main').innerHTML);
                 document.querySelector('main').innerHTML = doc.querySelector('main').innerHTML;
                 nbcm_add_burgers();
             })
