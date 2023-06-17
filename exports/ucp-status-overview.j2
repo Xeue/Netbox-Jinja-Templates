@@ -289,8 +289,8 @@
                             <a class="boolean_dropdown w-100 d-block" data-field="controlable" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="multi-wrapper">
-                            {{frame.cf.ref}}
+                        <td class="border-1 multi-wrapper {% if frame.cf.ref == 'None' %}bg-dark{% else %}bg-green{% endif %}">
+                            <a class="multi_dropdown w-100 d-block" data-field="ref" href="/nepapi/ref/{{frame.id}}/">text</a>
                         </td>
 
                         <td class="border-1 boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-dark{% endif %}">
