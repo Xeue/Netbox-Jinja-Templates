@@ -181,6 +181,7 @@
                 const parser = new DOMParser();
 	            const doc = parser.parseFromString(html, 'text/html');
                 document.querySelector('main').innerHTML = doc.querySelector('main').innerHTML;
+                nbcm_add_burgers();
             })
         }, 5000)
     </script>
