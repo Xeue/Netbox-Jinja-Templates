@@ -201,16 +201,8 @@
             <tbody>
                 {% for frame in queryset %}
                     <tr class="group-frame">    
-                        {%- set class = '' %}
                         {%- set tags = frame.tags.all()|map(attribute='name') %}
-                        {%- for tag in tags %}
-                            {%- if tag == 'Singlemode' %}
-                                {%- set class = 'bg-yellow text-black' %}
-                            {%- elif tag == 'Multimode' %}
-                                {%- set class = 'bg-cyan text-black' %}
-                            {%- endif %}
-                        {%- endfor %}
-                        <td class="{{class}}">
+                        <td class="{% for tag in tags %}{% if tag == 'Singlemode' %}bg-yellow text-black{% elif tag == 'Multimode' %}bg-cyan text-black{% endif %}{% endfor %}">
                             <div class="frame-name">{{frame.name}}</div>
                         </td>
                         <td class="frame-wrapper">
