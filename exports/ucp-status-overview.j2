@@ -174,11 +174,11 @@
     <script type="text/javascript" src="/static/nep.js" onerror="window.location='/media-failure/?filename=nep.js'"></script>
     <script>
         initMode()
-        //document.addEventListener("DOMContentLoaded", e => {
-        //    document.getElementsByClassName('status_drop').addEventListener('click', e => {
-        //        
-        //    })
-        //});
+        setInterval(()=>{
+            fetch(location.pathname + location.search).then(Response => {
+                console.log(Response.body);
+            })
+        }, 5000)
     </script>
 </head>
 <body class="h-100 d-flex flex-column">
