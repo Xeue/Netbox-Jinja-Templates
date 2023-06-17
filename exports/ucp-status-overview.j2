@@ -232,8 +232,11 @@
                                 {%- endif %}
                             {%- endif %}
                         </td>
+                        {% set count = 9 %}
                         {% for card in frame.get_children() %}
+                            {% set count = count - 1 %}
                             <td class="card-wrapper">
+                                {{count}}
                                 <span class="status_dropdown card-satus badge bg-{{card.get_status_color()}}" href="/dcim/status/{{card.id}}/">
                                     <span class="status_label">{{card.status|capitalize()}}</span>
                                 </span>
