@@ -274,23 +274,23 @@
 
                         {# Custom Fields #}
                         
-                        <td class="border-1 boolean-wrapper {% if frame.cf.mode == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.mode == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="mode" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="border-1 boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.uhd == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="uhd" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="border-1 boolean-wrapper {% if frame.cf.primary == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.primary == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="primary" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="border-1 boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.secondary == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="secondary" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
-                        <td class="border-1 boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.controlable == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="controlable" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
 
@@ -298,7 +298,7 @@
                             <a class="multi_dropdown w-100 d-block text-inherit" data-field="ref" href="/nepapi/ref/{{frame.id}}/"><span class="multi-text">{{frame.cf.ref}}</span></a>
                         </td>
 
-                        <td class="border-1 boolean-wrapper {% if frame.cf.routed == True %}bg-green{% else %}bg-dark{% endif %}">
+                        <td class="border-1 boolean-wrapper {% if frame.cf.routed == True %}bg-green{% endif %}">
                             <a class="boolean_dropdown w-100 d-block" data-field="routed" href="/nepapi/boolean/{{frame.id}}/">text</a>
                         </td>
                     </tr>
