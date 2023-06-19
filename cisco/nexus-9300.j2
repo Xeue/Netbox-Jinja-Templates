@@ -1,0 +1,22 @@
+{%- macro catch(on_exception) %}{{ caller|handle_catch(on_exception) }}{% endmacro %}
+{%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
+{%- for interface in device.interfaces.all() %}
+	{%- if interface.is_virtual == True and not interface.parent %}
+		{%- set vid = interface.label|replace('Vlan ','')|int %}
+		{%- set thisVlan = vlans|selectattr('vid', 'eq', vid)|first %}
+interface {{interface.label}}
+  description "{{thisVlan.name}} L3 Interface"
+  {% if interface.vrf.name %}vrf member {{interface.vrf.name}}{% endif %}
+		{%- call catch('') %}
+  ip address {{interface.ip_addresses.get()}}
+		{%- endcall %}
+  ip dhcp relay address 10.60.254.249{% if interface.vrf.name %} use-vrf {{interface.vrf.name}}{% endif %}
+  		{%- call catch('') %}
+  			{%- set vrrp = interface.fhrp_group_assignments.get().group %}
+  {{vrrp.protocol}} {{vrrp.group_id}} address-family ipv4
+  			{%- call catch('') %}
+    address {{vrrp.ip_addresses.get()|ip}} primary
+			{%- endcall %}
+		{%- endcall %}
+	{% endif %}
+{%- endfor %}
