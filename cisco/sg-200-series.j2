@@ -52,6 +52,9 @@ interface {{interface.label}}
 interface {{interface.label}}
             {%- if interface.mode == 'tagged-all' %}
  switchport trunk allowed vlan add 1-4094
+                {%- if interface.untagged_vlan.vid is defined %}
+ switchport trunk native vlan {{interface.untagged_vlan.vid}}
+                {%- endif %}
             {%- elif interface.mode == 'tagged' %}
  switchport trunk allowed vlan add {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
                 {%- if interface.untagged_vlan.vid is defined %}
