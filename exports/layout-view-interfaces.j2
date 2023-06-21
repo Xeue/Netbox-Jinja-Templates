@@ -67,6 +67,7 @@
             display: grid;
             overflow: auto;
             grid-gap: 10px;
+            padding: 5px;
         }
 
         header {
@@ -464,7 +465,8 @@
                     <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}"
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
-                        data-type="{{interface.cable.type}}">
+                        data-type="{{interface.cable.type}}"
+                        style="rgb(49,{{72 + (vlan|replace('vlan_', 'VLAN: ')|int - 40) * 8}},64)">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
@@ -479,7 +481,9 @@
                             <div class="to-port">{{ from.name}}</div>
                             <div class="to-label">{{ from.label}}</div>
                             <div class="to-type">{{ from.type}}</div>
-                            <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
+                            {% if vlan %}
+                                <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
+                            {% endif %}
                         </div>
                         <div class="port-mode">{{ interface.type }}</div>
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
