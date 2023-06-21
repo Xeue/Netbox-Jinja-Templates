@@ -479,7 +479,7 @@
                     {% set colour.blue = 37 %}
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
                     {% set shift = (interface.untagged_vlan.vid|int() - 1000) %}
-                    {% set hsl.h = 255 - shift * 5 %}
+                    {% set hsl.h = 455 - shift * 6 %}
                     {% set hsl.s = 40 %}
                     {% set hsl.l = 25 %}
                     {% set colour.red = 29 %}
