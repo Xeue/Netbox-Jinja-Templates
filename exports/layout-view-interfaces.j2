@@ -465,6 +465,7 @@
             {% set hsl = namespace(h=204) %}
             {% set hsl = namespace(s=13) %}
             {% set hsl = namespace(l=22) %}
+            {% set background = namespace(value="") %}
 
             {% if interface.untagged_vlan.vid %}
                 {% if interface.untagged_vlan.vid > 39 and interface.untagged_vlan.vid < 50 %}
@@ -481,17 +482,10 @@
                     {% set hsl.h = 202 %}
                     {% set hsl.s = 51 %}
                     {% set hsl.l = 35 %}
-                {% else %}
-                    {% set hsl.h = 204 %}
-                    {% set hsl.s = 13 %}
-                    {% set hsl.l = 22 %}
                 {% endif %}
-
+                {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
 
-
-
-            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
