@@ -525,14 +525,15 @@
                             <div class="to-type">{{ from.type}}</div>
                             {% if interface.untagged_vlan.vid %}
                                 <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
+                            {% elif interface.lag.label is defined %}
+                                <div class="to-vlan">LAG</div>
                             {% endif %}
                         </div>
                         <div class="port-mode">{{ interface.type }}</div>
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
                         {% if interface.untagged_vlan.vid %}
                             <div class="type-vlan">{{interface.untagged_vlan.vid}}</div>
-                        {% endif %}
-                        {% if interface.is_lag %}
+                        {% elif interface.lag.label is defined %}
                             <div class="type-vlan">LAG</div>
                         {% endif %}
                     </section>
@@ -550,13 +551,14 @@
                                 <div class="empty-mode">{{interface.untagged_vlan}}</div>
                             {% elif interface.mode == 'tagged' %}
                                 <div class="empty-mode">Trunk</div>
+                            {% elif interface.lag.label is defined %}
+                                <div class="empty-mode">LAG</div>
                             {% endif %}
                         </div>
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
                         {% if interface.untagged_vlan.vid %}
                             <div class="type-vlan">{{interface.untagged_vlan.vid}}</div>
-                        {% endif %}
-                        {% if interface.is_lag %}
+                        {% elif interface.lag.label is defined %}
                             <div class="type-vlan">LAG</div>
                         {% endif %}
                     </section>
