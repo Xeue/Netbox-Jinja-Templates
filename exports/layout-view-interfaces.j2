@@ -532,6 +532,9 @@
                         {% if interface.untagged_vlan.vid %}
                             <div class="type-vlan">{{interface.untagged_vlan.vid}}</div>
                         {% endif %}
+                        {% if interface.is_lag %}
+                            <div class="type-vlan">LAG</div>
+                        {% endif %}
                     </section>
                 {% else %}
                     <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
@@ -552,6 +555,9 @@
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
                         {% if interface.untagged_vlan.vid %}
                             <div class="type-vlan">{{interface.untagged_vlan.vid}}</div>
+                        {% endif %}
+                        {% if interface.is_lag %}
+                            <div class="type-vlan">LAG</div>
                         {% endif %}
                     </section>
                 {% endif %}
