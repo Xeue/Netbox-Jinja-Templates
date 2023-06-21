@@ -386,11 +386,11 @@
         .link-normal {
             z-index: 1;
         }
-        .show-types [data-type="mmf-om4"] {
+        .show-fibre [data-type="mmf-om4"] {
             background-color: #25637b !important;
             background: repeating-linear-gradient( 135deg, #148cbb , #148cbb 20px, #873ae3 20px, #873ae3 40px );
         }
-        .show-types [data-type="smf-os2"] {
+        .show-fibre [data-type="smf-os2"] {
             background-color: #7b7d23 !important;
         }
     </style>
@@ -398,17 +398,22 @@
     <script>
         initMode()
         document.addEventListener("DOMContentLoaded", e => {
-            document.getElementById('typeCheckbox').addEventListener('click', e => {
-                const bodyElement = document.getElementsByTagName('body')[0];
-                if (e.target.checked) {
-                    bodyElement.classList.add('show-types');
-                } else {
-                    bodyElement.classList.remove('show-types');
-                }
-            })
             document.getElementById('typeSelect').addEventListener('change', e => {
                 const bodyElement = document.getElementsByTagName('body')[0];
-                console.log(e.target.value);
+                bodyElement.classList.value="";
+                switch (e.target.value) {
+                    case "normal":
+                        bodyElement.classList.value="";
+                        break;
+                    case "fibre":
+                        bodyElement.classList.add('show-fibre');
+                        break;
+                    case "vlan":
+                        bodyElement.classList.add('show-vlans');
+                        break;
+                    default:
+                        break;
+                }
             })
         });
     </script>
@@ -434,9 +439,7 @@
                 {% endif %}
                 <a class="badge bg-blue ms-2 link" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
             {% endif %}
-            <input type="checkbox" class="ms-2" id="typeCheckbox">
-            <label for="typeCheckbox">Show Cable/SFP Type</label>
-            <select id="typeSelect">
+            <select id="typeSelect" class="ms-2">
                 <option value="normal">Default</option>
                 <option value="fibre">Fibre Mode</option>
                 <option value="vlan">VLANs</option>
