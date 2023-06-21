@@ -35,6 +35,7 @@
             --omneo-1013: rgb(76, 66, 98);
             --omneo-1021: rgb(35, 88, 108);
             --omneo-1022: rgb(72, 95, 130);
+            --hsl-offset: 0%;
         }
 
         html[data-netbox-color-mode="light"] {
@@ -55,6 +56,7 @@
             --omneo-1013: rgb(194, 167, 254);
             --omneo-1021: rgb(140, 223, 255);
             --omneo-1022: rgb(141, 186, 255);
+            --hsl-offset: 50%;
         }
 
         body {
@@ -460,10 +462,6 @@
             {% set name = interface.name|replace('(','')|replace(')','') %}
             {% set vlan = 'vlan_' ~ interface.untagged_vlan.vid %}
 
-            {% set colour = namespace(red=49) %}
-            {% set colour = namespace(green=64) %}
-            {% set colour = namespace(blue=58) %}
-
             {% set hsl = namespace(h=204) %}
             {% set hsl = namespace(s=13) %}
             {% set hsl = namespace(l=22) %}
@@ -474,24 +472,22 @@
                     {% set hsl.h = 145 - shift * 3 %}
                     {% set hsl.s = 22 + shift * 7 %}
                     {% set hsl.l = 13 + shift * 3 %}
-                    {% set colour.red = 29 %}
-                    {% set colour.green = 36 + (interface.untagged_vlan.vid|int() - 40) * 14 %}
-                    {% set colour.blue = 37 %}
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
                     {% set shift = (interface.untagged_vlan.vid|int() - 1000) %}
                     {% set hsl.h = 455 - shift * 6 %}
                     {% set hsl.s = 40 %}
                     {% set hsl.l = 25 %}
-                    {% set colour.red = 29 %}
-                    {% set colour.green = 36 %}
-                    {% set colour.blue = 36 + (interface.untagged_vlan.vid|int() - 1000) * 7 %}
+                {% elif interface.untagged_vlan.vid = 170 %}
+                    {% set hsl.h = 202 %}
+                    {% set hsl.s = 51 %}
+                    {% set hsl.l = 35 %}
                 {% endif %}
 
             {% endif %}
 
 
 
-            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,"~hsl.l~"%)" %}
+            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"%) + var(--hsl-offset))" %}
             {#% set background = "background-color: rgb("~colour.red~","~colour.green~","~colour.blue~")" %#}
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
