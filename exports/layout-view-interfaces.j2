@@ -487,7 +487,7 @@
 
 
 
-            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"%) + var(--hsl-offset))" %}
+            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
