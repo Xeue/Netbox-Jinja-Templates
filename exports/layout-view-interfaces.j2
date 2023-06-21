@@ -440,7 +440,7 @@
                 {% set ip = queryset[0].device.primary_ip4|ip() %}
                 {% set deviceType = queryset[0].device.device_type %}
                 {% if deviceType.cf.http != "Neither" %}
-                    <a class="badge bg-green ms-2 link" href="{{device_type.cf.http}}://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> {{device_type.cf.http|upper()}} <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
+                    <a class="badge bg-green ms-2 link" href="{{deviceType.cf.http}}://{{ip}}" target="_blank"><i class="mdi mdi-cloud-lock"></i> {{deviceType.cf.http|upper()}} <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
                 {% endif %}
                 {% if deviceType.cf.ssh == True %}
                     <a class="badge bg-green ms-4 link" href="ssh://admin@{{ip}}"><i class="mdi mdi-monitor-lock"></i> SSH <i class="mdi mdi-open-in-new" style="margin-left:0.2em"></i></a>
