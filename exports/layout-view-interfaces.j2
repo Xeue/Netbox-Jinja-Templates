@@ -158,7 +158,7 @@
             position: relative;
             overflow: hidden;
             font-size: 14pt;
-            color: rgb(91, 94, 96);
+            color: var(--text-secondary);
             font-weight: bold;
         }
         .empty-mode {
@@ -466,7 +466,8 @@
                 {% set multiplier.value = interface.untagged_vlan.vid|int() - 40 %}
             {% endif %}
 
-            {% set background = "background-color: rgb(49," ~ (72 + (multiplier.value) * 8) ~ ",64)" %}
+            {% set background = "background-color: rgb(49," ~ (72 + (multiplier.value) * 10) ~ ",64)" %}
+
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
