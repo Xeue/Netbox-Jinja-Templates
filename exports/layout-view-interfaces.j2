@@ -394,11 +394,22 @@
             background-color: #7b7d23 !important;
         }
 
-        .type-vlan {
-            display: none;
-        }
-        .show-vlan .type-vlan {
+        .show-vlans .type-vlan {
             display: block;
+            position: absolute;
+            left: 50%;
+            translate: -50% 0%;
+            font-weight: bold;
+            font-size: 34pt;
+            color: var(--text-secondary);
+            height: max-content;
+            text-align: center;
+            top: 0px;
+            white-space: nowrap;
+        }
+        .show-vlans .empty-text,
+        .show-vlans .to-cont {
+            display: none;
         }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
@@ -446,12 +457,12 @@
                 {% endif %}
                 <a class="badge bg-blue ms-2 link" href="/dcim/devices/{{queryset[0].device.id}}/render-config/?export=True" target="_blank"><i class="mdi mdi-download"></i> Config</a>
             {% endif %}
-            <select id="typeSelect" class="ms-2">
+            <label for="typeSelect" class="ms-2">Choose data to show</label>
+            <select id="typeSelect">
                 <option value="normal">Default</option>
                 <option value="fibre">Fibre Mode</option>
                 <option value="vlan">VLANs</option>
             </select>
-            <label for="typeSelect">Choose data to show</label>
         </span>
 
     </header>
