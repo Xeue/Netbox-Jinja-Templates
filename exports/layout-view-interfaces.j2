@@ -311,7 +311,7 @@
             }
         {% endfor %}
 
-        {% for i in range(ports2+startport-1) %}
+        {% for i in range(ports2+startport) %}
             {% if lanes > 0 %}
                 {% for lane in range(lanes) %}
                     .port_{{prefix2}}{{i+offset+startport}}-{{lane+1}} {
@@ -323,7 +323,7 @@
                 }
             {% else %}
                 .port_{{prefix2}}{{i+offset+startport}} {
-                    grid-area: f{{i+1}};
+                    grid-area: f{{i+startport}};
                 }
             {% endif %}
         {% endfor %}
