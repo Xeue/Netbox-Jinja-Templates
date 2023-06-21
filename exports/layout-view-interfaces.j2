@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" type="image/png" href="/static/netbox_touch-icon-180.png">
     <style>
         html {
-            width: max-content;
+            width: 100%;
             --row-height: 110px;
             --column-width: 170px;
             --port-active: rgb(49, 58, 64);
@@ -59,12 +59,13 @@
 
         body {
             padding: 0 10px;
-            width: max-content;
+            width: 100%;
             background-color: var(--bg-col) !important;
         }
 
         main {
             display: grid;
+            overflow: auto;
             grid-gap: 10px;
         }
 
@@ -265,7 +266,7 @@
             {%- set ports1 = 10 %}
         main {
             grid-template-areas: "e1 e2 e3 e4 e5 e6 e7 e8 e9 f9 e10 f10";
-            grid-template-columns: repeat(11, var(--column-width));
+            grid-template-columns: repeat(12, var(--column-width));
             grid-template-rows: repeat(1, var(--row-height));
         }
         {%- elif switch == 'SG350-20P' or switch == 'SG350-20' %}
