@@ -3,7 +3,7 @@
 {%- set ports2 = 6 %}
 {%- set prefix1 = "gi" %}
 {%- set prefix2 = "te" %}
-{%- set offset = 1 %}
+{%- set offset = 0 %}
 {%- set lanes = 0 %}
 {%- set switch = queryset[0].device.device_type|replace(' ', '-') %}
 <!DOCTYPE html>
@@ -322,7 +322,7 @@
                     grid-area: q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-4;
                 }
             {% else %}
-                .port_{{prefix2}}{{i+offset+startport}} {
+                .port_{{prefix2}}{{i+offset+startport-1}} {
                     grid-area: f{{i}};
                 }
             {% endif %}
