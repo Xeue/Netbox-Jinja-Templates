@@ -467,12 +467,12 @@
             {% if interface.untagged_vlan.vid %}
                 {% if interface.untagged_vlan.vid > 39 and interface.untagged_vlan.vid < 50 %}
                     {% set colour.red = 29 %}
-                    {% set colour.green = interface.untagged_vlan.vid|int() - 40 * 14 %}
+                    {% set colour.green = (interface.untagged_vlan.vid|int() - 40) * 14 %}
                     {% set colour.blue = 37 %}
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
                     {% set colour.red = 29 %}
                     {% set colour.green = 36 %}
-                    {% set colour.blue = interface.untagged_vlan.vid|int() - 1000 * 14 %}
+                    {% set colour.blue = (interface.untagged_vlan.vid|int() - 1000) * 14 %}
                 {% endif %}
 
             {% endif %}
