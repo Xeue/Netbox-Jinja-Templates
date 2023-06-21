@@ -413,6 +413,24 @@
         .show-vlans .to-cont {
             display: none;
         }
+        [data-mode="1000base-t"]::before {
+            background-image: url(/static/ethernet.png);
+        }
+        [data-mode="1000base-x-sfp"]::before {
+            background-image: url(/static/fibre.png);
+        }
+        .empty::before,
+        .switchport::before {
+            content: "";
+            background-size: 30%;
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-position-y: bottom;
+            opacity: 0.1;
+            position: absolute;
+            inset: 0;
+            text-decoration: none !important;
+        }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script>
