@@ -472,7 +472,7 @@
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
                     {% set colour.red = 29 %}
                     {% set colour.green = 36 %}
-                    {% set colour.blue = 36 + (interface.untagged_vlan.vid|int() - 1000) * 14 %}
+                    {% set colour.blue = 36 + (interface.untagged_vlan.vid|int() - 1000) * 7 %}
                 {% endif %}
 
             {% endif %}
@@ -504,7 +504,7 @@
                             <div class="to-port">{{ from.name}}</div>
                             <div class="to-label">{{ from.label}}</div>
                             <div class="to-type">{{ from.type}}</div>
-                            {% if vlan %}
+                            {% if interface.untagged_vlan.vid %}
                                 <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
                             {% endif %}
                         </div>
