@@ -466,7 +466,7 @@
                 {% set multiplier.value = interface.untagged_vlan.vid|int() - 40 %}
             {% endif %}
 
-            {% set background = "rgb(49," ~ (72 + (multiplier.value) * 8)) ~ ",64)" %}
+            {% set background = "rgb(49," ~ (72 + (multiplier.value) * 8) ~ ",64)" %}
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
