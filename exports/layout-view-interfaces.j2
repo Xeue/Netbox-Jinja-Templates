@@ -464,12 +464,23 @@
             {% set colour = namespace(green=64) %}
             {% set colour = namespace(blue=58) %}
 
+            {% set hsl = namespace(h=204) %}
+            {% set hsl = namespace(s=13) %}
+            {% set hsl = namespace(l=22) %}
+
             {% if interface.untagged_vlan.vid %}
                 {% if interface.untagged_vlan.vid > 39 and interface.untagged_vlan.vid < 50 %}
+                    {% set shift = (interface.untagged_vlan.vid|int() - 40) %}
+                    {% set hsl.h = 123 + shift * 2 %}
+                    {% set hsl.s = 66 - shift * 5 %}
+                    {% set hsl.l = 29 - shift * 2 %}
                     {% set colour.red = 29 %}
                     {% set colour.green = 36 + (interface.untagged_vlan.vid|int() - 40) * 14 %}
                     {% set colour.blue = 37 %}
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
+                    {% set hsl.h = 255 - shift * 10 %}
+                    {% set hsl.s = 40 %}
+                    {% set hsl.l = 25 %}
                     {% set colour.red = 29 %}
                     {% set colour.green = 36 %}
                     {% set colour.blue = 36 + (interface.untagged_vlan.vid|int() - 1000) * 7 %}
@@ -479,8 +490,8 @@
 
 
 
-
-            {% set background = "background-color: rgb("~colour.red~","~colour.green~","~colour.blue~")" %}
+            {% set background = "background-color: hsl("~hsl.h~","~hsl.s~"%,"~hsl.l~"%)" %}
+            {#% set background = "background-color: rgb("~colour.red~","~colour.green~","~colour.blue~")" %#}
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
