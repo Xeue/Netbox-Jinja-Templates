@@ -494,7 +494,7 @@
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
                         data-type="{{interface.cable.type}}"
-                        style="{{background}}">
+                        style="{{background.value}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
@@ -519,7 +519,7 @@
                 {% else %}
                     <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
                         data-mode="{{interface.type}}"
-                        style="{{background}}">
+                        style="{{background.value}}">
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
