@@ -461,12 +461,23 @@
             {% set vlan = 'vlan_' ~ interface.untagged_vlan.vid %}
 
             {% set multiplier = namespace(value=0) %}
+            {% set offset = namespace(value=0) %}
+
 
             {% if interface.untagged_vlan.vid %}
-                {% set multiplier.value = interface.untagged_vlan.vid|int() - 40 %}
+                {% if interface.untagged_vlan.vid > 39 and interface.untagged_vlan.vid < 50 %}
+                    {% set offset.value = 40 %}
+                {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050%}
+                    {% set offset.value = 1000 %}
+                {% endif %}
+
+                {% set multiplier.value = interface.untagged_vlan.vid|int() - offset.value %}
             {% endif %}
 
-            {% set background = "background-color: rgb(49," ~ (72 + (multiplier.value) * 10) ~ ",64)" %}
+
+
+
+            {% set background = "background-color: rgb(49," ~ (58 + 14 + (multiplier.value) * 14) ~ ",64)" %}
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
