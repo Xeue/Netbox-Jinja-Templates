@@ -459,6 +459,7 @@
             {% set label = interface.label|replace('/','-') %}
             {% set name = interface.name|replace('(','')|replace(')','') %}
             {% set vlan = 'vlan_' ~ interface.untagged_vlan.vid %}
+            {% set background = "rgb(49," ~ {{72 + (interface.untagged_vlan.vid|int() - 40) * 8}} ~ ",64)" %}
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
                     {% set from = interface.link_peers|first %}
@@ -466,7 +467,7 @@
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
                         data-type="{{interface.cable.type}}"
-                        style="rgb(49,{{72 + (vlan|replace('vlan_', 'VLAN: ')|int - 40) * 8}},64)">
+                        style="{{background}}">
                         <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
@@ -491,7 +492,7 @@
                 {% else %}
                     <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
                         data-mode="{{interface.type}}"
-                        style="rgb(49,{{72 + (vlan|replace('vlan_', 'VLAN: ')|int - 40) * 8}},64)">
+                        style="{{background}}">
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
