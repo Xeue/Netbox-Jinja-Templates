@@ -489,7 +489,9 @@
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
                     </section>
                 {% else %}
-                    <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}" data-mode="{{interface.type}}">
+                    <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
+                        data-mode="{{interface.type}}"
+                        style="rgb(49,{{72 + (vlan|replace('vlan_', 'VLAN: ')|int - 40) * 8}},64)">
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
