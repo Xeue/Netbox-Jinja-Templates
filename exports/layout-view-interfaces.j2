@@ -311,7 +311,7 @@
             }
         {% endfor %}
 
-        {% for i in range(ports2+startport) %}
+        {% for i in range(ports2+startport-1) %}
             {% if lanes > 0 %}
                 {% for lane in range(lanes) %}
                     .port_{{prefix2}}{{i+offset+startport}}-{{lane+1}} {
@@ -322,8 +322,8 @@
                     grid-area: q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-1 / q{{i+offset+startport}}-4;
                 }
             {% else %}
-                .port_{{prefix2}}{{i+offset+startport-1}} {
-                    grid-area: f{{i}};
+                .port_{{prefix2}}{{i+offset+startport}} {
+                    grid-area: f{{i+1}};
                 }
             {% endif %}
         {% endfor %}
