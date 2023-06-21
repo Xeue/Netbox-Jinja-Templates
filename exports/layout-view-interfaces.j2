@@ -471,13 +471,14 @@
             {% if interface.untagged_vlan.vid %}
                 {% if interface.untagged_vlan.vid > 39 and interface.untagged_vlan.vid < 50 %}
                     {% set shift = (interface.untagged_vlan.vid|int() - 40) %}
-                    {% set hsl.h = 123 + shift * 2 %}
-                    {% set hsl.s = 66 - shift * 5 %}
-                    {% set hsl.l = 29 - shift * 2 %}
+                    {% set hsl.h = 145 - shift * 2 %}
+                    {% set hsl.s = 22 + shift * 5 %}
+                    {% set hsl.l = 13 + shift * 2 %}
                     {% set colour.red = 29 %}
                     {% set colour.green = 36 + (interface.untagged_vlan.vid|int() - 40) * 14 %}
                     {% set colour.blue = 37 %}
                 {% elif interface.untagged_vlan.vid > 999 and interface.untagged_vlan.vid < 1050 %}
+                    {% set shift = (interface.untagged_vlan.vid|int() - 1000) %}
                     {% set hsl.h = 255 - shift * 10 %}
                     {% set hsl.s = 40 %}
                     {% set hsl.l = 25 %}
