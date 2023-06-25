@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en" data-netbox-color-mode="dark">
 <head>
-    <title>{{queryset[0].device.name}} Layout</title>
+    <title>{{queryset[0].device}} Layout</title>
     <link rel="stylesheet" href="/static/netbox-external.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-external.css'">
     <link rel="stylesheet" href="/static/netbox-light.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-light.css'">
     <link rel="stylesheet" href="/static/netbox-dark.css?v=3.4.4" onerror="window.location='/media-failure/?filename=netbox-dark.css'">
@@ -540,7 +540,7 @@
                             <div class="from-type">{{ interface.type}}</div>
                         </div>
                         <div class="to-cont">
-                            <div class="to-name">{{ from.device.name}}</div>
+                            <div class="to-name">{{ from.device}}</div>
                             <div class="to-device">{{ from.device.device_type}}</div>
                             <div class="to-port">{{ from.name}}</div>
                             <div class="to-label">{{ from.label}}</div>
