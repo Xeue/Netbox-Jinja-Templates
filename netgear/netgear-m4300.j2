@@ -64,7 +64,7 @@ addport {{interface.lag.label}}
         {%- if description == '' %}
             {%- if interface.link_peers %}
                 {%- set peer = interface.link_peers|first %}
-                {%- set description = peer.device.name %}
+                {%- set description = peer.device %}
             {%- endif %}
         {%- endif %}
 description '{{description}}'
@@ -99,4 +99,4 @@ exit
 exit
 ip route 0.0.0.0 0.0.0.0 10.40.47.254
 exit #}
-{# hostname "NEP-WBS-{{device.name}}" #}
+{# hostname "NEP-WBS-{{device}}" #}

@@ -1,4 +1,4 @@
-hostname "{{device.name|replace("#","")|replace(" ","-")}}"
+hostname "{{device|replace("#","")|replace(" ","-")}}"
 {%- if device.primary_ip4 %}
 management vlan ip-address {{device.primary_ip4|ip()}} mask {{device.primary_ip4|netmask()}}
 no management vlan ip dhcp client
@@ -42,7 +42,7 @@ interface {{interface.label}}
         {%- if description == '' %}
             {%- if interface.link_peers %}
                 {%- set peer = interface.link_peers|first %}
-                {%- set description = peer.device.name %}
+                {%- set description = peer.device %}
             {%- endif %}
         {%- endif %}
  description "{{description}}"
@@ -71,7 +71,7 @@ interface {{interface.label}}
             {%- if description == '' %}
                 {%- if interface.link_peers %}
                     {%- set peer = interface.link_peers|first %}
-                    {%- set description = peer.device.name %}
+                    {%- set description = peer.device %}
                 {%- endif %}
             {%- endif %}
  description "{{description}}"
@@ -81,4 +81,4 @@ interface {{interface.label}}
 {%- endfor %}
 !
 banner login ^
-IP Flypack - {{device.name}}^
+IP Flypack - {{device}}^
