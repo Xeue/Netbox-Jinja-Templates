@@ -223,7 +223,7 @@
                     <tr class="group-frame">    
                         {%- set tags = frame.tags.all()|map(attribute='name') %}
                         <td class="{% for tag in tags %}{% if tag == 'Singlemode' %}bg-yellow text-black{% elif tag == 'Multimode' %}bg-cyan text-black{% endif %}{% endfor %}">
-                            <a class="d-flex text-inherit justify-content-between" href="/dcim/devices/{{frame.id}}/"><div class="frame-name">{{frame.name}}</div></a>
+                            <a class="d-flex text-inherit justify-content-between" href="/dcim/devices/{{frame.id}}/"><div class="frame-name">{{frame}}</div></a>
                         </td>
                         <td class="frame-wrapper">
                             <span class="status_dropdown frame-status badge bg-{{frame.get_status_color()}}" href="/dcim/status/{{frame.id}}/">
