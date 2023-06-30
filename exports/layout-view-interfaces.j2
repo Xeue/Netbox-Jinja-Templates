@@ -314,8 +314,8 @@
             {%- set lanes = 4 %}
             main {
                 grid-template-areas:
-                    {% for cardNum in range(last_linecard - first_linecard) %}
-                        "{% for portNum in range(ports1+startport) %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endfor %}"
+                    {% for card in range(last_linecard - first_linecard) %}
+                        "{% for port in range(ports1+startport) %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endfor %}"
                     {% endfor %}
                 grid-template-columns: repeat(18, var(--column-width));
                 grid-template-rows: repeat(10, var(--row-height));
