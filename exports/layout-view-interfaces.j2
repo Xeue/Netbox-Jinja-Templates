@@ -313,11 +313,10 @@
             {%- set last_linecard = 7 %}
             {%- set lanes = 4 %}
             main {
-                grid-template-areas:
-                    {% for card in range(last_linecard - first_linecard + 1) %}
-                        "{% for port in range(ports1+startport) %}{%- if port % 2 == 0 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport - 1}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
-                        "{% for port in range(ports1+startport) %}{%- if port % 2 == 1 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport - 1}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
-                    {% endfor %};
+                grid-template-areas: {% for card in range(last_linecard - first_linecard + 1) %}
+                        "{% for port in range(ports1+startport-1) %}{% if port % 2 == 0 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
+                        "{% for port in range(ports1+startport-1) %}{% if port % 2 == 1 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
+                    {%- endfor %};
                 grid-template-columns: repeat(18, var(--column-width));
                 grid-template-rows: repeat(10, var(--row-height));
             }
