@@ -318,8 +318,8 @@
                         "{% for port in range(ports1+startport-1) %}{% if port % 2 == 1 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
                         "{% for port in range(ports1+startport-1) %}{% if port % 2 == 1 %}{% for lane in range(lanes) %} b{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
                     {%- endfor %};
-                grid-template-columns: repeat(18, var(--column-width));
-                grid-template-rows: repeat(10, var(--row-height));
+                grid-template-columns: repeat(68, var(--column-width));
+                grid-template-rows: repeat(14, var(--row-height));
             }
         {% endif %}
 
@@ -632,6 +632,15 @@
                 <div class="qsfp-{{qsfp+startport}} qsfp"></div>
             {% endfor %}
         {% endif %}
+        {% for cardNum in range(last_linecard - first_linecard + 1) %}
+            {% set card = cardNum + first_linecard %}
+            {% for portNum in range(ports1+startport) %}
+                {% set port = portNum + startport %}
+                {% if lanes > 0 %}
+                    <div class="qsfp-{{card}}-{{port}} qsfp"></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
 </body>
