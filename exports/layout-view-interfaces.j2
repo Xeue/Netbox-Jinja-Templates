@@ -345,9 +345,10 @@
             {% endif %}
         {% endfor %}
 
-        {% for card in range(last_linecard - first_linecard) %}
-
-            {% for port in range(ports1+startport) %}
+        {% for cardNum in range(last_linecard - first_linecard) %}
+            {% set card = cardNum + first_linecard - 1 %}
+            {% for portNum in range(ports1+startport) %}
+                {% set port = portNum + startport - 1 %}
 
                 {% if lanes > 0 %}
                     {% for lane in range(lanes) %}
