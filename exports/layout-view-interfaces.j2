@@ -480,6 +480,11 @@
             inset: 0;
             text-decoration: none !important;
         }
+        .linecardHeader {
+            font-size: 33pt;
+            white-space: nowrap;
+            line-height: 3;
+        }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script>
@@ -647,7 +652,7 @@
                     <div class="qsfp-{{card}}-{{port}} qsfp"></div>
                 {% endif %}
             {% endfor %}
-            <div class="linecardHeader-{{card}}">Linecard {{card}}</div>
+            <div class="linecardHeader linecardHeader-{{card}}">Linecard {{card}}</div>
         {% endfor %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
