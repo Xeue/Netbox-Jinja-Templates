@@ -348,7 +348,7 @@
             {% endif %}
         {% endfor %}
 
-        {% for cardNum in range(last_linecard - first_linecard) %}
+        {% for cardNum in range(last_linecard - first_linecard + 1) %}
             {% set card = cardNum + first_linecard %}
             {% for portNum in range(ports1+startport) %}
                 {% set port = portNum + startport %}
