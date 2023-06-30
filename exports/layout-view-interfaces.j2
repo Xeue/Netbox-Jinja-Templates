@@ -373,6 +373,9 @@
                     }
                 {% endif %}
             {% endfor %}
+            .linecardHeader-{{card}} {
+                grid-area: b{{card}}-2-1;
+            }
         {% endfor %}
 
         @media print {
@@ -644,7 +647,7 @@
                     <div class="qsfp-{{card}}-{{port}} qsfp"></div>
                 {% endif %}
             {% endfor %}
-            <div class="linecardHeader b{{card + first_linecard}}-2-1">Linecard {{card}}</div>
+            <div class="linecardHeader-{{card + first_linecard}}">Linecard {{card}}</div>
         {% endfor %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
