@@ -318,7 +318,7 @@
                         "{% for port in range(ports1+startport-1) %}{% if port % 2 == 1 %}{% for lane in range(lanes) %} q{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
                         "{% for port in range(ports1+startport-1) %}{% if port % 2 == 1 %}{% for lane in range(lanes) %} b{{card + first_linecard}}-{{port + startport}}-{{lane+1}}{% endfor %}{% endif %}{% endfor %}"
                     {%- endfor %};
-                grid-template-columns: repeat(68, var(--column-width));
+                grid-template-columns: repeat(72, var(--column-width));
                 grid-template-rows: repeat(14, var(--row-height));
             }
         {% endif %}
