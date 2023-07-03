@@ -644,16 +644,18 @@
                 <div class="qsfp-{{qsfp+startport}} qsfp"></div>
             {% endfor %}
         {% endif %}
-        {% for cardNum in range(last_linecard - first_linecard + 1) %}
-            {% set card = cardNum + first_linecard %}
-            {% for portNum in range(ports1+startport) %}
-                {% set port = portNum + startport %}
-                {% if lanes > 0 %}
-                    <div class="qsfp-{{card}}-{{port}} qsfp"></div>
-                {% endif %}
+        {% if last_linecard == 0 %}
+            {% for cardNum in range(last_linecard - first_linecard + 1) %}
+                {% set card = cardNum + first_linecard %}
+                {% for portNum in range(ports1+startport) %}
+                    {% set port = portNum + startport %}
+                    {% if lanes > 0 %}
+                        <div class="qsfp-{{card}}-{{port}} qsfp"></div>
+                    {% endif %}
+                {% endfor %}
+                <div class="linecardHeader linecardHeader-{{card}}">Linecard {{card}}</div>
             {% endfor %}
-            <div class="linecardHeader linecardHeader-{{card}}">Linecard {{card}}</div>
-        {% endfor %}
+        {% endif %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
 </body>
