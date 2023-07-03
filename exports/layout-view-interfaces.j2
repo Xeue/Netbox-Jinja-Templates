@@ -644,7 +644,7 @@
                 <div class="qsfp-{{qsfp+startport}} qsfp"></div>
             {% endfor %}
         {% endif %}
-        {% if last_linecard == 0 %}
+        {% if last_linecard != 0 %}
             {% for cardNum in range(last_linecard - first_linecard + 1) %}
                 {% set card = cardNum + first_linecard %}
                 {% for portNum in range(ports1+startport) %}
