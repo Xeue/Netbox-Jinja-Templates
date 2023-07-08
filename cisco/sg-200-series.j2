@@ -34,6 +34,8 @@ qos advanced
 qos map dscp-queue 8 to 6
 qos map dscp-queue 46 to 7
 !
+logging host 10.40.40.5 port 514 severity 6 facility local7
+!
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
