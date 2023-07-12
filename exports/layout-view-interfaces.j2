@@ -187,7 +187,9 @@
         [data-mode="10gbase-x-sfpp"] .port-label::after {
             content: " (SFP+)";
         }
-
+        [data-mode="25gbase-x-sfp28] .port-label::after {
+            content: " (SFP28)";
+        }
         [data-mode="1000base-x-sfp"] .port-label,
         [data-mode="10gbase-x-sfpp"] .port-label {
             font-size: 20pt !important;
@@ -487,7 +489,8 @@
         }
         [data-mode="100gbase-x-qsfp28"]::before,
         [data-mode="10gbase-x-sfpp"]::before,
-        [data-mode="1000base-x-sfp"]::before {
+        [data-mode="1000base-x-sfp"]::before,
+        [data-mode="25gbase-x-sfp28"]::before {
             background-image: url(/static/SFP-Icon.svg);
         }
         .empty::before,
