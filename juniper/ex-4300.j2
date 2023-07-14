@@ -28,12 +28,12 @@ system {
                 access-internal;
             }
             group Flypack1DHCP {
-                {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %} {#How to exclude specific VLAN groups?#}
-                {%- for vlan in vlans %}
-                    {%- if vlan.vid is defined%}
-                    interface irb.{{vlan.vid}};
-                    {%- endif %}
-                {%- endfor %}
+            {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %} {#How to exclude specific VLAN groups?#}
+            {%- for vlan in vlans %}
+                {%- if vlan.vid is defined%}
+                interface irb.{{vlan.vid}};
+                {%- endif %}
+            {%- endfor %}
             }
         }
         web-management {
@@ -102,7 +102,7 @@ interfaces {
         ether-options {
             802.3ad {{interface.lag.label}}
         }
-        {%- endif%}
+        {%- endif %}
         {%- if interface.mode == 'access' and interface.untagged_vlan.vid is defined %}        {#Code for access port config#}
         unit 0 {
             family ethernet-switching {
@@ -111,6 +111,18 @@ interfaces {
                     members {{interface.untagged_vlan.vid}};
                 }
                 storm-control default;
+            }
+        }
+        {%- elif interface.mode == 'tagged-all'%}       {#Code for trunk port config#}
+        unit 0 {
+            {%-if interface.untagged_vlan.vid is defined %}
+            vlan-id {{interface.untagged_vlan.vid}};
+            {%- endif %}
+            family ethernet-switching {
+                interface-mode trunk;
+                vlan {
+                    members all;
+                }
             }
         }
         {%- endif %}
@@ -128,9 +140,9 @@ interfaces {
                 }
             }
         }    
-        {%- endif%}
+        {%- endif %}
     }
-    {%- endif%}
+    {%- endif %}
     {%- endfor %}
     {# IRB CODE - WORK IN PROGRESS
     {%- if interface.type == 'virtual' %}
@@ -203,4 +215,8 @@ vlans {
         }
     {%- endif %}
     {%- endfor %}
+    default {
+        vlan-id 1;
+        l3-interface irb.0;
+    }
 }
