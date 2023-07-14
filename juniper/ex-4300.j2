@@ -31,7 +31,7 @@ system {
                 {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
                 {%- for vlan in vlans %}
                     {%- if vlan.vid is defined %}
-                        interface irb.{{vlan.vid}} name "{{vlan.name}}"
+                        interface irb.{{vlan.vid}}"
                     {%- endif %}
                 {%- endfor %}
             }
@@ -69,7 +69,6 @@ system {
     }
     ntp {
         server {{sntp_server}};
-        server 10.40.40.12;
     }
 }
 chassis {
@@ -86,4 +85,28 @@ chassis {
             link-down ignore;
         }
     }
+}
+interfaces {
+    {%- for interface in device.interfaces.all()%}
+        {%- if interface.enabled == True and interface.mgmt_only != True %}
+        {{interface.label}} {
+            description "{{description}}"
+            {%- if interface.lag.label is defined %}    {#Code for LAG member port config#}
+            ether-options {
+                802.3ad {{interface.lag.label}}
+            }
+            {%- endif%}
+            {%- if interface.mode == 'access' and interface.untagged_vlan.vid is defined %}        {#Code for access port config#}
+            unit 0 {
+                family ethernet-switching {
+                    interface-mode access;
+                    vlan {
+                        members {{interface.untagged_vlan.vid}}
+                    }
+                }
+            }
+            {%- endif %}
+        }
+        {%- endif%}
+    {%- endfor %}
 }
