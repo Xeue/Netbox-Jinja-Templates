@@ -88,7 +88,7 @@ chassis {
 }
 interfaces {
     {%- for interface in device.interfaces.all()%}
-        {%- if interface.enabled == True and interface.mgmt_only != True %}
+        {%- if interface.enabled == True and interface.mgmt_only != True and interface.type != 'juniper-vcp' %}
         {{interface.label}} {
             {%- set description = interface.description %}
             {%- if description == '' %}         {#Code to set interface descriptions#}
@@ -114,6 +114,21 @@ interfaces {
                 }
             }
             {%- endif %}
+            {%- if interface.type == 'lag' %}   {#Code for LAG ports#}
+                aggregated-ether-options {
+                    lacp {
+                        active;
+                    }
+                    unit 0 {
+                        family ethernet-switching {
+                            interface-mode trunk;
+                            vlan {
+                                members all;
+                            }
+                        }
+                    }
+                }
+            {%- endif%}
         }
         {%- endif%}
     {%- endfor %}
