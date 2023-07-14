@@ -152,7 +152,8 @@ interfaces {
     {%- endif %}
     {%- endfor %}
     irb {
-    {%- for interface in device.interfaces.all()|selectattr("type",'virtual') %}
+    {%- for interface in device.interfaces.all() %}
+    {%- if interface.is_virtual %}
         unit {{interface.label}} {
             family inet {
                 {%- call catch('') %}
@@ -160,6 +161,7 @@ interfaces {
 		        {%- endcall %}
             }
         }
+    {%- endif %}    
     {%- endfor%}  
 }
 snmp {
