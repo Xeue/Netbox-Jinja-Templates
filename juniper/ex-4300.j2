@@ -1,5 +1,5 @@
 system {
-    hostname {{device|replace("#","")|replace(" ","-")|}}
+    {#hostname {{device|replace("#","")|replace(" ","-")|}}#}
     root-authentication {
         encrypted-password "$6$FOqEb6YS$a3/b1ZqyiZzE0gBQ0jq4.DGdEl6vIlh5rv.qdxQ2LVx8QYrZ6xafHTDIqlBnJLP5p3oOOX9gguUMi3xN5KAU60"; ## SECRET-DATA
     }
