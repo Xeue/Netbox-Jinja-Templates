@@ -56,6 +56,34 @@ system {
             user warning;
             interactive-commands warning;
         }
-        source-address 10.40.40.251;
+        source-address {{device.primary_ip4|ip()}};
+    }
+    processes {
+        dhcp-service {
+            traceoptions {
+                file dhcp_logfile size 10m;
+                level all;
+                flag packet;
+            }
+        }
+    }
+    ntp {
+        server {{sntp_server}};
+        server 10.40.40.12;
+    }
+}
+chassis {
+    redundancy {
+        graceful-switchover;
+    }
+    aggregated-devices {
+        ethernet {
+            device-count 21;
+        }
+    }
+    alarm {
+        management-ethernet {
+            link-down ignore;
+        }
     }
 }
