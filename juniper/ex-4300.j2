@@ -28,9 +28,9 @@ system {
                 access-internal;
             }
             group Flypack1DHCP {
-                {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
+                {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %} {#How to exclude specific VLAN groups?#}
                 {%- for vlan in vlans %}
-                    {%- if vlan.vid is defined and vlan.group != 'interlink' %}
+                    {%- if vlan.vid is defined%}
                         interface irb.{{vlan.vid}};
                     {%- endif %}
                 {%- endfor %}
@@ -88,7 +88,7 @@ chassis {
 }
 interfaces {
     {%- for interface in device.interfaces.all()%}
-        {%- if interface.enabled == True and interface.mgmt_only != True and interface.type != 'juniper-vcp' %}
+        {%- if interface.enabled == True and interface.mgmt_only != True and interface.type != 'juniper-vcp' and interface.type != 'virtual' %}
         {{interface.label}} {
             {%- set description = interface.description %}
             {%- if description == '' %}         {#Code to set interface descriptions#}
@@ -115,21 +115,92 @@ interfaces {
             }
             {%- endif %}
             {%- if interface.type == 'lag' %}   {#Code for LAG ports#}
-                aggregated-ether-options {
-                    lacp {
-                        active;
-                    }
-                    unit 0 {
-                        family ethernet-switching {
-                            interface-mode trunk;
-                            vlan {
-                                members all;
-                            }
+            aggregated-ether-options {
+                lacp {
+                    active;
+                }
+                unit 0 {
+                    family ethernet-switching {
+                        interface-mode trunk;
+                        vlan {
+                            members all;
                         }
                     }
                 }
+            }    
             {%- endif%}
         }
         {%- endif%}
+    {%- endfor %}
+    {# IRB CODE - WORK IN PROGRESS
+    {%- if interface.type == 'virtual' %}
+        unit {{interface.label}} {
+            family inet {
+                address X.X.X.X/X;
+            }
+        }
+        {%- endif%}
+    #}    
+}
+snmp {
+    contact "{{snmp_contact}}";
+}
+forwarding-options {
+    storm-control-profiles default {
+        all;
+    }
+}
+protocols {
+    router-advertisement {
+        interface vme.0;
+        interface irb.0;
+    }
+    lldp {
+        interface all;
+    }
+    lldp-med {
+        interface all;
+    }
+    igmp-snooping {
+        vlan default;
+    }
+    mstp {
+        configuration-name {{mst_name}};
+        revision-level {mst_revision};
+        bridge-priority 32k;
+        interface all;
+    }
+}
+routing-options {
+    static {
+        route 10.40.0.0/16 next-hop 10.40.40.254;
+    }
+}
+virtual-chassis {
+    member 0 {
+        mastership-priority 255;
+    }
+    member 1 {
+        mastership-priority 10;
+    }
+    member 2 {
+        mastership-priority 254;
+    }
+    member 3 {
+        mastership-priority 9;
+    }
+}
+vlans {
+    {%- for vlan in vlans %}
+        {%- if vlan.vid is defined%}
+            {{vlan.name}} {
+                vlan-id {{vlan.vid}};
+                {# IRB Code
+                {%- if interface.%}
+                l3-interface irb.X'
+                {%- endif%}
+                #}
+            }
+        {%- endif %}
     {%- endfor %}
 }
