@@ -30,11 +30,6 @@ system {
             }
             group Flypack1DHCP {
             {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
-            {#{%- for interface in vlans %}
-                {%- if vlan.vid is defined%}
-                interface irb.{{vlan.vid}};
-                {%- endif %}
-            {%- endfor %} #}
                 {%- for interface in device.interfaces.all() %}
                 {%- if interface.is_virtual and interface.is_lag == False %}
                 interface irb.{{interface.label}};
