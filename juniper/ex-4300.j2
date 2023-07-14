@@ -237,7 +237,7 @@ vlans {
     {%- if vlan.vid is defined %}
     {{vlan.name}} {
         vlan-id {{vlan.vid}};
-        {%- if vlan.vid|string in device.interfaces.all()|map(attribute='label')|string %}
+        {%- if vlan.vid|string in device.interfaces.all()|map(attribute='label') %}
         l3-interface irb.{{vlan.vid}};
         {%- endif %}
     }
