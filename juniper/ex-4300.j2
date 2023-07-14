@@ -56,7 +56,9 @@ system {
             user warning;
             interactive-commands warning;
         }
+        {%- if device.primary_ip4 is defined %}
         source-address {{device.primary_ip4|ip()}};
+        {%- endif %}
     }
     processes {
         dhcp-service {
@@ -148,9 +150,9 @@ interfaces {
     }
     {%- endif %}
     {%- endfor %}
-    {#}
+    {# IRBS - WORK IN PROGRESS
     irb {
-    {%- for irb in irbs %}      Code for IRBs
+    {%- for irb in irbs %}
     {%- if interface.type == 'virtual' %}
         unit {{interface.label}} {
             family inet {
@@ -211,7 +213,7 @@ virtual-chassis {
 }
 vlans {
     {%- for vlan in vlans %}
-    {%- if vlan.vid is defined%}
+    {%- if vlan.vid is defined %}
         {{vlan.name}} {
             vlan-id {{vlan.vid}};
             {# IRB CODE
