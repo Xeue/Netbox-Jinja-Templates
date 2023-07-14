@@ -57,9 +57,9 @@ system {
             user warning;
             interactive-commands warning;
         }
-        {%- if device.primary_ip4 is defined %}
+        {%- call catch('') %}
         source-address {{device.primary_ip4|ip()}};
-        {%- endif %}
+        {%- endcall %}
     }
     processes {
         dhcp-service {
