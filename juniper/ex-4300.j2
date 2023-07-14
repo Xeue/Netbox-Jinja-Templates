@@ -88,7 +88,7 @@ chassis {
 }
 interfaces {
     {%- for interface in device.interfaces.all()%}
-    {%- interface.enabled == True and if interface.mgmt_only != True and interface.type != 'juniper-vcp' and interface.type != 'virtual' %}
+    {%- if interface.enabled == True and interface.mgmt_only != True and interface.type != 'juniper-vcp' and interface.type != 'virtual' %}
     {{interface.label}} {
         {%- set description = interface.description %}
         {%- if description == '' %}         {#Code to set interface descriptions#}
