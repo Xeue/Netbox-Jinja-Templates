@@ -235,14 +235,13 @@ virtual-chassis {
 vlans {
     {%- for vlan in vlans %}
     {%- if vlan.vid is defined %}
-        {{vlan.name}} {
-            vlan-id {{vlan.vid}};
-            {# IRB CODE
-            {%- if interface.%}
-            l3-interface irb.X'
-            {%- endif%}
-            #}
-        }
+    {{vlan.name}} {
+        vlan-id {{vlan.vid}};
+        {# {%- if interface(vlan).is_virtual and interface(vlan).is_lag == False %} #}
+        {%- if vlan.vid in interface.map('label')%}
+        l3-interface irb.{{vlan.vid}};
+        {%- endif %}
+    }
     {%- endif %}
     {%- endfor %}
     default {
