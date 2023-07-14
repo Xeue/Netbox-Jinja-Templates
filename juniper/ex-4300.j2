@@ -172,7 +172,7 @@ forwarding-options {
         all;
     }
 }
-{# access{
+{#- access{
     address-assignment{
         {%- for ip_range in ip_ranges %}
         pool {{ip_range.description|replace(" ","")}} {
@@ -237,7 +237,6 @@ vlans {
     {%- if vlan.vid is defined %}
     {{vlan.name}} {
         vlan-id {{vlan.vid}};
-        {# {%- if interface(vlan).is_virtual and interface(vlan).is_lag == False %} #}
         {%- if vlan.vid|string in device.interfaces.all()|map(attribute='label')|string %}
         l3-interface irb.{{vlan.vid}};
         {%- endif %}
