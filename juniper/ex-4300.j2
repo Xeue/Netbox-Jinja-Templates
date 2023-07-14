@@ -29,12 +29,17 @@ system {
                 access-internal;
             }
             group Flypack1DHCP {
-            {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %} {#How to exclude specific VLAN groups?#}
-            {%- for vlan in vlans %}
+            {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
+            {#{%- for interface in vlans %}
                 {%- if vlan.vid is defined%}
                 interface irb.{{vlan.vid}};
                 {%- endif %}
-            {%- endfor %}
+            {%- endfor %} #}
+                {%- for interface in device.interfaces.all() %}
+                {%- if interface.is_virtual and interface.is_lag == False %}
+                interface irb.{{interface.label}};
+                {%- endif %}    
+                {%- endfor%}
             }
         }
         web-management {
@@ -153,7 +158,7 @@ interfaces {
     {%- endfor %}
     irb {
     {%- for interface in device.interfaces.all() %}
-    {%- if interface.is_virtual %}
+    {%- if interface.is_virtual and interface.is_lag == False %}
         unit {{interface.label}} {
             family inet {
                 {%- call catch('') %}
