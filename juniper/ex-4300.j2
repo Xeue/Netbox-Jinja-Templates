@@ -87,7 +87,7 @@ chassis {
     }
 }
 interfaces {
-    {%- for interface in device.interfaces.all()%}
+    {%- for interface in device.interfaces.all()%} {#Add interfaces for other switches in virtual chassis too#}
     {%- if interface.enabled == True and interface.mgmt_only != True and interface.type != 'juniper-vcp' and interface.type != 'virtual' %}
     {{interface.label}} {
         {%- set description = interface.description %}
@@ -148,15 +148,17 @@ interfaces {
     }
     {%- endif %}
     {%- endfor %}
-    {# IRB CODE - WORK IN PROGRESS
+    irb {
+    {%- for irb in irbs %}      {# Code for IRBs #}
     {%- if interface.type == 'virtual' %}
         unit {{interface.label}} {
             family inet {
-                address X.X.X.X/X;
+                address {{interface.ip4}};
             }
         }
-        {%- endif%}
-    #}    
+    {%- endif%} 
+    {%- endfor%}  
+    }
 }
 snmp {
     contact "{{snmp_contact}}";
