@@ -33,7 +33,7 @@ Y
 no ip address dhcp
 Y
 exit
-logging host 10.40.40.5 port 514 severity 6 facility local7
+logging host {{syslog_server}} port 514 severity 6 facility local7
 ip default-gateway {{device.primary_ip4|gateway()}}
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
