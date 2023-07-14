@@ -238,7 +238,7 @@ vlans {
     {{vlan.name}} {
         vlan-id {{vlan.vid}};
         {# {%- if interface(vlan).is_virtual and interface(vlan).is_lag == False %} #}
-        {%- if vlan.vid in device.interfaces.all().map('label') %}
+        {%- if vlan.vid in device.interfaces.all()|map('label') %}
         l3-interface irb.{{vlan.vid}};
         {%- endif %}
     }
