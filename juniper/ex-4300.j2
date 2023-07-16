@@ -175,12 +175,12 @@ forwarding-options {
         all;
     }
 }
-access{
+{#- access{
     address-assignment{
-        {%- set ip_ranges = device.site.ip_ranges.all()|list %}
+        {%- set ip_ranges = device.???.ip_ranges.all()|list %}
         {%- for ip_range in ip_ranges %}
         {%- if ip_range.tags == 'EX4300' %}
-        {#- pool {{ip_range.description|replace(" ","")}} {
+        pool {{ip_range.description|replace(" ","")}} {
             family inet {
                 network <address>.0/24;
                 range {{ip_range.description|replace(" ","")}}Range
@@ -198,13 +198,11 @@ access{
                         <address>.254;
                     }
                 }
-        } #}
-        <test EX4300>
+        }
         {%- endif %}
-        <test>
         {%- endfor %}
     }
-}
+} #}
 
 protocols {
     router-advertisement {
