@@ -1,4 +1,5 @@
 {%- macro catch(on_exception) %}{{ caller|handle_catch(on_exception) }}{% endmacro %}
+{%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
 system {
     hostname {{device|replace("#","")|replace(" ","-")}}
     root-authentication {
@@ -29,7 +30,6 @@ system {
                 access-internal;
             }
             group Flypack1DHCP {
-            {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
                 {%- for interface in device.interfaces.all() %}
                 {%- if interface.is_virtual and interface.is_lag == False %}
                 interface irb.{{interface.label}};
@@ -152,6 +152,9 @@ interfaces {
     {%- endif %}
     {%- endfor %}
     irb {
+        unit 0 {
+            family inet;
+        }
     {%- for interface in device.interfaces.all() %}
     {%- if interface.is_virtual and interface.is_lag == False %}
         unit {{interface.label}} {
@@ -172,10 +175,12 @@ forwarding-options {
         all;
     }
 }
-{#- access{
+access{
     address-assignment{
+        {%- set ip_ranges = device.site.ip_ranges.all()|list %}
         {%- for ip_range in ip_ranges %}
-        pool {{ip_range.description|replace(" ","")}} {
+        {%- if ip_range.tags == 'EX4300' %}
+        {#- pool {{ip_range.description|replace(" ","")}} {
             family inet {
                 network <address>.0/24;
                 range {{ip_range.description|replace(" ","")}}Range
@@ -184,14 +189,23 @@ forwarding-options {
                 }
                 dhcp-attributes {
                     maximum-lease-time 3600;
+                    {%- if vlan(ip_range).tags == 'internet' %}
+                    name-server {
+                        {{dns_server}};
+                    }
+                    {%- endif %}
                     router {
                         <address>.254;
                     }
                 }
-        }
+        } #}
+        <test EX4300>
+        {%- endif %}
+        <test>
         {%- endfor %}
     }
-} #}
+}
+
 protocols {
     router-advertisement {
         interface vme.0;
