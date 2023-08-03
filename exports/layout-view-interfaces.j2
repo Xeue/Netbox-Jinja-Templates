@@ -131,9 +131,11 @@
         .from-cont,
         .port-mode,
         .to-label,
+        .patch-cont,
         .to-type {
            display: none;
         }
+
         .switchport {
             position: relative;
             display: flex;
@@ -494,6 +496,12 @@
         .show-vlans .to-cont {
             display: none;
         }
+        .show-patch .patch-cont {
+            display: block;
+        }
+        .show-patch .to-cont {
+            display: none;
+        }
         [data-mode="1000base-t"]::before {
             background-image: url(/static/ethernet.png);
         }
@@ -538,6 +546,9 @@
                     case "vlan":
                         bodyElement.classList.add('show-vlans');
                         break;
+                    case "patch":
+                        bodyElement.classList.add('show-patch');
+                        break;
                     default:
                         break;
                 }
@@ -570,6 +581,7 @@
             <select id="typeSelect">
                 <option value="normal">Default</option>
                 <option value="fibre">Fibre Mode</option>
+                <option value="patch">First Patch</option>
                 <option value="vlan">VLANs</option>
             </select>
         </span>
@@ -612,14 +624,20 @@
 
             {% if interface.mgmt_only == false and interface.is_virtual == false and interface.is_lag == false and interface.type != "juniper-vcp" %}
                 {% if interface.link_peers %}
-                    {% set from = interface.link_peers|first %}
-                    <section class="switchport {{vlan}} {% for tag in from.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}"
+                    {% set connection = namespace(far="") %}
+                    {% if interface.connected_endpoints|first %}
+                        {% set connection.far = interface.connected_endpoints|first %}
+                    {% else %}
+                        {% set connection.far = interface.link_peers|first %}
+                    {% endif %}
+                    {% set connection.patch = interface.link_peers|first %}
+                    <section class="switchport {{vlan}} {% for tag in connection.far.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}"
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
                         data-type="{{interface.cable.type}}"
                         style="{{background.value}}">
-                        <a class="link-normal" href="/dcim/devices/{{ from.device.id}}" target="_blank"></a>
-                        <a class="link-switch" href="/dcim/interfaces/?device_id={{from.device.id}}&export=interface-layouts"></a>
+                        <a class="link-normal" href="/dcim/devices/{{ connection.far.device.id}}" target="_blank"></a>
+                        <a class="link-switch" href="/dcim/interfaces/?device_id={{connection.far.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
                             <div class="from-name">{{ interface.device}}</div>
                             <div class="from-port">{{ interface.name}}</div>
@@ -627,11 +645,23 @@
                             <div class="from-type">{{ interface.type}}</div>
                         </div>
                         <div class="to-cont">
-                            <div class="to-name">{{ from.device}}</div>
-                            <div class="to-device">{{ from.device.device_type}}</div>
-                            <div class="to-port">{{ from.name}}</div>
-                            <div class="to-label">{{ from.label}}</div>
-                            <div class="to-type">{{ from.type}}</div>
+                            <div class="to-name">{{ connection.far.device.name}}</div>
+                            <div class="to-device">{{ connection.far.device.device_type}}</div>
+                            <div class="to-port">{{ connection.far.name}}</div>
+                            <div class="to-label">{{ connection.far.label}}</div>
+                            <div class="to-type">{{ connection.far.type}}</div>
+                            {% if interface.untagged_vlan.vid %}
+                                <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
+                            {% elif interface.lag.label is defined %}
+                                <div class="to-vlan">LAG</div>
+                            {% endif %}
+                        </div>
+                        <div class="patch-cont">
+                            <div class="to-name">{{ connection.patch.device.name}}</div>
+                            <div class="to-device">{{ connection.patch.device.device_type}}</div>
+                            <div class="to-port">{{ connection.patch.name}}</div>
+                            <div class="to-label">{{ connection.patch.label}}</div>
+                            <div class="to-type">{{ connection.patch.type}}</div>
                             {% if interface.untagged_vlan.vid %}
                                 <div class="to-vlan">{{vlan|replace('vlan_', 'VLAN: ')}}</div>
                             {% elif interface.lag.label is defined %}
