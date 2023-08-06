@@ -40,6 +40,9 @@
             --omneo-1021: rgb(35, 88, 108);
             --omneo-1022: rgb(72, 95, 130);
             --hsl-offset: 0%;
+            --port-patch: rgb(73, 12, 61);
+            --qsfp-border: rgb(101, 105, 110);
+            --header-bg: rgb(35, 46, 54);
         }
 
         html[data-netbox-color-mode="light"] {
@@ -61,10 +64,12 @@
             --omneo-1021: rgb(140, 223, 255);
             --omneo-1022: rgb(141, 186, 255);
             --hsl-offset: 30%;
+            --port-patch: rgb(210, 162, 201);
+            --qsfp-border: rgb(196, 196, 196);
+            --header-bg: rgb(243, 243, 243);
         }
 
         body {
-            padding: 0 10px;
             width: 100%;
             background-color: var(--bg-col) !important;
             display: flex;
@@ -77,15 +82,18 @@
             overflow: auto;
             grid-gap: 10px;
             padding: 5px;
+            padding-left: 13px;
         }
 
         header {
             font-size: 24pt;
-            margin: 10px 0px;
             color: var(--text-primary);
             font-weight: var(--weight);
             display: flex;
             align-items: center;
+            background-color: var(--header-bg);
+            padding: 10px;
+            margin-bottom: 10px;
         }
         a.badge.link {
             font-size: 1rem;
@@ -182,6 +190,12 @@
             align-items: center;
             justify-content: center;
         }
+        .isPatch {
+            background-color: var(--port-patch);
+        }
+        .show-patch .hasPatch {
+            background-color: var(--port-patch);
+        }
         .Fibre .port-label::after,
         [data-mode="1000base-x-sfp"] .port-label::after {
             content: " (SFP)";
@@ -206,7 +220,7 @@
             background: var(--port-inactive);
             border-radius: 14px;
             margin: -4px;
-            border: 2px solid rgb(101, 105, 110);
+            border: 2px solid var(--qsfp-border);
         }
         .blank {grid-area: blank;}
 
