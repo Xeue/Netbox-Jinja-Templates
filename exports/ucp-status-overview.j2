@@ -27,6 +27,7 @@
             --omneo-1013: rgb(76, 66, 98);
             --omneo-1021: rgb(35, 88, 108);
             --omneo-1022: rgb(72, 95, 130);
+            --header-bg: rgb(35, 46, 54);
         }
 
         html[data-netbox-color-mode="light"] {
@@ -47,10 +48,10 @@
             --omneo-1013: rgb(194, 167, 254);
             --omneo-1021: rgb(140, 223, 255);
             --omneo-1022: rgb(141, 186, 255);
+            --header-bg: rgb(243, 243, 243);
         }
 
         body {
-            padding: 0 10px;
             width: 100%;
             background-color: var(--bg-col) !important;
         }
@@ -72,11 +73,12 @@
 
         header {
             font-size: 24pt;
-            margin: 10px 0px;
             color: var(--text-primary);
             font-weight: var(--weight);
             display: flex;
             align-items: center;
+            background-color: var(--header-bg);
+            padding: 10px;
         }
         a.badge.link {
             font-size: 1rem;
