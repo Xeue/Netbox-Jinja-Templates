@@ -81,8 +81,7 @@
             display: grid;
             overflow: auto;
             grid-gap: 10px;
-            padding: 5px;
-            padding-left: 13px;
+            padding: 5px 5px 15px 13px;
         }
 
         header {
@@ -519,7 +518,11 @@
         [data-mode="1000base-t"]::before {
             background-image: url(/static/ethernet.png);
         }
-        [data-mode="100gbase-x-qsfp28"]::before,
+        [data-mode="40gbase-x-sfp28"]::before,
+        [data-mode="50gbase-x-sfp28"]::before,
+        [data-mode="100gbase-x-qsfp28"]::before {
+            background-image: url(/static/QSFP-Icon.svg);
+        }
         [data-mode="10gbase-x-sfpp"]::before,
         [data-mode="1000base-x-sfp"]::before,
         [data-mode="25gbase-x-sfp28"]::before {
@@ -528,11 +531,11 @@
         .empty::before,
         .switchport::before {
             content: "";
-            background-size: 3.2rem;
+            background-size: 2.5rem;
             background-repeat: no-repeat;
             background-position-x: right;
-            background-position-y: bottom;
-            opacity: 0.1;
+            background-position-y: top;
+            opacity: 0.3;
             position: absolute;
             inset: 0;
             text-decoration: none !important;
