@@ -255,7 +255,7 @@
                 grid-template-rows: repeat(2, var(--row-height));
             }
 
-        {%- elif switch == 'S5800-48F4SR' %}
+        {%- elif switch == 'S5800-48F4SR' or switch == 'S5800-48F4S' %}
             {%- set ports1 = 52 %}
             {%- set prefix1 = "eth-0-" %}
             main {
