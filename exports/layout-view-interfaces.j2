@@ -709,18 +709,18 @@
                     <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
                         data-mode="{{interface.type}}"
                         style="{{background.value}}">
-                        <div class="empty-text">
+                        <div class="empty-text {{interface.mode}}">
                             {% if interface.enabled == false %}
                                 Disabled
                             {% else %}
                                 Empty
                             {% endif %}
-                            {% if interface.mode == 'access' %}
+                            {% if interface.lag.label is defined %}
+                                <div class="empty-mode">LAG</div>
+                            {% elif interface.mode == 'access' %}
                                 <div class="empty-mode">{{interface.untagged_vlan}}</div>
                             {% elif interface.mode == 'tagged' %}
                                 <div class="empty-mode">Trunk</div>
-                            {% elif interface.lag.label is defined %}
-                                <div class="empty-mode">LAG</div>
                             {% endif %}
                         </div>
                         <div class="port-label">{{label|replace(prefix1,'')|replace(prefix2, '')}}</div>
