@@ -716,8 +716,7 @@
                                 Empty
                             {% endif %}
                             {% if interface.lag.label is defined %}
-                                <div class="empty-mode">LAG</div>
-                                <div class="empty-desc">{{interface.lag.label}}</div>
+                                <div class="empty-mode">LAG ({{interface.lag.label}})</div>
                             {% elif interface.mode == 'access' %}
                                 <div class="empty-mode">{{interface.untagged_vlan}}</div>
                             {% elif interface.mode == 'tagged' or interface.mode == 'tagged-all' %}
