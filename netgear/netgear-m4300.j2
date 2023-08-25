@@ -1,3 +1,4 @@
+hostname "{{device|replace("#","")|replace(" ","-")}}"
 {%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
 vlan database
 vlan {{vlans|map(attribute='vid')|join(',')}}
@@ -9,6 +10,7 @@ vlan name {{vlan.vid}} "{{vlan.name}}"
 no vlan routing 1
 vlan routing {{device.primary_ip4|ip()|string()|split(2,".")}} 1
 exit
+
 ip ssh server enable
 configure
 no sntp server time-a.netgear.com
@@ -18,13 +20,16 @@ snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
 username "{{user}}" password {{secret}}
+
 line console
 serial timeout 160
 password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
 exit
+
 line telnet
 password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
 exit
+
 line ssh
 password 76b1e9778a70872bd88d78d29bec2ba2aa967948927bf0cdcc10aca1c9c151b3ae73058363aba080f26f44ebfdaa106be161e0803d4b5481c88b4b18c66f75ff encrypted
 exit
@@ -52,6 +57,7 @@ vlan participation auto 1
 switchport mode access
 switchport access vlan {{interface.untagged_vlan.vid}}
 vlan pvid {{interface.untagged_vlan.vid}}
+no vlan participation include 1-{{interface.untagged_vlan.vid-1}}-{{interface.untagged_vlan.vid+1}}-4094
 vlan participation include {{interface.untagged_vlan.vid}}
 vlan participation auto 1
         {%- else %}
