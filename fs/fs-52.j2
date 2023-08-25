@@ -1,3 +1,38 @@
+service http enable
+service https enable
+!
+logging server severity information
+logging server address 10.40.40.5
+!
+ntp server {{sntp_server}}
+!
+hostname {{device|replace("#","")|replace(" ","-")}}
+!
+enable secret {{secret}}
+!
+banner login ^C
+IP Flypack - {{device}}
+^C
+!
+username admin privilege 4 secret {{secret}}
+!
+management ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+!
+vlan database
+vlan {{vlans|map(attribute='vid')|join(',')}}
+{%- for vlan in vlans %}
+    {%- if vlan.vid is defined %}
+vlan {{vlan.vid}} name {{vlan.name}}
+    {%- endif %}
+{%- endfor %}
+!
+spanning-tree mode mstp
+spanning-tree enable
+!
+spanning_tree mst configuration
+ region {{mst_name}}
+ revision {{mst_revision}}
+!
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
@@ -39,7 +74,19 @@ interface {{interface.label}}
                 {%- endif %}
             {%- endif %}
  description "{{description}}"
-exit
         {%- endif %}
     {%- endif %}
+!   
 {%- endfor %}
+ip route 0.0.0.0/0 {{device.primary_ip4|gateway()}}
+!
+line con 0
+ no line-password
+ no login
+line vty 0 7
+ exec-timeout 35791 0
+ privilege level 4
+ no line-password
+ no login
+!
+end
