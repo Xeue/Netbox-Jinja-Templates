@@ -36,7 +36,7 @@ exit
 
 {% include 'netgear/spanning_tree.j2' %}
 
-{%- for interface in device.interfaces.all() %}
+{%- for interface in device.interfaces.all() +%}
     {%- if interface.is_lag == True %}
 port-channel name {{interface.label}} {{interface.description|replace(' ', '_') or interface.name|replace(' ', '_')}}
     {%- endif %}
@@ -78,7 +78,6 @@ addport {{interface.lag.label}}
 description '{{description}}'
 exit
     {%- endif %}
-    
 {%- endfor %}
 {%- if device.primary_ip4 %}
 interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
