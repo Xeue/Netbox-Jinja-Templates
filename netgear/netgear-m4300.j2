@@ -57,7 +57,7 @@ vlan participation auto 1
 switchport mode access
 switchport access vlan {{interface.untagged_vlan.vid}}
 vlan pvid {{interface.untagged_vlan.vid}}
-no vlan participation include 1-{{interface.untagged_vlan.vid-1}}-{{interface.untagged_vlan.vid+1}}-4094
+no vlan participation include 1-{{interface.untagged_vlan.vid-1}},{{interface.untagged_vlan.vid+1}}-4094
 vlan participation include {{interface.untagged_vlan.vid}}
 vlan participation auto 1
         {%- else %}
