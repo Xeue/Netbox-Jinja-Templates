@@ -77,8 +77,8 @@ addport {{interface.lag.label}}
         {%- endif %}
 description '{{description}}'
 exit
-
     {%- endif %}
+    
 {%- endfor %}
 {%- if device.primary_ip4 %}
 interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
