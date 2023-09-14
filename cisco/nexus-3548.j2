@@ -29,24 +29,23 @@ exit
 ip ssh server
 !
 {%- for interface in device.interfaces.all() %}
+    {% set connection = namespace(far="") %}
+    {% if interface.connected_endpoints|first %}
+        {% set connection.far = interface.connected_endpoints|first %}
+        {% set connection.isPatch = False %}
+    {% else %}
+        {% set connection.far = interface.link_peers|first %}
+        {% set connection.isPatch = True %}
+    {% endif %}
+
+    {% if interface.connected_endpoints|first == interface.link_peers|first %}
+        {% set connection.hasPatch = False %}
+    {% else %}
+        {% set connection.hasPatch = True %}
+    {% endif %}
+
+    {% set connection.patch = interface.link_peers|first %}
     {%- if interface.lag.name is defined %}
-
-        {% set connection = namespace(far="") %}
-        {% if interface.connected_endpoints|first %}
-            {% set connection.far = interface.connected_endpoints|first %}
-            {% set connection.isPatch = False %}
-        {% else %}
-            {% set connection.far = interface.link_peers|first %}
-            {% set connection.isPatch = True %}
-        {% endif %}
-
-        {% if interface.connected_endpoints|first == interface.link_peers|first %}
-            {% set connection.hasPatch = False %}
-        {% else %}
-            {% set connection.hasPatch = True %}
-        {% endif %}
-
-        {% set connection.patch = interface.link_peers|first %}
 
 interface {{interface.name}}
  channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
@@ -80,8 +79,7 @@ interface {{interface.name}}
             {%- set description = interface.description %}
             {%- if description == '' %}
                 {%- if interface.link_peers %}
-                    {%- set peer = interface.link_peers|first %}
-                    {%- set description = peer.device %}
+                    {%- set description = connection.far.device.name %}
                 {%- endif %}
             {%- endif %}
  description '{{description}}'
