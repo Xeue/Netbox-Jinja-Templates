@@ -29,24 +29,21 @@ exit
 ip ssh server
 !
 {%- for interface in device.interfaces.all() %}
-    {% set connection = namespace(far="") %}
-    {% if interface.connected_endpoints|first %}
-        {% set connection.far = interface.connected_endpoints|first %}
-        {% set connection.isPatch = False %}
-    {% else %}
-        {% set connection.far = interface.link_peers|first %}
-        {% set connection.isPatch = True %}
-    {% endif %}
-
-    {% if interface.connected_endpoints|first == interface.link_peers|first %}
-        {% set connection.hasPatch = False %}
-    {% else %}
-        {% set connection.hasPatch = True %}
-    {% endif %}
-
-    {% set connection.patch = interface.link_peers|first %}
+    {%- set connection = namespace(far="") %}
+    {%- if interface.connected_endpoints|first %}
+        {%- set connection.far = interface.connected_endpoints|first %}
+        {%- set connection.isPatch = False %}
+    {%- else %}
+        {%- set connection.far = interface.link_peers|first %}
+        {%- set connection.isPatch = True %}
+    {%- endif %}
+    {%- if interface.connected_endpoints|first == interface.link_peers|first %}
+        {%- set connection.hasPatch = False %}
+    {%- else %}
+        {%- set connection.hasPatch = True %}
+    {%- endif %}
+    {%- set connection.patch = interface.link_peers|first %}
     {%- if interface.lag.name is defined %}
-
 interface {{interface.name}}
  channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
         {%- set description = interface.description %}
