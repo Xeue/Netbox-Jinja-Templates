@@ -1,0 +1,97 @@
+hostname "{{device|replace("#","")|replace(" ","-")|replace("(","")|replace(")","")|replace("Switch-","")}}"
+{%- if device.primary_ip4 %}
+interface Vlan{{device.primary_ip4|ip()|string()|split(2,".")}}
+ ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+!
+ip default-gateway {{device.primary_ip4|gateway()}}
+{%- endif %}
+no ip http server
+ip http authentication local
+ip http secure-server
+snmp-server sysname "{{snmp_sysname}}"
+snmp-server location "{{snmp_location}}"
+snmp-server contact "{{snmp_contact}}"
+!
+username "{{user}}" secret {{secret}}
+no passwords complexity enable
+passwords aging 0
+{%- set vlans = device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
+{%- for vlan in vlans %}
+    {%- if vlan.vid is defined %}
+vlan {{vlan.vid}}
+ name "{{vlan.name}}"
+exit
+    {%- endif %}
+{%- endfor %}
+!
+{% include 'cisco/spanning_tree.j2' %}
+!
+ip ssh server
+!
+{%- for interface in device.interfaces.all() %}
+    {%- if interface.lag.name is defined %}
+
+        {% set connection = namespace(far="") %}
+        {% if interface.connected_endpoints|first %}
+            {% set connection.far = interface.connected_endpoints|first %}
+            {% set connection.isPatch = False %}
+        {% else %}
+            {% set connection.far = interface.link_peers|first %}
+            {% set connection.isPatch = True %}
+        {% endif %}
+
+        {% if interface.connected_endpoints|first == interface.link_peers|first %}
+            {% set connection.hasPatch = False %}
+        {% else %}
+            {% set connection.hasPatch = True %}
+        {% endif %}
+
+        {% set connection.patch = interface.link_peers|first %}
+
+interface {{interface.name}}
+ channel-group {{interface.lag.name|replace('Port-channel','')}} mode active
+        {%- set description = interface.description %}
+        {%- if description == '' %}
+            {%- if interface.link_peers %}
+                {%- set description = connection.far.device.name %}
+            {%- endif %}
+        {%- endif %}
+ description '{{description}}'
+exit
+    {%- else %}
+        {%- if interface.enabled == True and interface.mgmt_only != True %}
+interface {{interface.name}}
+            {%- if interface.mode == 'tagged-all' %}
+ switchport trunk allowed vlan 1-4094
+ switchport mode trunk
+            {%- elif interface.mode == 'tagged' %}
+ switchport trunk allowed vlan add {{interface.tagged_vlans.all()|join(',',attribute='vid')}}
+                {%- if interface.untagged_vlan.vid is defined %}
+ switchport trunk native vlan {{interface.untagged_vlan.vid}}
+ switchport default-vlan tagged
+ switchport mode trunk
+                {%- endif %}
+            {%- elif interface.mode == 'access' %}
+ switchport mode access
+ switchport access vlan {{interface.untagged_vlan.vid}}
+            {%- else %}
+ no switchport
+            {%- endif %}
+            {%- set description = interface.description %}
+            {%- if description == '' %}
+                {%- if interface.link_peers %}
+                    {%- set peer = interface.link_peers|first %}
+                    {%- set description = peer.device %}
+                {%- endif %}
+            {%- endif %}
+ description '{{description}}'
+exit
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
+!
+line vty 0 4
+login local
+line vty 5 15
+login local
+!
