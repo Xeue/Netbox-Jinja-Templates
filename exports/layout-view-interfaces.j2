@@ -744,12 +744,12 @@
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
+                            {% elif interface.description is defined %}                           
+                                "{{interface.description}}"
                             {% else %}
                                 Empty
                             {% endif %}
-                            {% if interface.description is defined %}
-                                <div class="empty-description">{{interface.description}}</div>
-                            {% endif %}
+
                             {% if interface.lag.label is defined %}
                                 <div class="empty-mode">LAG ({{interface.lag.label}})</div>
                             {% elif interface.mode == 'access' %}
