@@ -27,14 +27,18 @@ sntp unicast client enable
 sntp server {{sntp_server}}
 sntp source-interface vlan {{management_vlan}}
 {% include 'cisco/spanning_tree.j2' %}
+{%- if device.primary_ip4 %}
 interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
 ip address {{device.primary_ip4|ip()}} {{device.primary_ip4|netmask()}}
+{%- endif %}
 Y
 no ip address dhcp
 Y
 exit
 logging host {{syslog_server}} port 514 severity 6 facility local7
+{%- if device.primary_ip4 %}
 ip default-gateway {{device.primary_ip4|gateway()}}
+{%- endif %}
 {%- for interface in device.interfaces.all() %}
     {%- if interface.lag.label is defined %}
 interface {{interface.label}}
