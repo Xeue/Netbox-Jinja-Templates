@@ -318,11 +318,11 @@
             {%- set lanes = 4 %}
             main {
                 grid-template-areas:  "e1 e3 e5 e7 e9 e11 e13 e15 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4 q55-1 q55-2 q55-3 q55-4 q57-1 q57-2 q57-3 q57-4 q59-1 q59-2 q59-3 q59-4 e17 e19 e21 e23 e25 e27 e29 e31" "e2 e4 e6 e8 e10 e12 e14 e16 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4 q56-1 q56-2 q56-3 q56-4 q58-1 q58-2 q58-3 q58-4 q60-1 q60-2 q60-3 q60-4 e18 e20 e22 e24 e26 e28 e30 e32" "e33 e34 e35 e36 e37 e38 e39 e40 blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank e41 e42 e43 e44 e45 e46 e47 e48";
-                grid-template-columns: repeat(22, var(--column-width));
+                grid-template-columns: repeat(40, var(--column-width));
                 grid-template-rows: repeat(3, var(--row-height));
             }
-            .port_{{prefix2}}53-1 {grid-area: q53-1 / q53-1 / q53-1 / q53-4 !important;}
-            .port_{{prefix2}}54-1 {grid-area: q54-1 / q54-1 / q54-1 / q54-4 !important;}
+            .port_{{prefix2}}59-1 {grid-area: q59-1 / q59-1 / q59-1 / q59-4 !important;}
+            .port_{{prefix2}}60-1 {grid-area: q60-1 / q60-1 / q60-1 / q60-4 !important;}
         {%- elif switch == 'SG300-10PP' or switch == 'SG300-10' or switch == 'SG350-10PP' %}
             {%- set ports1 = 10 %}
             main {
