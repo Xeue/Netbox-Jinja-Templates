@@ -744,7 +744,7 @@
                         <div class="empty-text">
                             {% if interface.enabled == false %}
                                 Disabled
-                            {% elif interface.description is defined %}                           
+                            {% elif interface.description != "" %}                           
                                 "{{interface.description}}"
                             {% else %}
                                 Empty
