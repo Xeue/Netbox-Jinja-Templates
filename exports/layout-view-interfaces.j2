@@ -578,6 +578,10 @@
             white-space: nowrap;
             line-height: 3;
         }
+
+        .quickTerm {
+            z-index: 1;
+        }
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script>
@@ -742,7 +746,7 @@
                         data-mode="{{interface.type}}"
                         style="{{background.value}}">
                         <div class="empty-text">
-                            <a href="/dcim/cables/add/?a_terminations_type=dcim.interface&a_terminations={{interface.id}}&b_terminations_type=dcim.interface">
+                            <a class="quickTerm" href="/dcim/cables/add/?a_terminations_type=dcim.interface&a_terminations={{interface.id}}&b_terminations_type=dcim.interface">
                                 {% if interface.enabled == false %}
                                     Disabled
                                 {% elif interface.description != "" %}                           
