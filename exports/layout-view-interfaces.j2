@@ -794,7 +794,7 @@
         {% endif %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
-    <section>
+    <section class="vlanButtons">
     {%- set vlans = queryset[0].device.site.region.vlan_groups.first().vlans.all()|list + queryset[0].device.site.vlans.all()|list %}
     {%- for vlan in vlans %}
         {%- if vlan.vid is defined %}
@@ -824,7 +824,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <div>
+            <div class="" style="{{background.value}}">
                 vlan {{vlan.vid}}
                 name "{{vlan.name}}"
             </div>
