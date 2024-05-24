@@ -794,5 +794,42 @@
         {% endif %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
+    <section>
+    {%- set vlans = queryset[0].device.site.region.vlan_groups.first().vlans.all()|list + device.site.vlans.all()|list %}
+    {%- for vlan in vlans %}
+        {%- if vlan.vid is defined %}
+            {% set hsl = namespace(h=204) %}
+            {% set hsl = namespace(s=13) %}
+            {% set hsl = namespace(l=22) %}
+            {% set background = namespace(value="") %}
+            {% if vlan.vid %}
+                {% if vlan.vid > 39 and vlan.vid < 50 %}
+                    {% set shift = (vlan.vid|int() - 40) %}
+                    {% set hsl.h = 145 - shift * 3 %}
+                    {% set hsl.s = 22 + shift * 7 %}
+                    {% set hsl.l = 13 + shift * 3 %}
+                {% elif vlan.vid > 999 and vlan.vid < 1050 %}
+                    {% set shift = (vlan.vid|int() - 1000) %}
+                    {% set hsl.h = 455 - shift * 6 %}
+                    {% set hsl.s = 40 %}
+                    {% set hsl.l = 25 %}
+                {% elif vlan.vid == 170 %}
+                    {% set hsl.h = 202 %}
+                    {% set hsl.s = 51 %}
+                    {% set hsl.l = 35 %}
+                {% else %}
+                    {% set hsl.h = 204 %}
+                    {% set hsl.s = 13 %}
+                    {% set hsl.l = 22 %}
+                {% endif %}
+                {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
+            {% endif %}
+            <div>
+                vlan {{vlan.vid}}
+                name "{{vlan.name}}"
+            </div>
+        {%- endif %}
+    {%- endfor %}
+    </section>
 </body>
 </html>
