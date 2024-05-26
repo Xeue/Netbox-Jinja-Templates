@@ -8,6 +8,7 @@
 {%- set switch = queryset[0].device.device_type|replace(' ', '-') %}
 {%- set first_linecard = 0 %}
 {%- set last_linecard = 0 %}
+{%- set vlans = queryset[0].device.site.region.vlan_groups.first().vlans.all()|list + queryset[0].device.site.vlans.all()|list %}
 
 <!DOCTYPE html>
 <html lang="en" data-netbox-color-mode="dark">
@@ -621,6 +622,13 @@
     </style>
     <script type="text/javascript" src="/static/setmode.js" onerror="window.location='/media-failure/?filename=setmode.js'"></script>
     <script>
+        const vlans = {
+            {%- for vlan in vlans %}
+                {%- if vlan.vid is defined %}
+                "{{vlan.vid}}":"{{vlan.cf.colour}}";
+                {%- endif %}
+            {%- endfor %}
+        }
         initMode()
         document.addEventListener("DOMContentLoaded", e => {
             document.getElementById('typeSelect').addEventListener('change', e => {
@@ -651,12 +659,12 @@
 
             const _vlanButtons = document.querySelectorAll(".vlanAssignButton");
             _vlanButtons.forEach(element => element.addEventListener("click", e => {
-                const _selectedPorts = document.querySelectorAll(".vlanAssignSelected");
+                const __selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
                 const vidid = element.getAttribute('data-idid');
-                _selectedPorts.forEach(port => {
+                __selectedPorts.forEach(_port => {
                     port.classList.remove('vlanAssignSelected');
-                    const interfaceID = port.getAttribute('data-id');
+                    const interfaceID = _port.getAttribute('data-id');
                     console.log(`Set ${interfaceID} vlan to ${vid}`);
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
                     const payload = `{"untagged_vlan":"${vidid}","mode":"access"}`;
@@ -672,6 +680,12 @@
                         body: payload
                     }).then(response => {
                         response.json().then(data=>{
+                            const _vlanText = _port.querySelector('.type-vlan');
+                            if (_vlanText) _vlanText.innerHTML(data.untagged_vlan.vid);
+                            else _port.append(`<div class="type-vlan">${data.untagged_vlan.vid}</div>`)
+                            const _vlanPretty = _port.querySelector('.empty-mode');
+                            if (_vlanPretty) _vlanPretty.innerHTML(data.untagged_vlan.display);
+                            else _port.querySelector('.empty-text').append(`<div class="empty-mode">${data.untagged_vlan.display}</div>`);
                             console.log(data);
                         });
                     })
@@ -867,7 +881,6 @@
         <div class="blank"></div><div class="blank2"></div>
     </main>
     <section class="vlanButtons">
-    {%- set vlans = queryset[0].device.site.region.vlan_groups.first().vlans.all()|list + queryset[0].device.site.vlans.all()|list %}
     {%- for vlan in vlans %}
         {%- if vlan.vid is defined %}
             {% set hsl = namespace(h=204) %}
