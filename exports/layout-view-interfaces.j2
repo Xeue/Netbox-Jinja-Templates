@@ -655,11 +655,14 @@
             "none":"#00000000"
         }
         initMode()
+
         document.addEventListener("DOMContentLoaded", e => {
-            document.getElementById('typeSelect').addEventListener('change', e => {
-                const bodyElement = document.getElementsByTagName('body')[0];
+            const _typeSelect = document.getElementById('typeSelect');
+            const bodyElement = document.getElementsByTagName('body')[0];
+
+            function setMode(value) {
                 bodyElement.classList.value="";
-                switch (e.target.value) {
+                switch (value) {
                     case "normal":
                         bodyElement.classList.value="";
                         break;
@@ -675,7 +678,10 @@
                     default:
                         break;
                 }
-            })
+            }
+
+            setMode(_typeSelect.value);
+            _typeSelect.addEventListener('change', e => setMode(e.target.value))
 
             const __vlanPorts = document.querySelectorAll(".vlanAssign");
             __vlanPorts.forEach(_port => _port.addEventListener("click", e => {
