@@ -653,14 +653,30 @@
             _vlanButtons.forEach(element => element.addEventListener("click", e => {
                 const _selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
+                const vidid = element.getAttribute('data-idid');
                 _selectedPorts.forEach(port => {
                     port.classList.remove('vlanAssignSelected');
                     const interfaceID = port.getAttribute('data-id');
                     console.log(`Set ${interfaceID} vlan to ${vid}`);
+                    const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
+                    const payload = `{"untagged_vlan":"${vidid}","mode":"access"}`;
+        
+                    fetch(url, {
+                        credentials: "omit",
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Token 33cb389f41c7f8a4331c25947fd5966148cd56eb',
+                            'Accept': 'application/json'
+                        },
+                        body: payload
+                    }).then(response => {
+                        response.json().then(data=>{
+                            console.log(data);
+                        });
+                    })
                 });
             }));
-
-            
         });
     </script>
 </head>
@@ -880,7 +896,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <button class="vlanAssignButton" style="{{background.value}}" data-id="{{vlan.vid}}">{{vlan.vid}} - {{vlan.name}}</button>
+            <button class="vlanAssignButton" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
         {%- endif %}
     {%- endfor %}
     </section>
