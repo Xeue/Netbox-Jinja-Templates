@@ -653,9 +653,9 @@
                 }
             })
 
-            const _vlanPorts = document.querySelectorAll(".vlanAssign");
-            _vlanPorts.forEach(element => element.addEventListener("click", e => {
-                element.classList.toggle('vlanAssignSelected');
+            const __vlanPorts = document.querySelectorAll(".vlanAssign");
+            __vlanPorts.forEach(_port => _port.addEventListener("click", e => {
+                _port.classList.toggle('vlanAssignSelected');
             }));
 
             const _vlanButtons = document.querySelectorAll(".vlanAssignButton");
@@ -665,7 +665,7 @@
                 const vidid = element.getAttribute('data-idid');
                 if (vid == "none") return;
                 __selectedPorts.forEach(_port => {
-                    port.classList.remove('vlanAssignSelected');
+                    _port.classList.remove('vlanAssignSelected');
                     const interfaceID = _port.getAttribute('data-id');
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
                     const payload = `{"untagged_vlan":"${vidid}","mode":"access"}`;
