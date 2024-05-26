@@ -699,7 +699,7 @@
                     _port.classList.remove('vlanAssignSelected');
                     const interfaceID = _port.getAttribute('data-id');
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
-                    const payload = {"untagged_vlan":vidid,"mode":mode};
+                    const payload = JSON.stringify({"untagged_vlan":vidid,"mode":mode});
         
                     fetch(url, {
                         credentials: "omit",
