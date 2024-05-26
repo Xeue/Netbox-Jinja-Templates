@@ -693,13 +693,13 @@
                 const __selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
                 const vidid = vid == "none" ? null : element.getAttribute('data-idid');
-                const mode = vid == "none" ? null : "access";
-                //if (vid == "none") return;
+                //const mode = vid == "none" ? null : "access";
+                const mode = "access";
                 __selectedPorts.forEach(_port => {
                     _port.classList.remove('vlanAssignSelected');
                     const interfaceID = _port.getAttribute('data-id');
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
-                    const payload = JSON.stringify({"untagged_vlan":vidid,"mode":mode});
+                    const payload = {"untagged_vlan":vidid,"mode":mode};
         
                     fetch(url, {
                         credentials: "omit",
@@ -709,7 +709,7 @@
                             'Authorization': 'Token 33cb389f41c7f8a4331c25947fd5966148cd56eb',
                             'Accept': 'application/json'
                         },
-                        body: payload
+                        body: JSON.stringify(payload)
                     }).then(response => {
                         response.json().then(data=>{
                             const _parent = _port.parentElement;
