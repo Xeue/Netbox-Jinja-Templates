@@ -521,6 +521,8 @@
         .show-fibre [data-type="smf-os2"] {
             background-color: #7b7d23 !important;
         }
+
+        .vlanAssign,
         .vlanButtons,
         .type-vlan {
             display: none;
@@ -539,6 +541,18 @@
             white-space: nowrap;
         }
 
+        .show-vlans .vlanAssign {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            cursor: pointor;
+        }
+
+        .show-vlans .link-normal,
         .show-vlans .empty-text,
         .show-vlans .to-cont {
             display: none;
@@ -547,6 +561,13 @@
         .show-vlans .vlanButtons {
             display: flex;
             flex-wrap: wrap;
+        }
+
+        .vlanAssignButton {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
         }
 
         .show-patch .patch-cont {
@@ -709,6 +730,7 @@
                         data-type="{{interface.cable.type}}"
                         style="{{background.value}}"
                     >
+                        <div class="vlanAssign" data-id="{{interface.id}}"></div>
                         <a class="link-normal" href="/dcim/devices/{{ connection.far.device.id}}" target="_blank"></a>
                         <a class="link-switch" href="/dcim/interfaces/?device_id={{connection.far.device.id}}&export=interface-layouts"></a>
                         <div class="from-cont">
@@ -753,6 +775,7 @@
                     <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
                         data-mode="{{interface.type}}"
                         style="{{background.value}}">
+                        <div class="vlanAssign" data-id="{{interface.id}}"></div>
                         <div class="empty-text">
                             <a class="quickTerm" href="/dcim/cables/add/?a_terminations_type=dcim.interface&a_terminations={{interface.id}}&b_terminations_type=dcim.interface">
                                 {% if interface.enabled == false %}
@@ -832,10 +855,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <div class="vlanAssignButton" style="{{background.value}}">
-                vlan {{vlan.vid}}
-                name "{{vlan.name}}"
-            </div>
+            <div class="vlanAssignButton" style="{{background.value}}">{{vlan.vid}} / {{vlan.name}}</div>
         {%- endif %}
     {%- endfor %}
     </section>
