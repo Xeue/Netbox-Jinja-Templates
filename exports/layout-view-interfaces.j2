@@ -682,7 +682,10 @@
                     }).then(response => {
                         response.json().then(data=>{
                             const _parent = _port.parentElement;
+                            console.log(_port);
+                            console.log(_parent);
                             const _vlanText = _parent.querySelector('.type-vlan');
+                            console.log(_vlanText);
                             if (_vlanText) _vlanText.innerHTML(data.untagged_vlan.vid);
                             else _parent.append(`<div class="type-vlan">${data.untagged_vlan.vid}</div>`)
                             const _vlanPretty = _parent.querySelector('.empty-mode');
