@@ -152,6 +152,7 @@
             border-radius: 10px;
             padding: 10px;
             z-index: 1;
+            overflow: hidden;
         }
         .switchport > a {
             position: absolute;
@@ -563,11 +564,17 @@
             flex-wrap: wrap;
         }
 
+        .vlanAssignSelected {
+            background: rgba(255, 255, 255, 0.29);
+          }
+
         .vlanAssignButton {
             padding: 5px 10px;
-            border-radius: 5px;
-            margin: 5px;
-            cursor: pointer;
+            border-radius: 5px !important;
+            margin: 5px !important;
+            cursor: pointer !important;
+            border: none;
+            appearance: none !important;
         }
 
         .show-patch .patch-cont {
@@ -647,6 +654,7 @@
                 const _selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
                 _selectedPorts.forEach(port => {
+                    port.classList.remove('vlanAssignSelected');
                     const interfaceID = port.getAttribute('data-id');
                     console.log(`Set ${interfaceID} vlan to ${vid}`);
                 });
