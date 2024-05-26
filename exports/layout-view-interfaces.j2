@@ -648,7 +648,7 @@
                         {%- set hsl.s = 13 %}
                         {%- set hsl.l = 22 %}
                     {%- endif %}
-                    "{{vlan.vid}}":"background-color: hsl({{hsl.h}},{{hsl.s}}%,calc({{hsl.l}}% + var(--hsl-offset))",
+                    "{{vlan.vid}}":"hsl({{hsl.h}},{{hsl.s}}%,calc({{hsl.l}}% + var(--hsl-offset))",
                 {%- endif %}
             {%- endif %}
             {%- endfor %}
