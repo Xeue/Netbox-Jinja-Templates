@@ -693,13 +693,11 @@
                 const __selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
                 const vidid = vid == "none" ? null : element.getAttribute('data-idid');
-                //const mode = vid == "none" ? null : "access";
-                const mode = "access";
                 __selectedPorts.forEach(_port => {
                     _port.classList.remove('vlanAssignSelected');
                     const interfaceID = _port.getAttribute('data-id');
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
-                    const payload = {"untagged_vlan":vidid,"mode":mode};
+                    const payload = {"untagged_vlan":vidid,"mode":"access"};
         
                     fetch(url, {
                         credentials: "omit",
@@ -714,12 +712,20 @@
                         response.json().then(data=>{
                             const _parent = _port.parentElement;
                             const _vlanText = _parent.querySelector('.type-vlan');
+                            const _vlanPretty = _parent.querySelector('.empty-mode');
+
                             if (_vlanText) _vlanText.innerHTML = data.untagged_vlan.vid;
                             else _parent.insertAdjacentHTML('beforeend', `<div class="type-vlan">${data.untagged_vlan.vid}</div>`);
-                            const _vlanPretty = _parent.querySelector('.empty-mode');
+
                             if (_vlanPretty) _vlanPretty.innerHTML = data.untagged_vlan.display;
                             else _parent.querySelector('.empty-text').insertAdjacentHTML('beforeend', `<div class="empty-mode">${data.untagged_vlan.display}</div>`);
-                            if (vlans[data.untagged_vlan.vid] != 'None') _parent.setAttribute('style', `background-color: ${vlans[data.untagged_vlan.vid]}`);
+
+                            if (data.untagged_vlan == null) {
+                                _parent.removeAttribute('style');
+                                _parent.querySelector('.empty-mode').remove();
+                                _parent.querySelector('.type-vlan').remove();
+                            }
+                            else _parent.setAttribute('style', `background-color: ${vlans[data.untagged_vlan.vid]}`);
                         });
                     })
                 });
