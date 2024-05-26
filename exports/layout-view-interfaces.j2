@@ -681,12 +681,13 @@
                         body: payload
                     }).then(response => {
                         response.json().then(data=>{
-                            const _vlanText = _port.querySelector('.type-vlan');
+                            const _parent = _port.parentElement;
+                            const _vlanText = _parent.querySelector('.type-vlan');
                             if (_vlanText) _vlanText.innerHTML(data.untagged_vlan.vid);
-                            else _port.append(`<div class="type-vlan">${data.untagged_vlan.vid}</div>`)
-                            const _vlanPretty = _port.querySelector('.empty-mode');
+                            else _parent.append(`<div class="type-vlan">${data.untagged_vlan.vid}</div>`)
+                            const _vlanPretty = _parent.querySelector('.empty-mode');
                             if (_vlanPretty) _vlanPretty.innerHTML(data.untagged_vlan.display);
-                            else _port.querySelector('.empty-text').append(`<div class="empty-mode">${data.untagged_vlan.display}</div>`);
+                            else _parent.querySelector('.empty-text').append(`<div class="empty-mode">${data.untagged_vlan.display}</div>`);
                         });
                     })
                 });
