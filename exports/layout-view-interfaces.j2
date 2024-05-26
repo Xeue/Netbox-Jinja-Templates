@@ -692,8 +692,8 @@
             _vlanButtons.forEach(element => element.addEventListener("click", e => {
                 const __selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
-                const vidid = vid == "none" ? "" : element.getAttribute('data-idid');
-                const mode = vid == "none" ? "" : "access";
+                const vidid = vid == "none" ? "null" : element.getAttribute('data-idid');
+                const mode = vid == "none" ? "null" : "access";
                 //if (vid == "none") return;
                 __selectedPorts.forEach(_port => {
                     _port.classList.remove('vlanAssignSelected');
