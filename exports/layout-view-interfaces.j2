@@ -521,6 +521,7 @@
         .show-fibre [data-type="smf-os2"] {
             background-color: #7b7d23 !important;
         }
+        .vlanButtons,
         .type-vlan {
             display: none;
         }
@@ -537,10 +538,17 @@
             top: 0px;
             white-space: nowrap;
         }
+
         .show-vlans .empty-text,
         .show-vlans .to-cont {
             display: none;
         }
+
+        .show-vlans .vlanButtons {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         .show-patch .patch-cont {
             display: block;
         }
@@ -824,7 +832,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <div class="" style="{{background.value}}">
+            <div class="vlanAssignButton" style="{{background.value}}">
                 vlan {{vlan.vid}}
                 name "{{vlan.name}}"
             </div>
