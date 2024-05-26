@@ -636,6 +636,23 @@
                         break;
                 }
             })
+
+            const _vlanPorts = document.querySelectorAll(".vlanAssign");
+            _vlanPorts.forEach(element => element.addEventListener("click", e => {
+                element.classList.toggle('vlanAssignSelected');
+            }));
+
+            const _vlanButtons = document.querySelectorAll(".vlanAssignButton");
+            _vlanButtons.forEach(element => element.addEventListener("click", e => {
+                const _selectedPorts = document.querySelectorAll(".vlanAssignSelected");
+                const vid = element.getAttribute('data-id');
+                _selectedPorts.forEach(port => {
+                    const interfaceID = port.getAttribute('data-id');
+                    console.log(`Set ${interfaceID} vlan to ${vid}`);
+                });
+            }));
+
+            
         });
     </script>
 </head>
@@ -855,7 +872,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <div class="vlanAssignButton" style="{{background.value}}">{{vlan.vid}} / {{vlan.name}}</div>
+            <button class="vlanAssignButton" style="{{background.value}}" data-id="{{vlan.vid}}">{{vlan.vid}} - {{vlan.name}}</button>
         {%- endif %}
     {%- endfor %}
     </section>
