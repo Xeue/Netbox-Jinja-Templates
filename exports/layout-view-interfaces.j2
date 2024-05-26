@@ -625,9 +625,10 @@
         const vlans = {
             {%- for vlan in vlans %}
                 {%- if vlan.vid is defined %}
-                "{{vlan.vid}}":"{{vlan.cf.colour}}";
+                "{{vlan.vid}}":"{{vlan.cf.colour}}",
                 {%- endif %}
             {%- endfor %}
+            "none":"#00000000"
         }
         initMode()
         document.addEventListener("DOMContentLoaded", e => {
@@ -662,10 +663,10 @@
                 const __selectedPorts = document.querySelectorAll(".vlanAssignSelected");
                 const vid = element.getAttribute('data-id');
                 const vidid = element.getAttribute('data-idid');
+                if (vid == "none") return;
                 __selectedPorts.forEach(_port => {
                     port.classList.remove('vlanAssignSelected');
                     const interfaceID = _port.getAttribute('data-id');
-                    console.log(`Set ${interfaceID} vlan to ${vid}`);
                     const url = `https://netbox.nep.group/api/dcim/interfaces/${interfaceID}/`;
                     const payload = `{"untagged_vlan":"${vidid}","mode":"access"}`;
         
@@ -686,7 +687,6 @@
                             const _vlanPretty = _port.querySelector('.empty-mode');
                             if (_vlanPretty) _vlanPretty.innerHTML(data.untagged_vlan.display);
                             else _port.querySelector('.empty-text').append(`<div class="empty-mode">${data.untagged_vlan.display}</div>`);
-                            console.log(data);
                         });
                     })
                 });
@@ -912,6 +912,7 @@
             <button class="vlanAssignButton" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
         {%- endif %}
     {%- endfor %}
+        <button class="vlanAssignButton" style="" data-id="none" data-idid="none">None</button>
     </section>
 </body>
 </html>
