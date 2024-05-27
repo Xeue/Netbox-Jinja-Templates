@@ -961,7 +961,7 @@
                 {%- set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
                 {%- if vlan.cf.colour != None %}
                     {%- set colours = vlan.cf.colour.split(',') %}
-                    {%- set background.value = "background-color: hsl("~colours[0]~","~colours[1]~"%,calc("~colours[2]~"% + var(--hsl-offset))" %}
+                    {%- set background.value = "background-color: hsl("~colours[0]~","~colours[1]~",calc("~colours[2]~" + var(--hsl-offset))" %}
                 {%- endif %}
             {%- endif %}
             <button class="vlanAssignButton{% if vlan.cf.hidden %} d-none{% endif %}" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
