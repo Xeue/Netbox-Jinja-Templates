@@ -934,32 +934,36 @@
     <section class="vlanButtons">
     {%- for vlan in vlans %}
         {%- if vlan.vid is defined %}
-            {% set hsl = namespace(h=204) %}
-            {% set hsl = namespace(s=13) %}
-            {% set hsl = namespace(l=22) %}
-            {% set background = namespace(value="") %}
-            {% if vlan.vid %}
-                {% if vlan.vid > 39 and vlan.vid < 50 %}
-                    {% set shift = (vlan.vid|int() - 40) %}
-                    {% set hsl.h = 145 - shift * 3 %}
-                    {% set hsl.s = 22 + shift * 7 %}
-                    {% set hsl.l = 13 + shift * 3 %}
-                {% elif vlan.vid > 999 and vlan.vid < 1050 %}
-                    {% set shift = (vlan.vid|int() - 1000) %}
-                    {% set hsl.h = 455 - shift * 6 %}
-                    {% set hsl.s = 40 %}
-                    {% set hsl.l = 25 %}
-                {% elif vlan.vid == 170 %}
-                    {% set hsl.h = 202 %}
-                    {% set hsl.s = 51 %}
-                    {% set hsl.l = 35 %}
-                {% else %}
-                    {% set hsl.h = 204 %}
-                    {% set hsl.s = 13 %}
-                    {% set hsl.l = 22 %}
-                {% endif %}
-                {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
-            {% endif %}
+            {%- set hsl = namespace(h=204) %}
+            {%- set hsl = namespace(s=13) %}
+            {%- set hsl = namespace(l=22) %}
+            {%- set background = namespace(value="") %}
+            {%- if vlan.vid %}
+                {%- if vlan.vid > 39 and vlan.vid < 50 %}
+                    {%- set shift = (vlan.vid|int() - 40) %}
+                    {%- set hsl.h = 145 - shift * 3 %}
+                    {%- set hsl.s = 22 + shift * 7 %}
+                    {%- set hsl.l = 13 + shift * 3 %}
+                {%- elif vlan.vid > 999 and vlan.vid < 1050 %}
+                    {%- set shift = (vlan.vid|int() - 1000) %}
+                    {%- set hsl.h = 455 - shift * 6 %}
+                    {%- set hsl.s = 40 %}
+                    {%- set hsl.l = 25 %}
+                {%- elif vlan.vid == 170 %}
+                    {%- set hsl.h = 202 %}
+                    {%- set hsl.s = 51 %}
+                    {%- set hsl.l = 35 %}
+                {%- else %}
+                    {%- set hsl.h = 204 %}
+                    {%- set hsl.s = 13 %}
+                    {%- set hsl.l = 22 %}
+                {%- endif %}
+                {%- set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
+                {%- if vlan.cf.colour is defined %}
+                    {%- set colours = vlan.cf.colour.split(',') %}
+                    {%- set background.value = "background-color: hsl("~colours[0]~","~colours[1]~"%,calc("~colours[2]~"% + var(--hsl-offset))" %}
+                {%- endif %}
+            {%- endif %}
             <button class="vlanAssignButton{% if vlan.cf.hidden %} d-none{% endif %}" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
         {%- endif %}
     {%- endfor %}
