@@ -960,7 +960,7 @@
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
             {% endif %}
-            <button class="vlanAssignButton" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
+            <button class="vlanAssignButton{% if vlan.cf.hidden %} d-none{% endif %}" style="{{background.value}}" data-id="{{vlan.vid}}" data-idid="{{vlan.id}}">{{vlan.vid}} - {{vlan.name}}</button>
         {%- endif %}
     {%- endfor %}
         <button class="vlanAssignButton" style="" data-id="none" data-idid="none">None</button>
