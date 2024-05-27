@@ -813,8 +813,8 @@
                     {% set hsl.l = 22 %}
                 {% endif %}
                 {% set background.value = "background-color: hsl("~hsl.h~","~hsl.s~"%,calc("~hsl.l~"% + var(--hsl-offset))" %}
-                {%- if untagged_vlan.cf.colour != None %}
-                    {%- set colours = untagged_vlan.cf.colour.split(',') %}
+                {%- if interface.untagged_vlan.cf.colour != None %}
+                    {%- set colours = interface.untagged_vlan.cf.colour.split(',') %}
                     {%- set background.value = "background-color: hsl("~colours[0]~","~colours[1]~",calc("~colours[2]~" + var(--hsl-offset))" %}
                 {%- endif %}
             {% endif %}
