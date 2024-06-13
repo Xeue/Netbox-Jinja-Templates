@@ -793,8 +793,8 @@
 
         function checkFrame(frameURL, location) {
             if (frameURL == "") return;
-            console.log([location.href, frameURL]);
-            if (!location.href.includes(frameURL.slice('return')[0])) {
+            console.log([location.href, frameURL.split('return')]);
+            if (!location.href.includes(frameURL.split('return')[0])) {
             }
         }
     </script>
