@@ -792,7 +792,9 @@
         });
 
         function checkFrame(frameURL, location) {
-            if (frameURL != location) alert('AAH!');
+            if (frameURL != location) {
+                console.log([frameURL, location]);
+            }
         }
     </script>
 </head>
