@@ -725,7 +725,7 @@
 
             const _quickTermButtons = document.querySelectorAll(".quickTerm");
             const _frame = document.getElementById('frame');
-            _vlanButtons.forEach(element => element.addEventListener("click", e => {
+            _quickTermButtons.forEach(element => element.addEventListener("click", e => {
                 const url = element.getAttribute('data-url');
                 _frame.setAttribute('src', url);
             }))
