@@ -790,6 +790,10 @@
                 });
             }));
         });
+
+        checkFrame(frameURL, location) {
+            if (frameURL != location) alert('AAH!');
+        }
     </script>
 </head>
 <body>
@@ -934,7 +938,7 @@
                         style="{{background.value}}">
                         <div class="vlanAssign" data-id="{{interface.id}}"></div>
                         <div class="empty-text">
-                            <span class="quickTerm" data-url="/dcim/cables/add/?a_terminations_type=dcim.interface&a_terminations={{interface.id}}&b_terminations_type=dcim.interface&iframed=true&return_url=/dcim/interfaces/?device_id={{interface.device.id}}%26closeme=true" target="_">
+                            <span class="quickTerm" data-url="/dcim/cables/add/?a_terminations_type=dcim.interface&a_terminations={{interface.id}}&b_terminations_type=dcim.interface&iframed=true&return_url=/dcim/interfaces/?device_id={{interface.device.id}}" target="_">
                                 {% if interface.enabled == false %}
                                     Disabled
                                 {% elif interface.description != "" %}                           
@@ -982,7 +986,7 @@
         {% endif %}
         <div class="blank"></div><div class="blank2"></div>
     </main>
-    <iframe id="frame" src=""></iframe>
+    <iframe id="frame" src="" onLoad="checkFrame(this.getAttribute('src'), this.contentWindow.location);"></iframe>
     <section class="vlanButtons">
     {%- for vlan in vlans %}
         {%- if vlan.vid is defined %}
