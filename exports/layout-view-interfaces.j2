@@ -809,8 +809,9 @@
                     }
                 }).then(response => {
                     response.json().then(data=>{
+                        console.log(data);
                         const tags = data.tags.map(tag => tag.slug);
-
+                        console.log(tags);
                         if (tags.includes('pending-changes')) return;
 
                         const payload = {"tags":tags.push('pending-changes')};
