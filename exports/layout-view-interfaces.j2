@@ -791,10 +791,43 @@
             }));
         });
 
-        function checkFrame(frameURL, location) {
+        function checkFrame(frameURL, location, device) {
             if (frameURL == "") return;
             if (!location.href.includes(frameURL.split('return')[0])) {
-                console.log('changed');
+                document.getElementById('frame').setAttribute('src', "");
+
+                const url = `https://netbox.nep.group/api/dcim/devices/{{queryset[0].device.id}}/`;
+                
+    
+                fetch(url, {
+                    credentials: "omit",
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token 33cb389f41c7f8a4331c25947fd5966148cd56eb',
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    response.json().then(data=>{
+                        const tags = data.tags.map(tag => tag.slug);
+
+                        if (tags.includes('pending-changes')) return;
+
+                        const payload = {"tags":tags.push('pending-changes')};
+                        fetch(url, {
+                            credentials: "omit",
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Token 33cb389f41c7f8a4331c25947fd5966148cd56eb',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        })
+
+                    });
+                })
+
             }
         }
     </script>
