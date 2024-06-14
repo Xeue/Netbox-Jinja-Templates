@@ -809,12 +809,10 @@
                     }
                 }).then(response => {
                     response.json().then(data=>{
-                        console.log(data);
                         const tags = data.tags.map(tag => tag.slug);
-                        console.log(tags);
                         if (tags.includes('pending-changes')) return;
-
-                        const payload = {"tags":tags.push('pending-changes')};
+                        tags.push('pending-changes')
+                        const payload = {"tags":tags};
                         fetch(url, {
                             credentials: "omit",
                             method: 'PATCH',
