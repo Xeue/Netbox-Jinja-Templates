@@ -812,9 +812,9 @@
 //                        const tags = data.tags.map(tag => tag.slug);
 //                        if (tags.includes('pending-changes')) return;
 //                        tags.push('pending-changes')
-                        const tags = data.tags.map(tag => tag.name);
-                        if (tags.includes('Pending Changed')) return;
-                        tags.push('Pending Changed')
+                        const tags = data.tags.map(tag => tag.id);
+                        if (tags.includes(35)) return;
+                        tags.push(35)
                         const payload = {"tags":tags};
                         fetch(url, {
                             credentials: "omit",
