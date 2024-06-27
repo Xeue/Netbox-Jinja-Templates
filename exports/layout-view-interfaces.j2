@@ -430,7 +430,7 @@
             {%- set ports1 = 18 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 blank blank blank blank blank blank" "e2 e4 e6 e8 e10 e12 e13 e14 e15 e16 f1 f2";
+                grid-template-areas: "e1 e3 e5 e7 e9 e11 blank blank blank blank blank blank" "e2 e4 e6 e8 e10 e12 e13 e14 e15 e16 f17 f18";
                 grid-template-columns: repeat(27, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -941,8 +941,7 @@
                     {% endif %}
 
                     {% set connection.patch = interface.link_peers|first %}
-
-                    <section class="switchport {{vlan}} {% for tag in connection.far.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}{% if connection.hasPatch %} hasPatch{% endif %}{% if connection.isPatch %} isPatch{% endif %}"
+                    <section class="switchport {{vlan}}{% 'sfp' in interface.type %} Fibre{% endif %} {% for tag in connection.far.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}{% if connection.hasPatch %} hasPatch{% endif %}{% if connection.isPatch %} isPatch{% endif %}"
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
                         data-type="{{interface.cable.type}}"
