@@ -418,6 +418,16 @@
                 grid-template-columns: repeat(26, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
+        {%- elif switch == 'CBS250-24P-4X' or switch == 'Catalyst 1200-24T-4X' or switch == 'Catalyst 1200-24P-4X' %}
+            {%- set ports1 = 24 %}
+            {%- set ports2 = 4 %}
+            {%- set prefix1 = "gi" %}
+            {%- set prefix2 = "te" %}
+            main {
+                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 blank blank blank blank" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 f1 f2 f3 f4";
+                grid-template-columns: repeat(16, var(--column-width));
+                grid-template-rows: repeat(2, var(--row-height));
+            }
         {%- elif switch == 'Nexus-3548-X' %}
             {%- set ports1 = 48 %}
             {%- set prefix1 = "Ethernet1-" %}
@@ -431,7 +441,7 @@
             {%- set prefix1 = "Ethernet" %}
             main {
                 grid-template-areas: "e1 e3 e5 e7 e9 e11 blank blank blank blank blank blank" "e2 e4 e6 e8 e10 e12 e13 e14 e15 e16 f17 f18";
-                grid-template-columns: repeat(27, var(--column-width));
+                grid-template-columns: repeat(12, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
         {%- elif switch == 'CCS-720XP-48Y6' %}
