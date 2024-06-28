@@ -25,7 +25,6 @@ clock timezone GMT 0 minutes 0
 clock source sntp
 sntp unicast client enable
 sntp server {{sntp_server}}
-sntp source-interface vlan {{management_vlan}}
 {% include 'cisco/spanning_tree.j2' %}
 {%- if device.primary_ip4 %}
 interface vlan {{device.primary_ip4|ip()|string()|split(2,".")}}
