@@ -409,8 +409,8 @@
             {%- set ports1 = 106 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f97 f98 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 blank" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f99 f100 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 blank" "f49 f51 f53 f55 f57 f59 f61 f63 f65 f67 f69 f71 f101 f102 f73 f75 f77 f79 f81 f83 f85 f87 f89 f91 f93 f95 f105" "f50 f52 f54 f56 f58 f60 f62 f64 f66 f68 f70 f72 f103 f104 f74 f76 f78 f80 f82 f84 f86 f88 f90 f92 f94 f96 f106";
-                grid-template-columns: repeat(27, var(--column-width));
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f97 f97 f98 f98 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 blank" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f99 f99 f100 f100 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 blank" "f49 f51 f53 f55 f57 f59 f61 f63 f65 f67 f69 f71 f101 f101 f102 f102 f73 f75 f77 f79 f81 f83 f85 f87 f89 f91 f93 f95 f105" "f50 f52 f54 f56 f58 f60 f62 f64 f66 f68 f70 f72 f103 f103 f104 f104 f74 f76 f78 f80 f82 f84 f86 f88 f90 f92 f94 f96 f106";
+                grid-template-columns: repeat(29, var(--column-width));
                 grid-template-rows: repeat(4, var(--row-height));
             }
         {%- elif switch == 'DCS-7150S-24' %}
