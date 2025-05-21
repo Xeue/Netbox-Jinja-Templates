@@ -959,7 +959,7 @@
                     {% endif %}
 
                     {% set connection.patch = interface.link_peers|first %}
-                    <section class="switchport {{interface.type}} {{vlan}}{% if 'sfp' in interface.type %} Fibre{% endif %} {% for tag in connection.far.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}{% if connection.hasPatch %} hasPatch{% endif %}{% if connection.isPatch %} isPatch{% endif %}"
+                    <section class="switchport {{vlan}}{% if 'sfp' in interface.type %} Fibre{% endif %} {% for tag in connection.far.device.tags.names() %}{{tag|replace(' ','-') }} {% endfor %}port_{{label}} {{name}}{% if connection.hasPatch %} hasPatch{% endif %}{% if connection.isPatch %} isPatch{% endif %}"
                         data-mode="{{interface.type}}"
                         data-cable="{{interface.cable.color}}"
                         data-type="{{interface.cable.type}}"
@@ -1007,7 +1007,7 @@
                         {% endif %}
                     </section>
                 {% else %}
-                    <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}"
+                    <section class="empty {{vlan}} port_{{label}} {{name}} {% if interface.enabled == false %}disabled{% endif %}{% if 'sfp' in interface.type %} Fibre{% endif %}"
                         data-mode="{{interface.type}}"
                         style="{{background.value}}">
                         <div class="vlanAssign" data-id="{{interface.id}}"></div>
