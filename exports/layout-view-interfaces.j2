@@ -261,7 +261,7 @@
             {%- set ports1 = 52 %}
             {%- set prefix1 = "0-" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 e51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 e52";
+                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 f51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 f52";
                 grid-template-columns: repeat(26, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -294,7 +294,7 @@
             {%- set ports1 = 52 %}
             {%- set prefix1 = "eth-0-" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 e51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 e52";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 f49 f51" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 f50 f52";
                 grid-template-columns: repeat(28, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -303,7 +303,7 @@
             {%- set ports1 = 52 %}
             {%- set prefix1 = "eth-0-" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 blank blank blank blank" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e49 e50 e51 e52";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 blank blank blank blank" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 f49 f50 f51 f52";
                 grid-template-columns: repeat(28, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -316,7 +316,7 @@
             {%- set prefix2 = "xe-0-0-" %}
             {%- set offset = 16 %}
             main {
-                grid-template-areas: "e0 e2 e4 e6 e8 e10 e12 e14 f0 f2" "e1 e3 e5 e7 e9 e11 e13 e15 f1 f3";
+                grid-template-areas: "e0 e2 e4 e6 e8 e10 f12 f14 f0 f2" "e1 e3 e5 e7 e9 e11 f13 f15 f1 f3";
                 grid-template-columns: repeat(26, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -325,7 +325,7 @@
             {%- set ports1 = 52 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 e51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 e52";
+                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 f49 f51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 f50 f52";
                 grid-template-columns: repeat(28, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -338,7 +338,7 @@
             {%- set offset = 48 %}
             {%- set lanes = 4 %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4";;
                 grid-template-columns: repeat(36, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -352,7 +352,7 @@
             {%- set offset = 48 %}
             {%- set lanes = 4 %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48";
                 grid-template-columns: repeat(36, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -364,7 +364,7 @@
             {%- set offset = 48 %}
             {%- set lanes = 4 %}
             main {
-                grid-template-areas:  "e1 e3 e5 e7 e9 e11 e13 e15 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4 q55-1 q55-2 q55-3 q55-4 q57-1 q57-2 q57-3 q57-4 q59-1 q59-2 q59-3 q59-4 e17 e19 e21 e23 e25 e27 e29 e31" "e2 e4 e6 e8 e10 e12 e14 e16 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4 q56-1 q56-2 q56-3 q56-4 q58-1 q58-2 q58-3 q58-4 q60-1 q60-2 q60-3 q60-4 e18 e20 e22 e24 e26 e28 e30 e32" "e33 e34 e35 e36 e37 e38 e39 e40 blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank e41 e42 e43 e44 e45 e46 e47 e48";
+                grid-template-areas:  "f1 f3 f5 f7 f9 f11 f13 f15 q49-1 q49-2 q49-3 q49-4 q51-1 q51-2 q51-3 q51-4 q53-1 q53-2 q53-3 q53-4 q55-1 q55-2 q55-3 q55-4 q57-1 q57-2 q57-3 q57-4 q59-1 q59-2 q59-3 q59-4 f17 f19 f21 f23 f25 f27 f29 f31" "f2 f4 f6 f8 f10 f12 f14 f16 q50-1 q50-2 q50-3 q50-4 q52-1 q52-2 q52-3 q52-4 q54-1 q54-2 q54-3 q54-4 q56-1 q56-2 q56-3 q56-4 q58-1 q58-2 q58-3 q58-4 q60-1 q60-2 q60-3 q60-4 f18 f20 f22 f24 f26 f28 f30 f32" "f33 f34 f35 f36 f37 f38 f39 f40 blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank f41 f42 f43 f44 f45 f46 f47 f48";
                 grid-template-columns: repeat(40, var(--column-width));
                 grid-template-rows: repeat(3, var(--row-height));
             }
@@ -396,7 +396,7 @@
             {%- set ports1 = 52 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 e51" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 e52";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47 f49 f51" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48 f50 f52";
                 grid-template-columns: repeat(26, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -412,7 +412,7 @@
             {%- set ports1 = 24 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24";
                 grid-template-columns: repeat(12, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -440,7 +440,7 @@
             {%- set ports1 = 48 %}
             {%- set prefix1 = "Ethernet1-" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48";
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 f25 f27 f29 f31 f33 f35 f37 f39 f41 f43 f45 f47" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f26 f28 f30 f32 f34 f36 f38 f40 f42 f44 f46 f48";
                 grid-template-columns: repeat(24, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
@@ -456,7 +456,7 @@
             {%- set ports1 = 54 %}
             {%- set prefix1 = "Ethernet" %}
             main {
-                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 e49 e51 e53" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 e50 e52 e54";
+                grid-template-areas: "e1 e3 e5 e7 e9 e11 e13 e15 e17 e19 e21 e23 e25 e27 e29 e31 e33 e35 e37 e39 e41 e43 e45 e47 f49 f51 f53" "e2 e4 e6 e8 e10 e12 e14 e16 e18 e20 e22 e24 e26 e28 e30 e32 e34 e36 e38 e40 e42 e44 e46 e48 f50 f52 f54";
                 grid-template-columns: repeat(27, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
