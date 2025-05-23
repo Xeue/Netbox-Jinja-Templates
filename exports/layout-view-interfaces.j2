@@ -421,6 +421,14 @@
                 grid-template-columns: repeat(12, var(--column-width));
                 grid-template-rows: repeat(2, var(--row-height));
             }
+        {%- elif switch == 'DCS-7020SR-24C2' %}
+            {%- set ports1 = 26 %}
+            {%- set prefix1 = "Ethernet" %}
+            main {
+                grid-template-areas: "f1 f3 f5 f7 f9 f11 f13 f15 f17 f19 f21 f23 blank blank" "f2 f4 f6 f8 f10 f12 f14 f16 f18 f20 f22 f24 f25 f26";
+                grid-template-columns: repeat(14, var(--column-width));
+                grid-template-rows: repeat(2, var(--row-height));
+            }
         {%- elif switch == 'CBS350-48P-4X' %}
             {%- set ports1 = 48 %}
             {%- set ports2 = 4 %}
