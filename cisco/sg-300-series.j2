@@ -21,7 +21,8 @@ username {{user}} password {{secret}}
 ip ssh server
 ip ssh password-auth
 snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"              
-clock timezone GMT 0 minutes 0
+clock timezone UTC 0 minutes 0
+clock summer-time BST recurring eu
 clock source sntp
 sntp unicast client enable
 sntp server {{sntp_server}}
