@@ -6,6 +6,8 @@ ip default-gateway {{device.primary_ip4|gateway()}}
 {%- endif %}
 clock source sntp
 sntp server {{sntp_server}} port {{sntp_port}}
+clock timezone UTC 0 minutes 0
+clock summer-time web recurring eu
 snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{device.location.name|replace("#","")|replace(" ","-")}}"
 snmp-server contact "{{snmp_contact}}"
