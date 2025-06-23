@@ -16,6 +16,8 @@ configure
 no sntp server time-a.netgear.com
 no sntp server time-c.netgear.com
 sntp server "{{sntp_server}}"
+clock timezone 0
+clock summer-time recurring EU offset 60
 snmp-server sysname "{{snmp_sysname}}"
 snmp-server location "{{snmp_location}}"
 snmp-server contact "{{snmp_contact}}"
